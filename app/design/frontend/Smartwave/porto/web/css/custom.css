@@ -1,0 +1,14 @@
+.page-header .content{
+  background: #2F2F2F;
+}
+.page-header .nav-sections{
+  background: #fff;
+
+}
+.page-header .nav-sections li{
+  text-align: left;
+  font: Bold 20px/57px Gilroy;
+  letter-spacing: 1px;
+  color: #2F2F2F;
+  opacity: 1;
+}
