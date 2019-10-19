@@ -3331,7 +3331,7 @@
         autoplayTimeout: 5000,
         autoplayHoverPause: true,
         dots: true,
-        nav: false,
+        nav: true,
         navRewind: true,
         animateIn: 'fadeIn',
         animateOut: 'fadeOut',

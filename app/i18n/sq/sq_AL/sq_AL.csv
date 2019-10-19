@@ -1,0 +1,127 @@
+"You have no items in your shopping cart.","Ju nuk keni artikuj në shportën tuaj të blerjeve."
+"Cart Subtotal","Nëntotali i Shportës"
+item,Artikull
+"Edit item","Modifiko"
+"Remove item","Hiq"
+items,Artikujt
+"%1 Item(s)","%1 Artikuj"
+Qty,Sasia
+View and Edit Cart,Shiko dhe modifiko shportën
+Go to Checkout,Përfundo porosinë
+"You added %1 to your shopping cart.","Ju shtuat  %1 në shportën tuaj të blerjeve"
+Shipping,Transporti
+"Shipping Address",Adresa e transportit
+"Order Summary",Përmbledhje e porosisë
+Item in Cart,Artikull në shportë
+Items in Cart,Artikuj në shportë
+"Email Address",Adresa Email
+"You can create an account after checkout.","Mund të krijoni një llogari pas porosisë."
+"Shipping Methods Section","Seksioni i Metodave të Transportit"
+"Select Method",Zgjidh Metodën
+"Price",Çmimi
+"Method Title",Mënyra e transportit
+"Carrier Title",Koha
+"Shipping Time",Koha
+"Select Shipping Method",Zgjidh metodën e transportimit
+Next,Vazhdo
+"Ship To:","Transportoje në:"
+"Shipping Method:",Metoda e Transportit:
+"Place Order","Bëj porosinë"
+"Apply Discount Code","Aplikoni kodin e zbritjes"
+"Enter discount code","Fut kodin e zbritjes"
+"Apply Discount","Apliko Zbritjen"
+"Thank you for your purchase!","Faleminderit për blerjen tuaj!"
+"Your order # is: <span>%1</span>.","Porosia juaj # është: <span>%1</span>."
+"We'll email you an order confirmation with details and tracking info.","Do t'ju dërgojmë një email konfirmues të porosisë me detaje."
+"You can track your order status by creating an account.","Ju mund të gjurmoni statusin tuaj të porosisë duke krijuar një llogari."
+"Create an Account","Krijo një Llogari"
+"Click <a href=""%1"">here</a> to continue shopping.","Kliko <a href=""%1"">këtu</a> për të vazhduar blerjen"
+Subtotal,Nëntotali
+"Update Shopping Cart","Përditëso  Shportën e Blerjes"
+Personal Information,Informacion Personal
+Sign Up for Newsletter,Rregjistrohu për njoftimet
+Create New Customer Account,Krijo llogari të re si klient
+Sign-in Information,Informacioni Hyrës
+Password Strength,Vështirësia e Fjalkalimit
+Confirm Password,Konfirmo fjalëkalimin
+Password,Fjalëkalimi
+Search,KERKO
+Day,Ditë
+'Carrier Title',Koha
+'Shipping Time',Koha
+Estimate Shipping and Tax,Llogarit Postën dhe Taksën
+Shopping Cart,Shporta
+Enter your destination to get a shipping estimate.,SHKRUAJ VENDIN PËR PËRLLOGARITJEN E POSTËS
+Enter your destination to get a shipping estimate,SHKRUAJ VENDIN PËR PËRLLOGARITJEN E POSTËS
+State/Province,Shtet/Qytet
+First Name,Emri
+Last Name,Mbiemri
+Company,Kompania
+Street Address,Adresa
+City,Qyteti
+Zip/Postal Code,Kodi postar
+Country,Vendi
+Phone Number,Nr. i telefonit
+'Shipping Methods',MENYRA E TRANSPORTIT
+Provided Zip/Postal Code seems to be invalid.,KY KOD POSTAR / ZIP ËSHTË I PAVLEFSHËM
+If you believe it is the right one you can ignore this notice.,"NËSE JENI I SIGURT QË ËSHTË I SAKTË, SHPËRFILLENI KËTË MESAZH."
+CASH ON DELIVERY,Paguaj në dorëzim
+'Go to Checkout',Përfundo porosinë
+Edit,Modifiko
+'Edit',Modifiko
+"Review & Pagesat",Kontrollo dhe paguaj
+"Review & Payments","Kontrollo dhe paguaj"
+"Shipping Methods","Mënyra e transportit"
+ Example: , SHEMBULL 
+Not yet calculated, S'ËSHTË PËRLLOGARITUR ENDE
+ALBANIAN POSTAL SERVICE,POSTA SHQIPTARE
+Tax,TAKSA
+TE BLERA, TË BLERA
+You're reviewing:,Po shrkuani për:
+Your Rating,Vlerësimi yt
+Nickname,Emri
+Summary,Përmbledhje
+Review,Vlerësimi
+Submit Review,Dërgo Vlerësimin
+Value,Vlera
+Price,Çmimi
+Quality,Cilësia
+age,Mosha
+Yes,Po
+No,Jo
+dimensions,Përmasat
+page,Faqe
+"We'll send your order confirmation here.","Do ta dërgojmë këtu konfirmimin e porosisë."
+"For delivery questions.","Për pyetje mbi dërgesën"
+"My billing and shipping address are the same","Adresa e faturimit dhe e dergesës është e njejta."
+Update,Përditëso
+"This is a required field.","Kjo fushë është e detyruar."
+"Minimum length of this field must be equal or greater than %1 symbols. Leading and trailing spaces will be ignored.","Kjo fushe duhet të ketë %1 ose më shumë simbole. Hapësirat nuk merren parasysh"
+"Please enter the same value again.","Ju lutem shtypni të njëjtin fjalëkalim."
+Weak,e dobët
+Medium,mesatar
+Strong,e fortë
+"Very Strong","shume e fortë"
+"Please specify a shipping method.","Ju lutem specifikoni një metodë transporti."
+"Minimum of different classes of characters in password is %1. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.","Kjo fushe duhet të ketë %1 karaktere të ndryshme. Karakteret duhet të jene: Shkronjë e madhe, Shkronjë e vogël, Numër, Karakter Special"
+No Password,Nuk ka Fjalëkalim
+"No Password","Nuk ka Fjalëkalim"
+Read more,MË SHUMË
+"Are you sure you would like to remove this item from the shopping cart?","Je i/e sigurt që do ta heqësh nga shporta?"
+"Please enter a valid email address (Ex: johndoe@domain.com).","Ju lutem, shkruani një adresë të vlefshme emaili (P.sh.: emri@domain.com ).",module,Magento_Ui
+"Payment Method:","Mënyra e pageses:"
+"Payment Method","Mënyra e pageses"
+Read  More,Lexo më shumë
+"Estimated Total","Vlera"
+Checkout,Përfundo porosinë
+"Not yet calculated","S'ËSHTË PËRLLOGARITUR ENDE"
+"Coupon code is not valid","Kodi i kuponit nuk është i vlefshëm"
+Coupon code is not valid,Kodi i kuponit nuk është i vlefshëm
+"Continue Shopping","Vazhdo blerjen"
+"If you have questions about your order, you can email us at <a href=""mailto:%store_email"">%store_email</a>.","Nëse keni pyetje në lidhje me porosinë tuaj, mund të na dërgoni e-mail në: <a href=""mailto:%store_email"">%store_email</a>"
+"You can check the status of your order by <a href=""%account_url"">logging into your account</a>.","Mund të kontrolloni statusin e porosise duke <a href=""%account_url"">u loguar ne llogarine tuaj</a>."
+"Once your package ships we will send you a tracking number.","Sapo porosia juaj të niset, do t’ju dërgojmë kodin e dërgesës."
+"Your %store_name order confirmation","Konfirmimi porosisë në %store_name "
+"Sorry, no quotes are available for this order at this time","Na falni. Çmimi për këtë porosi, për momentin nuk është i vlefshëm"
+"Your order number is: ","Numri porosesë suaj është: "
+"Your order number is: %1.","Numri porosesë suaj është: %1."

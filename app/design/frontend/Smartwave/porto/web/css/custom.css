@@ -1,4 +1,5 @@
-.page-header .content{
+.page-header .content,
+.page-header{
   background: #2F2F2F;
 }
 .page-header .nav-sections{
@@ -11,4 +12,39 @@
   letter-spacing: 1px;
   color: #2F2F2F;
   opacity: 1;
+}
+
+.second-header{
+  display: inline-flex;
+  min-width: 100%;
+  max-width: 100vw;
+  background: #FFFFFF;
+  justify-content: center;
+}
+.second-header .block-search{
+  height: fit-content;
+
+  margin-top:  .5%;
+}
+.page-header.type19 .second-header .block-search input{
+  border-radius: unset;
+}
+.page-header.type19  .second-header .block-search .action.search{
+  background: #DF606D 0% 0% no-repeat padding-box;
+}
+#banner-slider-demo-7 > div.owl-controls{
+  bottom: -5px;
+  left: -5px;
+}
+
+#banner-slider-demo-7 > div.owl-controls > div.owl-nav{
+  float: left;
+}
+
+#banner-slider-demo-7 > div.owl-controls > div.owl-nav div{
+  background: #ffffff52;
+}
+
+#banner-slider-demo-7 > div.owl-controls > div.owl-nav div:hover{
+  background: #fff;
 }
