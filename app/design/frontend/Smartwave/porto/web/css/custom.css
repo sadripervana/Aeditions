@@ -1,3 +1,47 @@
+/*
+*
+* Custom Fonts
+*
+*/
+
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../custom/fonts/Gilroy/Gilroy-Light.otf');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-F003;
+}
+
+
+@font-face {
+    font-family: 'Roboto_Slab';
+    src: url('../custom/fonts/Roboto_Slab/RobotoSlab-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-F003;
+}
+
+/*
+* Home slider
+*/
+#banner-slider-demo-7 > div.owl-controls > div.owl-dots{
+  display: grid;
+  position: absolute;
+  right: 10px;
+  margin-top: -25%;
+}
+
+#banner-slider-demo-7 > div.owl-controls > div.owl-dots .owl-dot  span{
+  width: 10px;
+  height: 10px;
+}
+
+/*
+* Custom style
+*/
 .page-header .content,
 .page-header{
   background: #2F2F2F;
