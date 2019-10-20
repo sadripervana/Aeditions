@@ -26,6 +26,12 @@
             <span class="day"><?php echo date("j", strtotime($_postDate)); ?></span>
             <span class="month"><?php echo date("M", strtotime($_postDate)); ?></span>
         </div>
+        <div class="imgage_part">
+        	<?php if($post_image = $_post->getFeaturedImage()): ?>
+            	<img src="<?php echo $post_image; ?>" alt=""/>
+            <?php endif; ?>
+		</div>
+        <div class="post-content">
         <div class="post-header">
             <div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
                 <a class="addthis_button_facebook"></a>
@@ -33,12 +39,13 @@
                 <a class="addthis_button_email"></a>
                 <a class="addthis_button_compact"></a>
             </div>
-            <h2 class="post-title theme-color">
+            <div class="post-title-holder">
+            <h2 class="post-title">
                 <?php echo $_postName; ?>
             </h2>
+            </div>
             <?php echo $this->getInfoHtml() ?>
         </div>
-        <div class="post-content">
             <div class="post-description clearfix">
                 <div class="post-text-hld">
                     <?php echo $block->getContent() ?>

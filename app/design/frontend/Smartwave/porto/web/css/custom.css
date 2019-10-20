@@ -43,13 +43,19 @@
 * Custom style
 */
 .page-header .content,
-.page-header{
-  background: #2F2F2F;
+.page-header.type19{
+  background: #2F2F2F !important;
 }
+
 .page-header .nav-sections{
   background: #fff;
-
 }
+
+.page-header.type19.sticky-header .nav-sections{
+    color: #2F2F2F !important;
+    font-weight: 600;
+}
+
 .page-header .nav-sections li{
   text-align: left;
   font: Bold 20px/57px Gilroy;
@@ -63,11 +69,13 @@
   min-width: 100%;
   max-width: 100vw;
   background: #FFFFFF;
-  justify-content: center;
+  justify-content: space-evenly;
+}
+body > div.page-wrapper > header > div.second-header > div.sections.nav-sections{
+  box-shadow: none;
 }
 .second-header .block-search{
   height: fit-content;
-
   margin-top:  .5%;
 }
 .page-header.type19 .second-header .block-search input{
@@ -91,4 +99,82 @@
 
 #banner-slider-demo-7 > div.owl-controls > div.owl-nav div:hover{
   background: #fff;
+}
+
+
+
+/*
+*Contact us block
+*/
+
+.contact-us-block{
+  border-top: 1px solid #DDDDDD;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+.contact-us-block div.col-lg-6:first-child{
+  border-right: 1px solid #DDDDDD;
+}
+
+.contact-us-block div.col-lg-6{
+  display: grid;
+  padding: 50px 15px;
+}
+
+.contact-us-block h1{
+  text-align: left;
+  font: 40px Gilroy;
+  letter-spacing: 0;
+  color: #DF606D;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contact-us-block h2{
+  text-align: left;
+  font: Italic 24px Gilroy;
+  letter-spacing: 0;
+  color: #6E6E6E;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contact-us-block p {
+  text-align: left;
+  font:18px Gilroy;
+  letter-spacing: 0;
+  color: #6E6E6E;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.contact-us-block div.primary{
+  width: 100%;
+}
+
+.contact-us-block button.primary{
+  background: #DF606D;
+  width: 100% !important;
+  font: 20px Gilroy;
+  letter-spacing: 0;
+  color: #FFFFFF;
+  border: none;
+  font-weight: 600;
+  text-align: center;
+}
+
+.contact-us-block input,
+.contact-us-block textarea{
+  background: #f4f4f4;
+  border: none;
+  
+}
+
+.contact-us-block input::placeholder,
+.contact-us-block textarea::placeholder{
+  font: 16px Gilroy;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #848484;
+  opacity: 0.8;
 }
