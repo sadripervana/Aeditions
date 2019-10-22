@@ -167,7 +167,7 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
 .contact-us-block textarea{
   background: #f4f4f4;
   border: none;
-  
+
 }
 
 .contact-us-block input::placeholder,
@@ -177,4 +177,21 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
   letter-spacing: 0;
   color: #848484;
   opacity: 0.8;
+}
+
+
+
+/*
+* Post grid
+*/
+#maincontent .products-grid:not(.side-list) .product-item .product-item-info .product.name a {
+  font: 20px Gilroy;
+  letter-spacing: 1px;
+  color: #4E4E4E;
+}
+.product-item-details .price-box .price{
+  font: 20px Gilroy;
+  letter-spacing: 0;
+  color: #DF606D;
+  font-weight: 600;
 }

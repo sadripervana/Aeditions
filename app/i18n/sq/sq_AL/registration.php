@@ -6,6 +6,6 @@
  */
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::LANGUAGE,
-    'sq_sq_al',
+    'sq_sq_AL',
     __DIR__
 );

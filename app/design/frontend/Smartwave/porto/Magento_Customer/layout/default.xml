@@ -11,6 +11,7 @@
             <block class="Magento\Customer\Block\Account\Customer" name="customer" template="account/customer.phtml" before="-"/>
             <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link-login" template="account/link/authorization.phtml"/>
         </referenceBlock>
+        <referenceBlock name="top.links" remove="true" />
         <block class="Magento\Theme\Block\Html\Header" name="header" as="header">
             <arguments>
                 <argument name="show_part" xsi:type="string">welcome</argument>

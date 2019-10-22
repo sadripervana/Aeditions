@@ -14,7 +14,7 @@
         <css src="icon-fonts/css/porto-icons-codes.css" />
         <css src="icon-fonts/css/animation.css" />
         <css src="font-awesome/css/font-awesome.min.css" />
-        <css src="css/bu.css" />
+        <!-- <css src="css/bu.css" /> -->
         <css src="css/custom.css" />
         <!-- <script src="jquery.js" />
         <script src="jquery-ui.js" />

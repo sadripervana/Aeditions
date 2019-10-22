@@ -14,9 +14,9 @@
 ?>
 <?php
     $_helper = $this->helper('Smartwave\Porto\Helper\Data');
-    $is_demo = 1;
 ?>
-<?php if (count($block->getStores())>1 || $is_demo == 1): ?>
+
+<?php if (count($block->getStores())>1): ?>
 <?php $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : ''?>
 <div class="switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
     <strong class="label switcher-label"><span><?php /* @escapeNotVerified */ echo __('Language') ?></span></strong>
@@ -40,24 +40,14 @@
             <?php foreach ($block->getStores() as $_lang): ?>
                 <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
                     <li class="view-<?php echo $block->escapeHtml($_lang->getCode()); ?> switcher-option">
-                        <a href="#" data-post='<?php echo $this->getTargetStorePostData($_lang); ?>'>
+                        <a href="<?php echo $_lang->getCurrentUrl(false); ?>">
                             <?php if($_helper->getConfig('porto_settings/header/language_flag')): ?>
                                 <img src="<?php echo $_helper->getBaseUrl().'wysiwyg/smartwave/porto/flags/'.$block->escapeHtml($_lang->getCode()).'.png'; ?>" />
                             <?php endif; ?>
-                            <?php echo $block->escapeHtml($_lang->getName()) ?></a>
+                            <span><?php echo $block->escapeHtml($_lang->getName()) ?></span></a>
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <?php if ($is_demo == 1 && count($block->getStores()) < 2): ?>
-                <li class="view-demo_fr switcher-option">
-                    <a href="#" data-post="" title="It will be automatically added once you set up more multi store views.">
-                        <?php if($_helper->getConfig('porto_settings/header/language_flag')): ?>
-                            <img src="<?php echo $_helper->getBaseUrl().'wysiwyg/smartwave/porto/flags/french.png'; ?>" />
-                        <?php endif; ?>
-                        <?php echo __('Add More'); ?>
-                    </a>
-                </li>
-            <?php endif; ?>
         </ul>
     </div>
 </div>
