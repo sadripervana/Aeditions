@@ -14,6 +14,15 @@
     unicode-range: U+0020-F003;
 }
 
+@font-face {
+    font-family: 'Rubik';
+    src: url('../custom/fonts/Rubik/Rubik-Light.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-F003;
+}
+
 
 @font-face {
     font-family: 'Roboto_Slab';
@@ -39,6 +48,43 @@
   height: 10px;
 }
 
+.porto-icon-chevron-right:before{
+  content: url('../images/right-arrow.png');
+  background: #ffffff52;
+width: fit-content;
+padding: 5px 45px;
+}
+.porto-icon-chevron-left:before{
+  content: url('../images/left-arrow.png');
+  background: #ffffff52;
+width: fit-content;
+padding: 5px 45px;
+}
+
+.main_addtion_product_bg .owl-top-narrow .owl-theme .owl-controls {
+    position: inherit;
+    right: 0;
+    top: -320px;
+    margin: 0;
+}
+
+.main_addtion_product_bg .owl-prev{
+  float: left;
+}
+.main_addtion_product_bg .owl-next{
+  float: right;
+}
+.porto-icon-right-open-huge:before {
+  content: url('../images/left-carousel-arrow.png');
+}
+.porto-icon-left-open-huge:before {
+  content: url('../images/left-carousel-arrow.png');
+}
+/* Shporta */
+.page-header.header-newskin .minicart-wrapper .action.showcart:before,
+.page-header.header-newskin .minicart-wrapper .action.showcart.active:before{
+    content: url('../images/shporta.png')
+}
 /*
 * Custom style
 */
@@ -194,4 +240,16 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
   letter-spacing: 0;
   color: #DF606D;
   font-weight: 600;
+}
+
+
+/* Aeditions rekomandon */
+
+.filterproduct-title{
+  font-size: 26px;
+  line-height: 38px;
+  color: #848484;
+  font-family: "Gilroy";
+  font-weight: bold;
+  background: none;
 }

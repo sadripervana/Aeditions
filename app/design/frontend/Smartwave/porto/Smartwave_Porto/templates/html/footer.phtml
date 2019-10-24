@@ -109,10 +109,10 @@
     if( $footer['footer_bottom'] ){
 ?>
     <div class="footer-bottom">
-        <div class="container">
+        <div class="container" style="text-align:center">
             <?php
             if($footer['footer_logo_src']){
-                
+
                 $url = $this->getFooterLogoSrc();
             ?>
             <?php if ($this->isHomePage()):?>
@@ -127,30 +127,11 @@
                 </a>
             <?php endif?>
             <?php
-            }
-            if($footer['footer_bottom_custom_1']){
-                $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
-                if($block) {
-                    $block->setBlockId($footer['footer_bottom_custom_1']);
-                }
-                if($block){
-                    echo '<div class="custom-block">'.$block->toHtml().'</div>';
-                }
-            }
-            ?>
-            <?php
-            if($footer['footer_bottom_custom_2']){
-                $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
-                if($block) {
-                    $block->setBlockId($footer['footer_bottom_custom_2']);
-                }
-                if($block){
-                    echo '<div class="custom-block f-right">'.$block->toHtml().'</div>';
-                }
-            }
-            ?>
-            <address><?php echo $footer['footer_bottom_copyrights'] ?></address>
-            <?php if($footer['footer_store_switcher']) echo $this->getChildHtml("footer.store_switcher"); ?>
+          }?>
+
+            <address style="display: contents;">
+              <?php echo $footer['footer_bottom_copyrights'] ?>
+            </address>
         </div>
     </div>
 <?php
