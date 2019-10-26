@@ -17,6 +17,7 @@
             <block class="Smartwave\Porto\Block\Template" name="category_view_custom_block" after="-" template="Magento_Catalog::category/custom_block.phtml"/>
         </referenceContainer>
         <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="product_list_toolbar" remove="true" />
 
     </body>
 </page>

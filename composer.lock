@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da7f2c8f68986c1fccf6c94a87e8534c",
+    "content-hash": "0a457185c17be7714adec118477b6e56",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -1822,6 +1822,97 @@
                 }
             ],
             "description": "Klarna Order Management Magento 2 Extension"
+        },
+        {
+            "name": "magefan/module-blog",
+            "version": "2.9.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magefan/module-blog.git",
+                "reference": "634dc2f5f8d02805f3006db5d291916474433958"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magefan/module-blog/zipball/634dc2f5f8d02805f3006db5d291916474433958",
+                "reference": "634dc2f5f8d02805f3006db5d291916474433958",
+                "shasum": ""
+            },
+            "require": {
+                "magefan/module-community": ">=2.0.8",
+                "magefan/module-wysiwyg-advanced": ">=2.0.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magefan\\Blog\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Implements Blog functionality on Magento 2 store",
+            "time": "2019-10-23T19:25:57+00:00"
+        },
+        {
+            "name": "magefan/module-community",
+            "version": "2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magefan/module-community.git",
+                "reference": "1d23fa3a62060b730c4e08d434d47c5a22f55b75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magefan/module-community/zipball/1d23fa3a62060b730c4e08d434d47c5a22f55b75",
+                "reference": "1d23fa3a62060b730c4e08d434d47c5a22f55b75",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magefan\\Community\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2019-10-12T09:52:39+00:00"
+        },
+        {
+            "name": "magefan/module-wysiwyg-advanced",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magefan/module-wysiwyg-advanced.git",
+                "reference": "ab2170571d636b05e4d9016bc0bf03cd5d9668c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magefan/module-wysiwyg-advanced/zipball/ab2170571d636b05e4d9016bc0bf03cd5d9668c2",
+                "reference": "ab2170571d636b05e4d9016bc0bf03cd5d9668c2",
+                "shasum": ""
+            },
+            "require": {
+                "magefan/module-community": ">=2.0.8"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Magefan\\WysiwygAdvanced\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Extend TinyMCE 4 in Magento 2",
+            "time": "2019-10-22T20:11:57+00:00"
         },
         {
             "name": "magento/composer",

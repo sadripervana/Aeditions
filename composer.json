@@ -11,6 +11,7 @@
         "sort-packages": true
     },
     "require": {
+        "magefan/module-blog": "2.9.1.1",
         "magento/product-community-edition": "2.3.2"
     },
     "require-dev": {

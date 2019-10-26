@@ -20,7 +20,7 @@ $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
 
-// Daily deal Helper 
+// Daily deal Helper
 $dailydealhelper=$this->helper('Smartwave\Dailydeals\Helper\Data');
 
 $_category_config = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_settings/category');
@@ -116,7 +116,7 @@ $_lazyload = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_sett
                                 $now = date("Y-m-d");
                                 $newsFrom= substr($_product->getData('news_from_date'),0,10);
                                 $newsTo=  substr($_product->getData('news_to_date'),0,10);
-                                
+
                                 if ($newsTo != '' || $newsFrom != ''){
                                     if (($newsTo != '' && $newsFrom != '' && $now>=$newsFrom && $now<=$newsTo) || ($newsTo == '' && $now >=$newsFrom) || ($newsFrom == '' && $now<=$newsTo)) {
                                         $product_label .= '<div class="product-label new-label">'.$_product_label_config['new_label_text'].'</div>';
@@ -132,7 +132,7 @@ $_lazyload = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_sett
                         <input type="hidden" id="fromdate_<?php echo $iterator; ?>" value="<?php echo $dailydealhelper->getDailydealFromDate($_product->getSku()); ?>">
                         <div class="sw-dailydeal-wrapper" style="display:none;">
                             <div class="sw-dailydeal">
-                                <p id="expired_<?php echo $iterator; ?>"></p> 
+                                <p id="expired_<?php echo $iterator; ?>"></p>
                                 <div class="countdowncontainer_<?php echo $iterator; ?>" style="display:none;">
                                     <span class="dailydeal-label">
                                         <?php echo __('Ends In:'); ?>
@@ -163,7 +163,7 @@ $_lazyload = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_sett
                                 </div>
                             </div>
                         </div>
-                        <?php endif; ?> 
+                        <?php endif; ?>
                        <!-- Dailydeal Product End -->
                         <?php if($_category_config['actions'] && $move_actions): ?>
                         <div class="product-item-inner">
@@ -244,19 +244,7 @@ $_lazyload = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_sett
                         <?php
                             $review_html = $block->getReviewsSummaryHtml($_product, $templateType);
                         ?>
-                        <?php if($review_html): ?>
-                            <?php echo $review_html; ?>
-                        <?php else: ?>
-                        <div class="product-reviews-summary short">
-                            <div class="rating-summary">
-                                <span class="label"><span>Rating:</span></span>
-                                <div class="rating-result" title="0%">
-                                    <span style="width:0"><span>0%</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                        <?php endif; ?>
+
                         <?php if($_category_grid_config['move_title']):?>
                             <strong class="product name product-item-name">
                                 <a class="product-item-link"
@@ -276,7 +264,19 @@ $_lazyload = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_sett
                         <?php echo $block->getProductPrice($_product) ?>
                         <?php endif; ?>
                         <?php echo $block->getProductDetailsHtml($_product); ?>
-                        
+                        <?php if($review_html): ?>
+                            <?php echo $review_html; ?>
+                        <?php else: ?>
+                        <div class="product-reviews-summary short">
+                            <div class="rating-summary">
+                                <span class="label"><span>Rating:</span></span>
+                                <div class="rating-result" title="0%">
+                                    <span style="width:0"><span>0%</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif; ?>
+                        <?php endif; ?>
                         <?php if($_category_config['actions'] && !$move_actions): ?>
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions">
@@ -376,7 +376,7 @@ $_lazyload = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_sett
     <?php if ($block->getMode() == 'grid'): ?>
         <script type="text/javascript">
             require([
-                'jquery'        
+                'jquery'
             ], function ($) {
                 $('.main .products.grid .product-items li.product-item:nth-child(2n)').addClass('nth-child-2n');
                 $('.main .products.grid .product-items li.product-item:nth-child(2n+1)').addClass('nth-child-2np1');
@@ -398,7 +398,7 @@ $_lazyload = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_sett
 <?php endif; ?>
 <script type="text/javascript">
 require([
-    'jquery'        
+    'jquery'
 ], function ($) {
 // Timer for LEFT time for Dailydeal product
     var _second = 1000;
@@ -406,11 +406,11 @@ require([
     var _hour = _minute * 60;
     var _day = _hour * 24;
     var timer;
-   
-    function showRemaining(currentdate) 
+
+    function showRemaining(currentdate)
     {
         var count;
-        for (count = 2; count <= <?php echo $iterator; ?>; count++) 
+        for (count = 2; count <= <?php echo $iterator; ?>; count++)
         {
             // get Value of dailydeal product
             var cid='countdown_'+count;
@@ -461,10 +461,10 @@ require([
             }
         }
     }
-    
-    //Set date as magentodatetime 
+
+    //Set date as magentodatetime
     var date = new Date('<?php echo $dailydealhelper->getcurrentDate() ?>');
-    
+
     var day   = date.getDate();
     var month = date.getMonth();
     var year  = date.getFullYear();
@@ -475,14 +475,14 @@ require([
     var fulldate = year+'-'+(month+1)+'-'+day+' '+hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
 
     // Set Interval
-    timer = setInterval(function() 
+    timer = setInterval(function()
     {
         date.setSeconds(date.getSeconds() + 1);
         var month=date.getMonth();
         var currentdatetime=date.getFullYear()+"-"+(month+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
         showRemaining(currentdatetime);
-    }, 1000); 
-});   
+    }, 1000);
+});
 </script>
 <?php
     echo $block->getChildHtml('filter_toggle');

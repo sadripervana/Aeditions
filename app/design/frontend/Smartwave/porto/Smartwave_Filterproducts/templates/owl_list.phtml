@@ -122,7 +122,7 @@ $lazy_owl = $this->getData("lazy_owl");
                             if($product_label)
                                 echo '<div class="product-labels">'.$product_label.'</div>';
                         ?>
-                
+
                     </div>
                     <div class="product details product-item-details">
                         <?php
@@ -136,25 +136,7 @@ $lazy_owl = $this->getData("lazy_owl");
                             </a>
                         </strong>
                         <?php endif;?>
-                        <?php //$_category_config['rating_star'] = "";  //disabled at the moment ?>
-                        <?php if($_category_config['rating_star']): ?>
-                        <?php
-                            $review_model->getEntitySummary($_product);
-                            $review_html = $block->getReviewsSummaryHtml($_product, $templateType);
-                        ?>
-                        <?php if($review_html): ?>
-                            <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
-                        <?php else: ?>
-                        <div class="product-reviews-summary short">
-                            <div class="rating-summary">
-                                <span class="label"><span>Rating:</span></span>
-                                <div class="rating-result" title="0%">
-                                    <span style="width:0"><span>0%</span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                        <?php endif; ?>
+                      
                         <?php if($_category_grid_config['move_title']):?>
                             <strong class="product name product-item-name">
                                 <a class="product-item-link"
