@@ -1,3 +1,54 @@
+<style media="screen">
+#latest_news{
+	background: red;
+}
+	.owl-carousel .owl-item img.card-img-top{
+		margin: auto;
+		margin-top: -20%;
+	}
+	#latest_news .owl-carousel{
+		margin: auto !important;
+	}
+	#latest_news .owl-stage-outer{
+		padding-bottom: 100px;
+	}
+
+	.card{
+		overflow: hidden;
+	}
+
+	.card-body{
+		padding: 15px;
+	}
+	.card-body{
+		background: #fff;
+		box-shadow: 0 20px 20px 0 #0000001f;
+	}
+
+	.card-header{
+		overflow-y: hidden;
+		height: 300px;
+		width: 100%;
+	}
+	.first-active-image .card-body {
+		box-shadow: 5px 20px 20px 0px #00000052;
+	}
+	.first-active-image .card-header{
+		transform: scale(1.4, 1.2) translateY(30px);
+		transition: 1s cubic-bezier(0.5,0.25,0,1);
+	}
+	.first-active-image .card-body{
+		transform:translateY(50px);
+		transition: 1s cubic-bezier(0.5,0.25,0,1);
+	}
+	.card-title a{
+		font-size: 18px;
+		line-height: 30px;
+		color: #3c3c3c;
+		font-family: "Roboto_Slab";
+		font-weight: 400;
+	}
+</style>
 <?php
 /**
  * Copyright © 2015 Ihor Vansach (ihor@magefan.com). All rights reserved.
@@ -13,61 +64,85 @@
  * @var $block \Magefan\Blog\Block\Sidebar\Recent
  */
 ?>
-
 <?php
 	$_postCollection = $block->getPostCollection();
 ?>
 
 <div class="recent-posts">
-<?php if ($_postCollection->count()) { ?>
-    <div class="owl-carousel">
-    <?php foreach ($_postCollection as $_post) { ?>
-    <?php
-        $post_date = $_post->getData("publish_time");
-    ?>
-        <div class="item">
-            <div class="row">
-                <div class="col-sm-6">
-                	<div class="home_blog_img">
-                    <div class="imgage_part">
-                    <?php if($post_image = $_post->getFeaturedImage()): ?>
-                        <img src="<?php echo $post_image; ?>" alt=""/>
-                    <?php endif; ?>
-                    </div>
-                    </div>
-                </div>
-                <div class="main_part_bg_gatmi_right_side_bg_image col-sm-6">
-                    <div class="main_part_bg_gatmi_right_side">
-                        <?php /* ?>
-                            <div class="post-date">
-                                <span class="day"><?php echo date("j", strtotime($post_date)); ?></span>
-                                <span class="month"><?php echo date("M", strtotime($post_date)); ?></span>
-                            </div>
-                            <?php */?>
-                            
-                                <h1><a href="<?php echo $_post->getPostUrl() ?>" ><?php echo $block->escapeHtml($_post->getTitle()) ?></a></h1>
+<?php if ($_postCollection->count()): ?>
+    <div class="owl-carousel row">
+		    <?php foreach ($_postCollection as $_post): ?>
+					<div class="item card">
+						<div class="card-header">
+							<?php if($post_image = $_post->getFeaturedImage()): ?>
+								<img class="card-img-top" src="<?php echo $post_image; ?>" alt=""/>
+							<?php endif; ?>
+						</div>
+						<div class="card-body">
+							<h1 class="card-title">
+								<a href="<?php echo $_post->getPostUrl() ?>" >
+									<?php echo $block->escapeHtml($_post->getTitle()) ?>
+								</a>
+							</h1>
+  					</div>
+					</div>
 
-                            <?php
-                                $content = $_post->getContent();
-                                $pageBraker = '<!-- pagebreak -->';
-                                
-                                $isMb = function_exists('mb_strpos');
-                                $p = $isMb ? strpos($content, $pageBraker) : mb_strpos($content, $pageBraker);
-
-                                if ($p) {
-                                    $content = substr($content, 0, $p);
-                                }
-
-                                $short_content = $this->helper('Smartwave\Porto\Helper\Data')->filterContent($content);
-                            ?>
-                            <div class="postContent"><?php echo $short_content; ?></div>
-                            <span class="button"><a  href="<?php echo $_post->getPostUrl(); ?>"><?php echo __("Read more");?></a></span>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    <?php } ?>
-    </div>
-<?php } ?>
+		    <?php endforeach; ?>
+	</div>
+<?php endif ?>
 </div>
+<script type="text/javascript">
+        require([
+            'jquery',
+            'owl.carousel/owl.carousel.min'
+        ], function ($) {
+
+					// $maxDesc = 0;
+					// function equalize(){
+					//     $('#latest_news .card').each(function(i){
+					//         if ($(this).height() > $maxDesc) { $maxDesc = $(this).height();}
+					//     });
+					//
+					//     $('#latest_news .card').each(function(i){$(this).height($maxDesc);});
+					// }
+					// console.log(equalize());
+
+
+            $("#latest_news .owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                navText: ["<em class='porto-icon-left-open-huge'></em>","<em class='porto-icon-right-open-huge'></em>"],
+                dots: false,
+                responsive: {
+                    0: {
+                        items:1
+                    },
+                    640: {
+                        items:2
+                    },
+                    768: {
+                        items:2
+                    },
+                    992: {
+                        items:3
+                    },
+                    1200: {
+                        items:3
+                    }
+                }
+            });
+						$('#latest_news .active').first().addClass('first-active-image');
+						var owl = $('.owl-carousel.row');
+						owl.owlCarousel();
+						// Listen to owl events:
+						owl.on('translated.owl.carousel changed.owl.carousel', function(event) {
+								if (!$('#latest_news .owl-item').hasClass('first-active-image') && $('#latest_news .owl-item').hasClass('active')) {
+									$('#latest_news .owl-item').removeClass('first-active-image');
+									$('#latest_news .active').first().addClass('first-active-image');
+								}else{
+									$('#latest_news .owl-item').removeClass('first-active-image');
+								}
+						})
+        });
+    </script>
