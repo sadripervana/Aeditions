@@ -384,13 +384,9 @@
         <span data-action="toggle-nav" class="action nav-toggle"><span><?php /* @escapeNotVerified */ echo __('Toggle Nav') ?></span></span>
 
         <div class="panel header">
-            <?php echo $this->getChildHtml("skip_to_content"); ?>
-            <?php echo $this->getChildHtml("currency"); ?>
+            <?php //echo $this->getChildHtml("currency"); ?>
             <?php echo $this->getChildHtml("store_language"); ?>
-            <div class="top-links-area">
-                <div class="top-links-icon"><a href="javascript:void(0)"><?php echo __('links');?></a></div>
-                <?php echo $this->getChildHtml("header.links"); ?>
-            </div>
+            <?php echo $this->getChildHtml("header.links"); ?>
         </div>
     </div>
     <div class="second-header">

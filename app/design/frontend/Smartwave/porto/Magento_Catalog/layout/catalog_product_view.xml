@@ -16,10 +16,13 @@
         <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
         <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
         <referenceBlock name="catalog.product.related" remove="true"/>
-        <move element="product.info.overview" destination="product.info.main" after="product.info.review"/>
+        <move element="product.info.overview" destination="product.info.main" before="product.info.review"/>
         <referenceContainer name="after.body.start">
             <block class="Magento\Catalog\Block\Product\View" name="product_custom" template="Magento_Catalog::product/view/product_custom.phtml" before="-"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.wdm" template="product/view/wdm-social.phtml"/>
         </referenceContainer>
+        <move element="product.info.wdm" destination="page.main.title" after="-"/>
+
         <referenceContainer name="columns.top">
             <block class="Magento\Catalog\Block\Product\View" name="prev_next_products" template="Magento_Catalog::product/view/prev_next.phtml" before="-"/>
         </referenceContainer>
@@ -37,6 +40,8 @@
         <move element="product.price.final" destination="product.info.main" before="-"/>
         <move element="product_view_main_custom_block2" destination="product.info.main" after="product.info.overview"/>
         <move element="product.info.main" destination="content" after="product.info.media"/>
+        <referenceBlock name="product_view_addthis_links" remove="true" />
+
         <referenceContainer name="columns">
             <block class="Smartwave\Porto\Block\Template" name="side_popup" after="-" template="Magento_Catalog::product/view/side_popup.phtml"/>
         </referenceContainer>

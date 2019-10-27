@@ -1,0 +1,20 @@
+<?php
+$_product = $block->getProduct(); // GET THE PRODUCT
+$productImageUrl = $block->getUrl('pub/media/catalog').'product'.$_product->getImage();
+?>
+<div class="wdm-social-icons" data-role="wdm-social-icons">
+<div class="view_share_bg">
+<p>share</p>
+<ul>
+<li><a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($_product->getProductUrl());?>&t=<?php echo urlencode($_product->getName())?>" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on FaceBook"><em class="porto-icon-facebook">&nbsp;</em></a></li>
+<li><a href="https://www.instagram.com/aeditions_albania/?hl=en" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'><em class="porto-icon-instagram">&nbsp;</em></a></li>
+<!-- <li><a href="http://twitter.com/home/?status=<?php echo urlencode($_product->getProductUrl());?>(<?php echo urlencode($_product->getName())?>)" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' title="Share on Twitter"><em class="porto-icon-twitter">&nbsp;</em></a></li> -->
+<li><a href="https://www.linkedin.com/in/janaq-baguca-2a126337/" onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'><em class="porto-icon-linkedin-squared">&nbsp;</em></a></li>
+<li><a href="https://www.pinterest.com/pin/create/button/?url=<?php echo urlencode($_product->getProductUrl()); ?>&media=<?php echo urlencode($productImageUrl) ?> &description=<?php echo urlencode($_product->getName())?>"  onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'>
+ 	<em class="porto-icon-pinterest">&nbsp;</em></a>
+</li>
+</ul>
+</div>
+
+
+</div>

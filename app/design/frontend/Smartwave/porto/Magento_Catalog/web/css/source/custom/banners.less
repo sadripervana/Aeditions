@@ -128,17 +128,48 @@
         }
   }
 
+ &.top-footer{
+   background: #fff;
 
+     p{
+       float: left;
+       font-size: 25px;
+       line-height: 80px;
+       color: #969696;
+       font-family: "Gilroy";
+       font-weight: 500;
+       font-style: italic;
+     }
+     .col-lg-6{
+       display: flex;
+       align-items: center;
+       flex-wrap: wrap;
+       justify-content: space-between;
+     }
+
+ }
 
 }
-.catalog-product-view{
+
+
+body{
   .page-wrapper{
     #maincontent{
-      .columns{
-        .main{
-          margin: auto;
-          float: none;
-        }
+      &.page-main{
+        margin-bottom: 0 !important;
+      }
+      .column.main{
+        padding-bottom: 0 !important;
+      }
+    }
+  }
+  footer{
+    &.page-footer{
+      margin-top:0 !important;
+    }
+    .footer{
+      .footer-top{
+        padding-top: 0 !important;
       }
     }
   }

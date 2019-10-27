@@ -49,7 +49,7 @@
         </referenceContainer>
 
         <referenceBlock name="header.links">
-            <block class="Smartwave\Porto\Block\Template" name="custom_link" before="-" template="html/custom_link.phtml" />
+            <!-- <block class="Smartwave\Porto\Block\Template" name="custom_link" before="-" template="html/custom_link.phtml" /> -->
         </referenceBlock>
     </body>
 </page>
