@@ -17,9 +17,12 @@
         <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
         <referenceBlock name="catalog.product.related" remove="true"/>
         <move element="product.info.overview" destination="product.info.main" before="product.info.review"/>
+        <move element="custom_attr" destination="product.info.main" after="product.info.review"/>
         <referenceContainer name="after.body.start">
             <block class="Magento\Catalog\Block\Product\View" name="product_custom" template="Magento_Catalog::product/view/product_custom.phtml" before="-"/>
             <block class="Magento\Catalog\Block\Product\View" name="product.info.wdm" template="product/view/wdm-social.phtml"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.viewpage" template="product/view/viewpage.phtml"/>
+            <block class="Magento\Catalog\Block\Product\View" name="custom_attr" template="product/view/custom_attributes.phtml"/>
         </referenceContainer>
         <move element="product.info.wdm" destination="page.main.title" after="-"/>
 
@@ -38,6 +41,7 @@
             <block class="Smartwave\Porto\Block\Template" name="product.clearer" after="product.info.media" template="Magento_Catalog::product/view/clearer.phtml"/>
         </referenceContainer>
         <move element="product.price.final" destination="product.info.main" before="-"/>
+        <move element="product.info.viewpage" destination="product.info.main" after="product.price.final"/>
         <move element="product_view_main_custom_block2" destination="product.info.main" after="product.info.overview"/>
         <move element="product.info.main" destination="content" after="product.info.media"/>
         <referenceBlock name="product_view_addthis_links" remove="true" />
@@ -50,5 +54,6 @@
         <referenceBlock name="product.info.details" remove="true" />
         <referenceBlock name="product.info.addto" remove="true" />
         <referenceBlock name="product.info.mailto" remove="true" />
+        <referenceBlock name="product.info.sku" remove="true" />
     </body>
 </page>

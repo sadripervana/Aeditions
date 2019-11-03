@@ -1,6 +1,84 @@
-/**
- * Copyright © 2015 Ihor Vansach (ihor@magefan.com). All rights reserved.
- * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
- *
- * Glory to Ukraine! Glory to the heroes!
- */
+#latest_news > div > div > div.owl-controls{
+    position: absolute;
+    right: 0;
+ 	top: unset;
+    margin: 0;
+    bottom: 50px;	
+}
+
+#latest_news > div > div > div.owl-controls .owl-next{
+	background: #df606d;
+}
+
+#latest_news > div > div > div.owl-controls .owl-prev{
+	background: #e5808a;
+}
+
+.owl-carousel .owl-item img.card-img-top{
+	margin: auto;
+	margin-top: -20%;
+}
+
+#latest_news .owl-carousel{
+	margin: auto !important;
+}
+
+#latest_news .owl-stage-outer{
+	padding-bottom: 100px;
+}
+
+.card{
+	overflow: hidden;
+	background: none;
+	box-shadow: 0 20px 20px 0 #0000001f;
+}
+
+.card-header{
+	overflow-y: hidden;
+	height: 300px;
+	width: 100%;
+}
+
+.card-title{
+	white-space: nowrap;
+}
+
+.card-title a{
+	font-size: 18px;
+	line-height: 30px;
+	color: #3c3c3c;
+	font-family: "Roboto_Slab";
+	font-weight: 400;
+}
+
+.card-body{
+	padding: 15px;
+}
+
+.first_blog_post .card{
+	box-shadow: 3px 5px 20px 0px #00000061;
+    transform: scaleY(1.1) translateY(15px);
+	transition: 1s cubic-bezier(0.5,0.25,0,1);
+}
+
+.first_blog_post .card-title{
+	white-space: normal;
+}
+
+.first_blog_post .card-header{
+	transform: scale(1.4, 1.2) translateY(30px);
+	transition: 1s cubic-bezier(0.5,0.25,0,1);
+}
+
+.first_blog_post .card-body{
+	transform:translateY(50px);
+	transition: 1s cubic-bezier(0.5,0.25,0,1);
+}
+
+.porto-icon-right-open-huge:before{
+  content: url('../images/right-arrow.png');
+}
+
+.porto-icon-left-open-huge:before{
+  content: url('../images/left-arrow.png');
+}

@@ -8,7 +8,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="header.links">
-            <block class="Magento\Framework\View\Element\Template" name="catalog.compare.link" before="top.links" template="Magento_Catalog::product/compare/link.phtml">
+           <!--  <block class="Magento\Framework\View\Element\Template" name="catalog.compare.link" before="top.links" template="Magento_Catalog::product/compare/link.phtml">
                 <arguments>
                     <argument name="jsLayout" xsi:type="array">
                         <item name="components" xsi:type="array">
@@ -18,7 +18,7 @@
                         </item>
                     </argument>
                 </arguments>
-            </block>
+            </block> -->
         </referenceContainer>
     </body>
 </page>

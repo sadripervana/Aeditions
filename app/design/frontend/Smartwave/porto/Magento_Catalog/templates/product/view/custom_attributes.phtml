@@ -1,0 +1,29 @@
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+
+$isbn = $_product->getIsbn();
+$dimensions = $_product->getDimensions();
+$age = $_product->getAge();
+$pages  = 23;
+
+?>
+
+
+<div class="custom_attr container">
+	<div class="row">
+		<?php if($isbn){ ?>
+			<span><strong>Isbn</strong> <?= $isbn ?> </span>
+		<?php } if($age){ ?>
+			<span><strong>Mosha</strong> <?= $age ?> </span>
+		<?php } ?>
+	</div>
+	<div class="row">
+		<?php if($dimensions){?>
+			<span><strong>Permasat</strong> <?= $dimensions ?> </span>
+		<?php } if($pages){ ?>
+			<span><strong>Faqe</strong> <?= $pages ?> </span>
+		<?php } ?>
+	</div>
+
+</div>
