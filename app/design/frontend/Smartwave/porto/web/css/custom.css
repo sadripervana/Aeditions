@@ -45,18 +45,46 @@
 /*
 * Home slider
 */
-#banner-slider-demo-7 > div.owl-controls > div.owl-dots{
+#banner-slider-demo-1 > div.owl-controls > div.owl-dots{
   display: grid;
   position: absolute;
   right: 10px;
   margin-top: -25%;
 }
 
-#banner-slider-demo-7 > div.owl-controls > div.owl-dots .owl-dot  span{
+#banner-slider-demo-1 > div.owl-controls > div.owl-dots .owl-dot  span{
   width: 10px;
   height: 10px;
+  border-radius: 0;
+
 }
 
+#banner-slider-demo-1 > div.owl-controls{
+  bottom: -5px;
+  left: -5px;
+  top: unset;
+  visibility: unset;
+  opacity: 1;
+}
+
+#banner-slider-demo-1 > div.owl-controls > div.owl-nav{
+  float: left;
+  margin-left: 5px;
+}
+
+#banner-slider-demo-1 > div.owl-controls > div.owl-nav div{
+  background: #0000004f;
+  position: unset;
+}
+
+.owl-theme .owl-controls .owl-nav [class*=owl-] {
+  margin: 5px 0;
+  border-radius: 0;
+}
+
+#banner-slider-demo-1 > div.owl-controls > div.owl-nav div:hover{
+  background: #000;
+}
 .porto-icon-chevron-right:before{
   content: url('../images/right-arrow.png');
 }
@@ -70,6 +98,10 @@
   width: fit-content;
   padding: 5px 25px;
 }
+.owl-top-narrow .owl-theme .owl-controls .owl-nav [class*=owl-] {
+    margin: 0 -20px;
+    margin-top: 70px;
+  }
 
 .main_addtion_product_bg .owl-top-narrow .owl-theme .owl-controls,
 #featured_product  .owl-theme .owl-controls {
@@ -142,29 +174,14 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
 }
 .page-header.type19  .second-header .block-search .action.search{
   background: #DF606D 0% 0% no-repeat padding-box;
+  opacity: 1;
+  margin-right: -2px;
 }
-#banner-slider-demo-7 > div.owl-controls{
-  bottom: -5px;
-  left: -5px;
-}
-
-#banner-slider-demo-7 > div.owl-controls > div.owl-nav{
-  float: left;
-  margin-left: 5px;
+.page-header.type19  .second-header .block-search .action.search:before {
+  color: #fff !important;
+  font-size: 20px !important;
 }
 
-#banner-slider-demo-7 > div.owl-controls > div.owl-nav div{
-  background: #0000004f;
-}
-
-.owl-theme .owl-controls .owl-nav [class*=owl-] {
-  margin: 5px 0;
-  border-radius: 0;
-}
-
-#banner-slider-demo-7 > div.owl-controls > div.owl-nav div:hover{
-  background: #000;
-}
 
 
 
@@ -244,6 +261,19 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
   opacity: 0.8;
 }
 
+.block-content .links a{
+  color:#777;
+}
+
+
+.social-buttons a:hover{
+  text-decoration: none;
+}
+
+.social-buttons a{
+  color: #9f9f9f;
+  font-size: 25px;
+}
 
 
 /*

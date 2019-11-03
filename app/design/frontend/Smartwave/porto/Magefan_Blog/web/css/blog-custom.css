@@ -3,7 +3,7 @@
     right: 0;
  	top: unset;
     margin: 0;
-    bottom: 50px;	
+    bottom: 0;	
 }
 
 #latest_news > div > div > div.owl-controls .owl-next{
@@ -81,4 +81,8 @@
 
 .porto-icon-left-open-huge:before{
   content: url('../images/left-arrow.png');
+}
+
+#latest_news .owl-nav [class*=owl-]{
+	margin:0 !important;
 }

@@ -2,10 +2,20 @@
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_product = $block->getProduct();
 
-$isbn = $_product->getIsbn();
+$age 		= null;
+$attr 		= null;
+$isbn       = null;
+$pages		= null;
+$dimensions = null;
+
+$age 		= $_product->getAge();
+$attr 		= $_product->getCustomAttribute('page');
+$isbn 		= $_product->getIsbn();
 $dimensions = $_product->getDimensions();
-$age = $_product->getAge();
-$pages  = 23;
+
+if (!is_null($attr)) {
+	$pages =  $attr->getValue();
+}
 
 ?>
 
@@ -13,17 +23,19 @@ $pages  = 23;
 <div class="custom_attr container">
 	<div class="row">
 		<?php if($isbn){ ?>
-			<span><strong>Isbn</strong> <?= $isbn ?> </span>
+			<span class="col-6" ><strong>Isbn: </strong><?= $isbn ?> </span>
 		<?php } if($age){ ?>
-			<span><strong>Mosha</strong> <?= $age ?> </span>
+			<span class="col-6" ><strong>Mosha: </strong><?= $age ?> </span>
 		<?php } ?>
 	</div>
+	<br>
 	<div class="row">
 		<?php if($dimensions){?>
-			<span><strong>Permasat</strong> <?= $dimensions ?> </span>
+			<span class="col-6" ><strong>Permasat: </strong><?= $dimensions ?> </span>
 		<?php } if($pages){ ?>
-			<span><strong>Faqe</strong> <?= $pages ?> </span>
+			<span class="col-6" ><strong>Faqe: </strong><?= $pages ?> </span>
 		<?php } ?>
 	</div>
 
 </div>
+<br>

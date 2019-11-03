@@ -1,5 +1,9 @@
 <?php
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_product = $block->getProduct();
+?>
 
-echo $_product->getViewpage();
+<div class="cover">
+	<?= $_product->getViewpage()?>
+</div>
+

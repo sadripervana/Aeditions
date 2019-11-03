@@ -9,28 +9,24 @@ class BestsellersList extends \Magento\Catalog\Block\Product\ListProduct {
     protected $_collection;
 
     protected $categoryRepository;
-
+    
     protected $_resource;
 
     public function __construct(
-            \Magento\Catalog\Block\Product\Context $context,
-            \Magento\Framework\Data\Helper\PostHelper $postDataHelper,
-            \Magento\Catalog\Model\Layer\Resolver $layerResolver,
+            \Magento\Catalog\Block\Product\Context $context, 
+            \Magento\Framework\Data\Helper\PostHelper $postDataHelper, 
+            \Magento\Catalog\Model\Layer\Resolver $layerResolver, 
             CategoryRepositoryInterface $categoryRepository,
-            \Magento\Framework\Url\Helper\Data $urlHelper,
-            \Magento\Catalog\Model\ResourceModel\Product\Collection $collection,
+            \Magento\Framework\Url\Helper\Data $urlHelper, 
+            \Magento\Catalog\Model\ResourceModel\Product\Collection $collection, 
             \Magento\Framework\App\ResourceConnection $resource,
             array $data = []
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->_collection = $collection;
         $this->_resource = $resource;
-
+        
         parent::__construct($context, $postDataHelper, $layerResolver, $categoryRepository, $urlHelper, $data);
-    }
-
-    protected function _getProductCollection() {
-        return $this->getProducts();
     }
 
     public function getProducts() {
@@ -69,7 +65,7 @@ class BestsellersList extends \Magento\Catalog\Block\Product\ListProduct {
                 ->addUrlRewrite()
                 ->addAttributeToFilter('is_saleable', 1, 'left');
         }
-
+        
         $collection->getSelect()
             ->joinLeft(['soi' => $connection->getTableName('sales_order_item')], 'soi.product_id = e.entity_id', ['SUM(soi.qty_ordered) AS ordered_qty'])
             ->join(['order' => $connection->getTableName('sales_order')], "order.entity_id = soi.order_id",['order.state'])

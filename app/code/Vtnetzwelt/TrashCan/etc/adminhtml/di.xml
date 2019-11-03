@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- for blocks -->
+    <type name="Magento\Cms\Controller\Adminhtml\Block\MassDelete">
+        <plugin name="vtn_trashcan_blocks_mass_delete" type="Vtnetzwelt\TrashCan\Plugin\Cms\Controller\Adminhtml\Block\MassDelete" />
+    </type>
+    
+    <preference for="Magento\Cms\Controller\Adminhtml\Block\Delete" type="Vtnetzwelt\TrashCan\Plugin\Cms\Controller\Adminhtml\Block\Delete" />
+    <preference for="Magento\Cms\Model\ResourceModel\Block\Grid\Collection" type="Vtnetzwelt\TrashCan\Plugin\Cms\Model\ResourceModel\Block\Grid\Collection" />
+    <!-- for blocks -->
+    <!-- for pages -->
+    <type name="Magento\Cms\Controller\Adminhtml\Page\MassDelete">
+        <plugin name="vtn_trashcan_pages_mass_delete" type="Vtnetzwelt\TrashCan\Plugin\Cms\Controller\Adminhtml\Page\MassDelete" />
+    </type>
+    <preference for="Magento\Cms\Controller\Adminhtml\Page\Delete" type="Vtnetzwelt\TrashCan\Plugin\Cms\Controller\Adminhtml\Page\Delete" />
+    <preference for="Magento\Cms\Model\ResourceModel\Page\Grid\Collection" type="Vtnetzwelt\TrashCan\Plugin\Cms\Model\ResourceModel\Page\Grid\Collection" />
+    <!-- for pages -->
+
+</config>

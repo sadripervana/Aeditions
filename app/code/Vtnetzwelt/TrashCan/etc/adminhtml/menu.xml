@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vtnetzwelt_TrashCan::parent" title="Trashcan" module="Vtnetzwelt_TrashCan" sortOrder="45" resource="Vtnetzwelt_TrashCan::parent"/>
+        <add id="Vtnetzwelt_TrashCan::cbtrashcan" title="CMS Blocks Trashcan" module="Vtnetzwelt_TrashCan" sortOrder="400" parent="Vtnetzwelt_TrashCan::parent"
+             action="trashcan/blocks" resource="Vtnetzwelt_TrashCan::trashcan"/>
+        <add id="Vtnetzwelt_TrashCan::cptrashcan" title="CMS Pages Trashcan" module="Vtnetzwelt_TrashCan" sortOrder="500" parent="Vtnetzwelt_TrashCan::parent"
+             action="trashcan/pages" resource="Vtnetzwelt_TrashCan::trashcan"/>
+    </menu>
+</config>

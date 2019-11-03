@@ -62,12 +62,16 @@
     },
     "version": "2.3.2",
     "minimum-stability": "stable",
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
+        },
+        "emizentech-magento2-best-seller": {
+            "type": "vcs",
+            "url": "https://github.com/emizentech/magento2-best-seller/"
         }
-    ],
+    },
     "extra": {
         "magento-force": "override"
     }

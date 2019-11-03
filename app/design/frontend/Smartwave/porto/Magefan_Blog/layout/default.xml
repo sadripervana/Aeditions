@@ -4,5 +4,7 @@
     	<referenceBlock name="header.links">
             <!-- <block class="Magefan\Blog\Block\Link" name="top_blog_link" before="authorization-link-login" /> -->
         </referenceBlock>
+        <referenceBlock name="breadcrumbs" remove="true" />
+
     </body>
 </page>

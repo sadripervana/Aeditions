@@ -19,7 +19,7 @@ None,Asnje
 Quantity,Sasi
 "Choose a selection...","Zgjidh nje perzgjedhje..."
 "Buy Now","Bli tani"
-"Comming soon","Vjen se shpejti"
+"Comming soon","Se shpejti"
 "Compare Products","Produktet krahasuese"
 Compare,Krahaso
 "We can't find products matching the selection.","Ne nuk mund te gjejme postime qe perputhen me zgjedhjen."
@@ -53,13 +53,13 @@ Price,Cmimi
 "What's this?","Cfare eshte kjo?"
 Subtotal,Nentotali
 Cart,Karta
-Contact,Kontakti
+Contact,Kontakt
 Details,Detajet
 "* Required Fields","* Fushat e kerkuara"
 Name,Emri
 Email,Email
 "What’s on your mind?","Cfare ke ne mendje?"
-Submit,Paraqes
+Submit,Dergo
 Currency,Monedhe
 "Grouped product items","Artikujt te produkteve te grupuara"
 "Product Name","Emri i produktit"
@@ -89,7 +89,7 @@ Subscribe,Pajtohem
 Go!,Shko!
 Go,Shko
 "Don't show this popup again","Mos e shfaq kete perseri"
-Search...,Kerko...
+Search...,Kërko një libër të mrekullueshëm...
 Language,Gjuha
 "Select Store","Zgjith dyqanin"
 "Your Store","Dyqani yt"
@@ -166,3 +166,40 @@ Footer,Footer
 "Your shipping confirmation is below. Thank you again for your business.","Konfirmimi juaj i transportit eshte me poshte. Faleminderit perseri per biznesin tuaj."
 "Your Shipment #%shipment_id for Order #%order_id","Your Shipment #%shipment_id for Order #%order_id"
 "Update to your %store_name shipment","Update to your %store_name shipment"
+
+
+
+
+Be the first to review this product, Komento i pari
+Quantity, Sasia
+ADD TO CART, hidh në shportë
+Adding, duke shtuar
+Added, u shtua
+age,Mosha
+page,Faqe
+dimensions,Përmasat
+Libra të Ngjashëm, PRODUKTE TË NGJASHME
+Clear All, Hiq Filtrat
+Now Shopping by, Bli Produktet nga
+Cart Subtotal, Nëntotali i Shportës
+Qty, Sasia
+View and edit cart, Shikoni dhe modifikoni Shportën
+Go to Checkout, Përfundo porosinë
+item, Produkt
+items, Produkte
+Email Address, Adresa e Email-it
+"You can create an account after checkout.","Mund të krijoni një llogari pas blerjes"
+"Please select a region, state or province.","Zgjidhni një rajon, shtet ose provincë."
+"Are you sure you would like to remove this item from the shopping cart?","Je i/e sigurt që do ta heqësh nga shporta?"
+"Please enter a valid email address (Ex: johndoe@domain.com).","Ju lutem, shkruani një adresë të vlefshme emaili (P.sh.: emri@domain.com ).",module,Magento_Ui
+"Payment Method:","Mënyra e transportit:"
+"Payment Method","Mënyra e transportit"
+"No Payment method available.","No Payment method available."
+Cancel,Anullo
+"Cancel","Anullo"
+Account,Llogaria
+Settings,Parametrat
+"Estimated Total","Vlera"
+"Coupon code is not valid","Kodi i kuponit nuk është i vlefshëm"
+"Continue Shopping","Vazhdo blerjen"
+"View Order","Shikoni porosinë"
