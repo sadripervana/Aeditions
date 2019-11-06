@@ -24,37 +24,34 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
     $_postDate = $_post->getData("publish_time");
 ?>
-<li class="post-holder post-holder-<?php echo $_post->getId() ?>">
-    <div class="post-banner no-banner"></div>
-    <div class="post-date">
-        <span class="day"><?php echo date("j", strtotime($_postDate)); ?></span>
-        <span class="month"><?php echo date("M", strtotime($_postDate)); ?></span>
-    </div>
-    <div class="post-header">
-         <div class="imgage_part">
+
+
+
+        <div id="post" class="row pt-2">
+            
+            <div class="col-xl-4 col-lg-4 col-md-12 post_image">
+                <!-- Shto src e imazhit -->
+                <div class="image_part">
                     <?php if($post_image = $_post->getFeaturedImage()): ?>
-                        <img src="<?php echo $post_image; ?>" alt=""/>
+                        <img class="img-fluid" src="<?php echo $post_image; ?>" alt=""/>
                     <?php endif; ?>
-                    </div>
-                    <div class="post-content">
-        <div class="post-title-holder">
-            <div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
-                <a class="addthis_button_facebook"></a>
-                <a class="addthis_button_twitter"></a>
-                <a class="addthis_button_email"></a>
-                <a class="addthis_button_compact"></a>
+                </div>
+            
             </div>
-            <h2 class="post-title">
-                <a class="post-item-link"
-                   href="<?php echo $_postUrl ?>">
-                    <?php echo $_postName; ?>
-                </a>
-            </h2>
-        </div>
-        
-        <div class="post-description clearfix">
-            <div class="post-text-hld clearfix">
-                <?php 
+
+            <div class="col-xl-8 col-lg-8 col-md-12 post_content py-3 px-5">
+                <!-- Shto titullin -->
+                <div id="title" class="col-xl-12">
+                    <h1>
+                        <a class="post-item-link"
+                           href="<?php echo $_postUrl ?>">
+                             <?php echo $_postName; ?>
+                       </a>
+                    </h1>
+                </div>
+                <div id="content" class="col-xl-12">
+                    <p>
+            <?php 
 
                     $string111 = $block->getShorContent();
                     $this_string = strip_tags($string111);
@@ -66,23 +63,13 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
                  <?php else: ?>
                     <?php echo $this_string; ?>
                  <?php endif ?>
-                <?php //echo $block->getShorContent() ?>
-            </div>
-            <?php if($storeManager->getStore()->getStoreId() ==2):?>
-            <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-               <?php echo __('Shiko më shumë'); ?>
-            </a>
-        <?php else:?>
-            <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-               <?php echo __('View more'); ?>
-            </a>
-        <?php endif;?>
-        </div>
-    </div>
-    </div>
+                    </p>
+                </div>
+                      <a class="post-read-more btn shiko-me-shume" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                        <?php echo __('View more'); ?>
+                      </a>
 
-    
-    <div class="post-footer">
-        <?php echo $this->getInfoHtml() ?>
-    </div>
-</li>
+            </div>
+
+        </div>
+  

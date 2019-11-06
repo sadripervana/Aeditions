@@ -6,8 +6,8 @@
  */
 -->
 <page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-  <!-- <head>
-      <script src="Magento_Catalog::js/jquery.zoom.min.js"/>
+<!--   <head>
+      <remove src="Magento_Catalog::js/jquery.zoom.min.js"/>
   </head> -->
     <body>
         <referenceContainer name="sidebar.additional">
@@ -22,12 +22,13 @@
             <block class="Magento\Catalog\Block\Product\View" name="product_custom" template="Magento_Catalog::product/view/product_custom.phtml" before="-"/>
             <block class="Magento\Catalog\Block\Product\View" name="product.info.wdm" template="product/view/wdm-social.phtml"/>
             <block class="Magento\Catalog\Block\Product\View" name="product.info.viewpage" template="product/view/viewpage.phtml"/>
-            <block class="Magento\Catalog\Block\Product\View" name="custom_attr" template="product/view/custom_attributes.phtml"/>
+            <block class="Magento\Catalog\Block\Product\View" name="custom_attr" template="Magento_Catalog::product/view/custom_attributes.phtml"/>
         </referenceContainer>
         <move element="product.info.wdm" destination="page.main.title" after="-"/>
 
         <referenceContainer name="columns.top">
             <block class="Magento\Catalog\Block\Product\View" name="prev_next_products" template="Magento_Catalog::product/view/prev_next.phtml" before="-"/>
+
         </referenceContainer>
         <!-- <move element="prev_next_products" destination="product.info.main" before="-"/> -->
         <move element="page.main.title" destination="content" before="-"/>

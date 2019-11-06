@@ -1,0 +1,83 @@
+<?php 
+	
+	$om = \Magento\Framework\App\ObjectManager::getInstance();
+    $storeManager = $om->get('\Magento\Store\Model\StoreManagerInterface');
+	$mediaUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); 
+
+
+	$_product = $block->getProduct();
+	
+
+	$title = $_product->getName();
+	$price = $_product->getPrice();
+	$image = $_product->getImage();
+	$catalog = 'catalog/product';	
+	$image = $mediaUrl . $catalog .  $_product->getImage();
+	$qty = 1;
+	$total = $price * $qty;
+	$items = 1;
+
+	var_dump(get_class_methods($this->getQuoteData()));
+?>
+
+
+<div id="myModel" class="container">
+   <div class="row">
+   		<div class="col-6">
+   			<h1>Libri u shtua me sukses ne shporten tuaj</h1>
+   			<div class="row">
+   				<div class="col-3">
+   					<img class="img-fluid" src="<?= $image ?>"> 
+   				</div>
+   				<div class="col-3">
+   					<span><b>Titulli: </b> <?= $title ?></span>
+   					<span><b>Sasia:</b> <?= $qty ?></span>
+   					<span><b>Totali: </b> <?= $total ?> </span>
+   				</div>
+   			</div>
+   		</div>
+   		<div class="col-6">
+   			<p>
+   				<b><?= $items ?></b>
+   				Libra ndodhen ne shporten tuaj
+   			</p>
+   			<span><b>Totali: </b> <?=  $price ?> </span>
+   		</div>
+   </div>
+</div>
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function($,modal) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: '',
+                buttons: [
+	                {
+	                    text: $.mage.__('Continue'),
+	                    class: '',
+	                    click: function () {
+	                        this.closeModal();
+	                    }
+	                },
+	                {
+						text: $.mage.__('Back'),
+	                    class: '',
+	                    click: function () {
+	                        this.closeModal();
+	                    }
+	                }
+                ]
+            };
+            var popup = modal(options, $('#myModel'));
+            $("#product-addtocart-button").on("click",function(){
+                $('#myModel').modal('openModal');
+            });
+        }
+    );
+</script>

@@ -1,0 +1,88 @@
+<?php 
+	
+	$om = \Magento\Framework\App\ObjectManager::getInstance();
+    $storeManager = $om->get('\Magento\Store\Model\StoreManagerInterface');
+	$mediaUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); 
+
+
+	$_product = $block->getProduct();
+	
+
+	$title = $_product->getName();
+	$price = $_product->getPrice();
+	$image = $_product->getImage();
+	$catalog = 'catalog/product';	
+	$image = $mediaUrl . $catalog .  $_product->getImage();
+	$qty = 1;
+	$total = $price * $qty;
+	$items = 1;
+
+
+?>
+
+
+<div id="add-to-cart-modal" class="container">
+   <div class="row">
+   		<div class="col-6">
+   			<div class="row">
+   				<div class="col-6">
+   					<img class="img-fluid" src="<?= $image ?>"> 
+   				</div>
+   				<div class="col-6">
+   					<span><b>Titulli: </b> <?= $title ?></span>
+   					<span><b>Sasia:</b> <?= $qty ?></span>
+   					<span><b>Totali: </b> <?= $total ?> </span>
+   				</div>
+   			</div>
+   		</div>
+   		<div class="col-6 cart">
+   			<p>
+   				<b class="libra"></b>
+   				Libra ndodhen ne shporten tuaj
+   			</p>
+   			<span>Totali: <b class="price"></b></span>
+   		</div>
+   </div>
+</div>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function($,modal) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: '<?= __("Libri u shtua me sukses ne shporten tuaj") ?>',
+                buttons: [
+	                {
+	                    text: $.mage.__('Vazhdo me blerjen'),
+	                    class: '',
+	                    click: function () {
+	                        this.closeModal();
+	                    }
+	                },
+	                {
+						text: $.mage.__('Perfundo Porosine'),
+	                    class: '',
+	                    click: function () {
+	                        window.location.href = "<?= $block->getUrl('checkout', ['_secure' => true]) ?>";
+	                    }
+	                }
+                ]
+            };
+            var popup = modal(options, $('#add-to-cart-modal'));
+            $("#product-addtocart-button").on("click",function(){
+              var items = $('#minicart-content-wrapper .items-total .count').text();
+              var price = $('#minicart-content-wrapper .subtotal .price').text();
+              $('#add-to-cart-modal .libra').empty().append(items);
+              $('#add-to-cart-modal .price').empty().append(price);
+             
+                $('#add-to-cart-modal').modal('openModal');
+            });
+        }
+    );
+</script>
