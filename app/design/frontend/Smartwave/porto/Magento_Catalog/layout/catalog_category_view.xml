@@ -8,6 +8,8 @@
     <body>
         <referenceContainer name="page.top">
              <block class="Magento\Catalog\Block\Category\View" name="category_banner" template="category/banner.phtml" ifconfig="porto_settings/category/category_description" before="-"/>
+            <!-- <block class="Magento\Catalog\Block\Product\View" name="product.info.wdm" template="product/view/wdm-social.phtml"/> -->
+
         </referenceContainer>
         <referenceContainer name="content">
             <block class="Magento\Catalog\Block\Category\View" name="category_desc_main_column" template="category/desc_main_column.phtml" ifconfig="porto_settings/category/category_description" before="category.products"/>

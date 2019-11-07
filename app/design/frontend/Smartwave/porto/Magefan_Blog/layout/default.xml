@@ -5,6 +5,8 @@
             <!-- <block class="Magefan\Blog\Block\Link" name="top_blog_link" before="authorization-link-login" /> -->
         </referenceBlock>
         <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="blog.sidebar.recent" remove="true" />
+        <referenceBlock name="page.main.title" remove="true" />
 
     </body>
 </page>
