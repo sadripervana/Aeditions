@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="atniqi_products_widget_bestseller" class="Atniqi\ProductsWidgetSlider\Block\Product\BestSeller">
+        <label >Atniqii Products Widget - Best Seller </label>
+        <description>Best Seller widget type</description>
+        <parameters>
+            <parameter name="collection_sort_by" xsi:type="select" visible="true"
+                       source_model="Atniqi\ProductsWidgetSlider\Model\Config\Source\SortByBestSeller">
+                <label>Sort Collection By</label>
+            </parameter>
+            <parameter name="collection_sort_order" xsi:type="select" visible="true"
+                       source_model="Atniqi\ProductsWidgetSlider\Model\Config\Source\SortOrder">
+                <label>Sort Collection Order</label>
+            </parameter>
+            <parameter name="products_count" xsi:type="text" required="true" visible="true">
+                <label>Number of Products to Display</label>
+                <value>10</value>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
