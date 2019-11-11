@@ -165,3 +165,87 @@
     }
   }
 }
+
+
+#product-addtocart-button {
+    margin-top: 30px;
+    background: #dd1f40 none repeat scroll 0 0;
+    border-color: #dd1f40;
+    border-radius: 65px;
+    font-family: rubik;
+    font-size: 30px;
+    font-weight: 500;
+    height: auto;
+    letter-spacing: .4px;
+    line-height: 61px;
+    padding: 0 36px;
+    text-transform: uppercase;
+    box-shadow: 2px 3px 10px 0 rgba(221,31,64,.4), 0 -2px 2px 0 rgba(221,31,64,.2);
+    float: right;
+    width: auto;
+}
+
+#product-addtocart-button:hover {
+    background: #da8f40;
+    border-color: #da8f40;
+    box-shadow: 2px 3px 10px 0 rgba(230,155,64,.4), 0 -2px 2px 0 rgba(230,155,64,.2);
+}
+
+#product-addtocart-button::before{
+    display: none;
+}
+.box-tocart .field.qty {
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.box-tocart .field.qty label.label {
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  font-size: 22px;
+  font-weight: 500;
+  color: #333333;
+  text-transform: uppercase;
+  letter-spacing: 1.4xp;
+}
+
+.qty_main_bg {
+  float: right;
+  margin: 0px;
+  padding: 0px;
+}
+
+.qty_main_bg .porto-icon-up-dir::before {
+  content: "\f809";
+  display: none;
+}
+
+.qty_main_bg .porto-icon-down-dir::before {
+  content: "\f80a";
+  display: none;
+}
+
+.qty.field .qty-changer>a.qty-dec {
+  width: 18px;
+  height: 18px;
+  background: url(../images/qty-dec.png) no-repeat center;
+}
+
+.qty.field .qty-changer>a.qty-inc {
+  width: 18px;
+  height: 18px;
+  background: url(../images/qty-inc.png) no-repeat center;
+}
+
+.qty.field .qty_main_bg .control .input-text.qty {
+  border: none;
+  font-size: 22px;
+  font-weight: 500;
+  color: #dd1f40;
+  font-family: 'Rubik';
+  width: 70px;
+}

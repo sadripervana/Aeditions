@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Sansita:400,400i,700,700i,800,800i,900,900i');
+
 #latest_news > div > div > div.owl-controls{
     position: absolute;
     right: 0;
@@ -85,4 +87,189 @@
 
 #latest_news .owl-nav [class*=owl-]{
 	margin:0 !important;
+}
+
+/*List*/
+
+.post-item-blog{
+	margin:30px 0;
+}
+
+.image_part {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.image_part img {
+    width: 100%;
+}
+
+.post_content {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+    overflow: hidden;
+    padding: 35px 60px !important;
+}
+
+.post_title{
+	margin-bottom: 15px;
+	border-bottom: 1px solid #c6c6c6;
+}
+
+.post_title .post-item-link {
+    
+    color: #4c4c4c;
+    text-decoration: none;
+    font-size: 30px;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    font-family: sansita;
+    font-weight: 800;
+}
+
+.post_content .content {
+    padding-top: 20px;
+    font-size: 17px;
+    line-height: 26px;
+    font-family: rubik;
+    font-weight: 400;
+    color: #333;
+}
+
+.post-read-more {
+    float: left;
+    margin: 15px;
+    padding: 0 28px;
+    background: #da8e40;
+    line-height: 42px;
+    color: #fff !important;
+    font-family: rubik;
+    font-size: 19px;
+    font-weight: 400;
+    border-radius: 3px !important;
+    text-decoration: none !important;
+}
+
+.post-read-more:hover {
+    color: #fff;
+    background: #cb3849;
+}
+
+/*Navigation*/
+
+.toolbar {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+.toolbar .pages {
+	float: right !important;
+	margin: 0px;
+	padding: 0px;
+}
+
+.blog-index-index #maincontent {
+	padding: 0 0 24px;
+}
+
+.blog-banner-image img {
+	width: 100%;
+	height: auto;
+}
+
+.toolbar .pages strong.page {
+	background: none;
+	border: none;
+	color: #ca384b;
+	font-size: 24px;
+	font-family: 'Rubik';
+	font-weight: bolder;
+	line-height: 28px;
+}
+
+.toolbar .pages a.page {
+	background: none;
+	border: none;
+	color: #9b9b9b;
+	font-size: 24px;
+	font-family: 'Rubik';
+	font-weight: bolder;
+	line-height: 28px;
+}
+
+.toolbar .pages .action {
+	border-radius: 0px;
+	border: none;
+	background: #9b9b9b;
+	color: #eeedeb;
+	width: 28px;
+	height: 28px;
+	line-height: 28px;
+}
+
+.toolbar .pages .action:before {
+	color: #ffffff !important;
+	font-size: 23px;
+}
+
+.toolbar .pages .item {
+	vertical-align: middle;
+}
+
+/*View Single Post*/
+.image_part {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.image_part image {
+    width: 100%;
+}
+
+.post_content {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+
+.title {
+	font-family: sansita;
+    font-size: 30px;
+    font-weight: 800;
+    color: #4c4c4c;
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+#post .col-xl-12{
+    border-bottom: 1px solid #c6c6c6;
+}
+
+.content {
+    padding-top: 20px;
+    font-size: 17px;
+    line-height: 26px;
+    font-family: rubik;
+    font-weight: 400;
+    color: #333;
+}
+
+.comments {
+    margin-top: 20px;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    margin-bottom: 0;
+    overflow: hidden;
+    padding: 20px;
 }

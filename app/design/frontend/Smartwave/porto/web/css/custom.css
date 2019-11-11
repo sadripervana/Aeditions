@@ -182,8 +182,15 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
   font-size: 20px !important;
 }
 
-
-
+.header.links li a,
+.header.links li{
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #ffffff !important ;
+  font-family: "Gilroy";
+  font-weight: bold;
+  border: none !important;
+}
 
 /*
 *Contact us block
@@ -320,3 +327,370 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
   float: right;
   right: 0;
 }
+
+
+/*Login */
+
+.customer-account-login .login-container{
+    background: rgba(0,0,0,0) url(../images/LOGOINI_01.png) repeat-y scroll 0 0/100% auto;
+    border: medium;
+    float: left;
+    padding: 140px;
+    width: 100%;
+}
+.customer-account-login .block-customer-login{
+    background-color: #fff;
+    float: left;
+    max-height: 400px;
+    padding: 40px 0;
+    width: 40% !important;
+    border-right: 15px solid #f1f0ee;
+}
+
+.logo-login{
+    margin: 0 auto 8px;
+    max-width: 40%;
+    text-align: center;
+    width: 100%;
+}
+
+#login-form .field.required {
+    margin: 10px 0 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#login-form .control .input-text {
+    border-radius: 0;
+    border-style: none none solid;
+    border-width: 0 0 1px;
+    padding: 0;
+}
+
+#login-form .email .control .input-text {
+    background: transparent url(../images/Email_icon_login.png) no-repeat scroll right center!important;
+}
+
+#login-form .password .control .input-text {
+    background: transparent url(../images/password_icon_login.png) no-repeat scroll right center!important;
+}
+
+#login-form .actions-toolbar .primary{
+    display: inline-block;
+    float: none;
+    margin: 10px 0 0;
+    text-align: center;
+    background: #dc3849 none repeat scroll 0 0;
+    border: medium;
+    padding: 0;
+    border-radius: 50px;
+    padding: 0 35px;
+}
+
+.login-image{
+  float: right;
+  width: 60%;
+  margin-top: -10px;
+}
+
+.login-image img{
+  max-height: 422px;
+  width: 100%;
+}
+
+.login-container .fieldset:after{
+  display: none;
+}
+.login-container .actions-toolbar{
+  text-align: center;
+}
+
+/* Register */
+.customer-account-create .column.main h1{
+  font-family: rubik,sans-serif;
+  color: #2f2f2f;
+  font-weight: 500;
+  line-height: 1.1;
+  font-size: 20px;
+}
+
+.form-create-account{
+  border-radius: 10px;
+  border:none !important;
+  background: #fff;
+  box-shadow: 0 2px 3px rgba(0,0,0,.08);
+}
+
+.form-create-account .legend{
+  color: #d03847;
+}
+.form-create-account .action.primary{
+    background: #dc3849 none repeat scroll 0 0;
+    border: medium;
+    border-radius: 50px;
+    padding: 0 35px;
+}
+
+
+
+/*Nav top bar*/
+.page-header.type19 .navigation .level0 > .level-top{
+    font-size: 20px !important;
+    letter-spacing: 1px !important;
+    line-height: 57px !important;
+    color: #2f2f2f !important;
+    font-family: "Gilroy" !important;
+    font-weight: bold !important;
+}
+
+/*Libra subcategories homepage block*/
+
+.libra-sub{
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.libra-sub .col-2{
+  padding: 0 40px;
+}
+
+.libra-sub .col-2:not(:last-child)::after{
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 78px;
+  background-color: #e5e5e5;
+  right: 0;
+  top: 10px;
+}
+
+.libra-sub h4,
+.libra-sub a{
+  font-size: 20px;
+  line-height: 19px;
+  color: #868090;
+  font-family: "Gilroy";
+  font-weight: bold;
+  text-decoration: none;
+  clear: both;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.libra-sub img{
+  height: 80px;
+}
+
+/*Sitemap*/
+
+.sitemap_main_bg {
+  float: left;
+  margin: 0px;
+  padding: 30px 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+.sitemap_title_bg {
+  float: left;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.cms-site-map .page-main .page-title-wrapper .page-title {
+  color: #2f2f2f;
+  font-size: 20px;
+  margin: 0 0 15px;
+}
+
+.sitemap_main_bg .sitelist {
+  list-style: none;
+}
+
+.sitemap_main_bg .sitelist ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px !important;
+}
+
+.sitemap_main_bg .sitelist .sitemap-list {
+  float: none;
+  display: inline-block;
+  margin: 0px;
+  padding: 0 15px;
+  width: 25%;
+}
+
+.sitemap_main_bg .sitelist .sitemap-list .sitemap-list {
+  float: none;
+  display: inline-block;
+  margin: 0px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.sitemap_main_bg .sitelist a {
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #d03847;
+}
+
+.sitemap_main_bg .sitelist a:hover {
+  color: #da8f40;
+}
+
+.sitemap_main_bg .sitelist h3 {
+  margin: 0px 0 15px;
+}
+
+.cms-site-map #maincontent {
+  padding: 0px;
+}
+
+.block.review-add {
+  float: left;
+  width: 100%;
+}
+
+/*Minicart*/
+
+.minicart-wrapper .block-minicart{
+  border-top: 6px solid #d03847;
+  color: #777;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,.25);
+  padding: 25px 18px;
+}
+.block-minicart .items-total {
+    float: right;
+    margin-top: 20px;
+}
+.block-minicart .block-content>.actions>.primary .action.primary {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 15px;
+    background: #dc3849 none repeat scroll 0 0;
+    border: medium;
+    border-radius: 50px;
+}
+.minicart-items .action.edit:before,
+.minicart-items .action.delete:before,
+.block-minicart .block-content>.actions>.secondary .action.viewcart span{
+    color: #dc3849;
+}
+/*view cart*/
+
+.checkout-cart-index .cart-container {
+    float: left;
+    width: 100%;
+  }
+  .columns {
+    display: inline-block;
+    width: 100%;
+  }
+  .checkout-cart-index .page-main {
+    padding: 0 15px 30px;
+  }
+  #cart-totals.cart-totals tbody th {
+    padding: 13px 15px;
+    font-size: 14px;
+  }
+  #cart-totals.cart-totals tbody td {
+    padding: 13px 15px;
+    font-size: 14px;
+  }
+  .cart.table-wrapper .product-item-name>a {
+    font-size: 15px;
+  }
+  .cart.item .field.qty label.label {
+    font-size: 12px;
+    margin: 9px 15px 0 0;
+  }
+  .cart.item .qty.field .qty_main_bg_cr .control .input-text.qty {
+    width: 60px;
+  }
+  .cart.item .product-item-details {
+    padding: 0px;
+  }
+  .cart.table-wrapper .product-item-name {
+    margin: 0px;
+  }
+  .cart-totals {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .cart.table-wrapper .cart tbody td.price .cart-price .price {
+    font-size: 14px;
+  }
+  .cart.table-wrapper .cart tbody td:before {
+    display: none !important;
+  }
+  .cart.table-wrapper .col.price {
+    float: left;
+    width: 100% !important;
+    padding: 13px 15px !important;
+  }
+  .cart-summary {
+    float: left;
+    padding: 10px 0;
+    width: 100%;
+  }
+  .checkout-cart-index .page-main>.page-title-wrapper .page-title {
+    float: left;
+  }
+  .checkout-cart-index .page-title-wrapper {
+    padding: 0px;
+  }
+  .opc-estimated-wrapper {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #cccccc !important;
+    border-radius: 8px;
+    margin: 0 0 15px;
+    padding: 18px 15px;
+  }
+  .opc-estimated-wrapper .minicart-wrapper button.action.showcart {
+    background: #2f2f2f url("../images/cart_icon.png") no-repeat scroll right center;
+    border: 1px solid #666666;
+    border-radius: 30px;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 33px;
+    padding: 0 59px 0 0px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .opc-estimated-wrapper .minicart-wrapper button.action.showcart:hover {
+    background: #ca3849 url("../images/cart_icon_active.png") no-repeat scroll right center;
+    border: 1px solid #da394c;
+  }
+  .opc-wrapper .methods-shipping {
+    background: #ffffff;
+  }
+  #checkout-shipping-method-load {
+    overflow: auto;
+  }
+  .opc-wrapper .form-login,
+  .opc-wrapper .form-shipping-address,
+  .opc-wrapper .methods-shipping {
+    padding-left: 0px;
+    padding-right: 0px;
+    background: #ffffff;
+  }

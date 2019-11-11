@@ -19,42 +19,34 @@
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
     $_postDate = $_post->getData("publish_time");
 ?>
-<div class="post-view">
-    <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
-        <div class="post-banner no-banner"></div>
-        <div class="post-date">
-            <span class="day"><?php echo date("j", strtotime($_postDate)); ?></span>
-            <span class="month"><?php echo date("M", strtotime($_postDate)); ?></span>
-        </div>
-        <div class="imgage_part">
-        	<?php if($post_image = $_post->getFeaturedImage()): ?>
-            	<img src="<?php echo $post_image; ?>" alt=""/>
-            <?php endif; ?>
-		</div>
-        <div class="post-content">
-        <div class="post-header">
-            <div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
-                <a class="addthis_button_facebook"></a>
-                <a class="addthis_button_twitter"></a>
-                <a class="addthis_button_email"></a>
-                <a class="addthis_button_compact"></a>
+
+<div class="container">
+        
+        <div id="post" class="row">
+            
+            <div class="col-xl-4 col-lg-4 col-md-12 post_image">
+               
+                <div class="image_part">
+                     <?php if($post_image = $_post->getFeaturedImage()): ?>
+                        <img src="<?php echo $post_image; ?>" alt=""/>
+                     <?php endif; ?>
+                </div>
+            
             </div>
-            <div class="post-title-holder">
-            <h2 class="post-title">
-                <?php echo $_postName; ?>
-            </h2>
-            </div>
-            <?php echo $this->getInfoHtml() ?>
-        </div>
-            <div class="post-description clearfix">
-                <div class="post-text-hld">
+
+            <div class="col-xl-8 col-lg-8 col-md-12 post_content">
+                
+                <div class="col-xl-12">
+                    <h1 class="title">
+                          <?= $_postName; ?>
+                    </h1>
+                </div>
+                <div  class="col-xl-12 content">
+                    
                     <?php echo $block->getContent() ?>
-                    <div class="clear"></div>
                 </div>
             </div>
+
         </div>
-        <div class="post-bottom">
-            <?php echo $this->getChildHtml('blog.post.bottom') ?>
-        </div>
-    </div>
-</div>
+    
+ </div>

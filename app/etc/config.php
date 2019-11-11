@@ -209,6 +209,7 @@ return [
         'Atniqii_Aeditions' => 1,
         'Bss_ProductsWidgetSlider' => 1,
         'Dotdigitalgroup_Email' => 1,
+        'EkShipping_MatrixRate' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,

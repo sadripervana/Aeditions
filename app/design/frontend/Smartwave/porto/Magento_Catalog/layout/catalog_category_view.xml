@@ -9,17 +9,24 @@
         <referenceContainer name="page.top">
              <block class="Magento\Catalog\Block\Category\View" name="category_banner" template="category/banner.phtml" ifconfig="porto_settings/category/category_description" before="-"/>
             <!-- <block class="Magento\Catalog\Block\Product\View" name="product.info.wdm" template="product/view/wdm-social.phtml"/> -->
-
         </referenceContainer>
         <referenceContainer name="content">
+        <referenceBlock name="catalog.leftnav">
+            <action method="setTemplate" ifconfig="layered_navigation/general/enable">
+                <argument name="template" xsi:type="string">Mageplaza_LayeredNavigation::layer/view.phtml</argument>
+            </action>
+            <container name="layer.additional.info" as="layer_additional_info"/>
+            <container name="layer.content.before" as="layer_content_before"/>
+        </referenceBlock>
             <block class="Magento\Catalog\Block\Category\View" name="category_desc_main_column" template="category/desc_main_column.phtml" ifconfig="porto_settings/category/category_description" before="category.products"/>
         </referenceContainer>
         <move element="category.image" destination="content" before="category_desc_main_column"/>
+        <move element="category_banner" destination="content" after="category.image"/>
         <referenceContainer name="sidebar.main">
             <block class="Smartwave\Porto\Block\Template" name="category_view_custom_block" after="-" template="Magento_Catalog::category/custom_block.phtml"/>
         </referenceContainer>
         <referenceBlock name="breadcrumbs" remove="true" />
-        <referenceBlock name="product_list_toolbar" remove="true" />
+        <!-- <referenceBlock name="product_list_toolbar" remove="true" /> -->
 
     </body>
 </page>

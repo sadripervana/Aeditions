@@ -57,7 +57,11 @@
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()): ?>
         <div class="field qty">
-            <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Qty') ?>:</span></label>
+            <label class="label" for="qty"><span><?php /* @escapeNotVerified */ echo __('Quantity') ?></span></label>
+            <div class="qty_main_bg">
+            <div class="qty-changer">
+                <a href="javascript:void(0)" class="qty-dec"><i class="porto-icon-down-dir"></i></a>
+            </div>
             <div class="control">
                 <input type="number"
                        name="qty"
@@ -67,12 +71,14 @@
                        title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
                        data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
                        />
-                <div class="qty-changer">
-                    <a href="javascript:void(0)" class="qty-inc"><i class="porto-icon-up-dir"></i></a>
-                    <a href="javascript:void(0)" class="qty-dec"><i class="porto-icon-down-dir"></i></a>
+            </div>
+            <div class="qty-changer">
+                <a href="javascript:void(0)" class="qty-inc"><i class="porto-icon-up-dir"></i></a>
                 </div>
+            
             </div>
         </div>
+        <br>
         <?php endif; ?>
         <div class="actions">
             <button type="submit"
@@ -85,34 +91,7 @@
         </div>
     </div>
 </div>
-<style type="text/css">
-    
-    #product-addtocart-button {
-    margin-top: 30px;
-    background: #dd1f40 none repeat scroll 0 0;
-    border-color: #dd1f40;
-    border-radius: 65px;
-    font-family: rubik;
-    font-size: 30px;
-    font-weight: 500;
-    height: auto;
-    letter-spacing: .4px;
-    line-height: 61px;
-    padding: 0 36px;
-    text-transform: uppercase;
-    box-shadow: 2px 3px 10px 0 rgba(221,31,64,.4), 0 -2px 2px 0 rgba(221,31,64,.2);
-    float: right;
-    width: auto;
-}
 
-#product-addtocart-button:hover {
-    background: #da8f40;
-    border-color: #da8f40;
-    box-shadow: 2px 3px 10px 0 rgba(230,155,64,.4), 0 -2px 2px 0 rgba(230,155,64,.2);
-}
-
-
-</style>
 <?php endif; ?>
 <?php if ($block->isRedirectToCartEnabled()) : ?>
 <script type="text/x-magento-init">
@@ -133,6 +112,7 @@
         'Magento_Catalog/js/catalog-add-to-cart'
     ], function ($) {
         'use strict';
+
 
         $('#product_addtocart_form').mage('validation', {
             radioCheckboxClosest: '.nested',

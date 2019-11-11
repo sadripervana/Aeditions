@@ -20,18 +20,27 @@
 
 ?>
 
+<style type="text/css">
 
-<div id="add-to-cart-modal" class="container">
+#add-to-cart-modal {
+  font-size: 20px;
+}
+#add-to-cart-modal  b{
+  color: #dd1f40;
+}
+</style>
+
+<div id="add-to-cart-modal" class="container" style="display: none;">
    <div class="row">
    		<div class="col-6">
    			<div class="row">
    				<div class="col-6">
    					<img class="img-fluid" src="<?= $image ?>"> 
    				</div>
-   				<div class="col-6">
-   					<span><b>Titulli: </b> <?= $title ?></span>
-   					<span><b>Sasia:</b> <?= $qty ?></span>
-   					<span><b>Totali: </b> <?= $total ?> </span>
+   				<div class="col-6 details">
+   					<span><b>Titulli: </b> <?= $title ?></span><br>
+   					<span><b>Sasia:</b> <?= $qty ?></span><br>
+   					<span><b>Totali: </b> <?= $total ?> </span><br>
    				</div>
    			</div>
    		</div>
@@ -78,7 +87,8 @@
             $("#product-addtocart-button").on("click",function(){
               var items = $('#minicart-content-wrapper .items-total .count').text();
               var price = $('#minicart-content-wrapper .subtotal .price').text();
-              $('#add-to-cart-modal .libra').empty().append(items);
+              var qty   = $('#qty').val();
+              $('#add-to-cart-modal .libra').empty().append(parseInt(items) + parseInt(qty));
               $('#add-to-cart-modal .price').empty().append(price);
              
                 $('#add-to-cart-modal').modal('openModal');

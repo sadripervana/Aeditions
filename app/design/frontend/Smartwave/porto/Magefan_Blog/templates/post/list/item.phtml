@@ -27,7 +27,7 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
 
 
 
-        <div id="post" class="row pt-2">
+        <div class="post-item-blog row pt-2">
             
             <div class="col-xl-4 col-lg-4 col-md-12 post_image">
                 <!-- Shto src e imazhit -->
@@ -41,7 +41,7 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
 
             <div class="col-xl-8 col-lg-8 col-md-12 post_content py-3 px-5">
                 <!-- Shto titullin -->
-                <div id="title" class="col-xl-12">
+                <div class="col-xl-12 post_title">
                     <h1>
                         <a class="post-item-link"
                            href="<?php echo $_postUrl ?>">
@@ -49,7 +49,7 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
                        </a>
                     </h1>
                 </div>
-                <div id="content" class="col-xl-12">
+                <div  class="content col-xl-12">
                     <p>
             <?php 
 
@@ -65,7 +65,7 @@ $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'
                  <?php endif ?>
                     </p>
                 </div>
-                      <a class="post-read-more btn shiko-me-shume" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                      <a class="post-read-more btn" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
                         <?php echo __('View more'); ?>
                       </a>
 
