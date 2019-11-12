@@ -15,9 +15,9 @@ class GetBestSellerCollection
      * @param \Magento\Store\Model\StoreManagerInterface $storeManagerAtniqi
      */
     public function __construct(
-        \Magento\Store\Model\StoreManagerInterface $storeManagerAtniqi
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
-        $this->storeManager = $storeManagerAtniqi;
+        $this->storeManager = $storeManager;
     }
 
     /**

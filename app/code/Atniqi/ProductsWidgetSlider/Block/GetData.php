@@ -160,10 +160,28 @@ class GetData extends ProductsList
         return $this->getData('collection_sort_order');
     }
 
-    public function dateRange()
+
+    public function getDateRange()
     {
-        $fromDate = $this->getFromDate();
-        $toDate = $this->getToDate();
+        $range = $this->getRange();
+        
+        switch ($range) {
+            case 'yearly':
+                    return $this->lastYear();
+                break;
+            case 'monthly':
+                    return $this->lastMonth();
+                 break; 
+           default:
+                    return $this->allTime();
+           break;
+        }
+
+    }
+
+    public function dateRange($fromDate, $toDate)
+    {
+        
         $sqlQuery='';
         if ($fromDate !='' && $toDate !='') {
             if (strtotime($toDate) < strtotime($fromDate)) {
@@ -180,6 +198,31 @@ class GetData extends ProductsList
         }
         return $sqlQuery;
 
+    }
+
+
+    protected function lastMonth()
+    {
+        $lastMonth = date("Y-m-d",strtotime("-1 month"));
+        $today = date('Y-m-d');
+        
+        return $this->dateRange($lastMonth, $today); 
+    }
+
+    protected function lastYear()
+    {
+        $lastYear = date("Y-m-d",strtotime("-1 year"));
+        $today = date('Y-m-d');
+       
+        return $this->dateRange($lastYear, $today);
+    }
+
+
+    protected function allTime()
+    {
+        $today = date('Y-m-d');
+        
+        return $this->dateRange(null, $today);
     }
 
 }

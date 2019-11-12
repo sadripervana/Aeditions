@@ -51,13 +51,13 @@ class BestSeller extends \Atniqi\ProductsWidgetSlider\Block\GetData
         $this->getBestSellerCollection = $bssGetBestSellerCollection;
     }
 
+
     public function createCollection()
     {
         $this->setCache();
-
-
-        $dateRange = $this->lastMonth();
-
+        
+        $dateRange = $this->getDateRange();
+        
         $order = $this->getSortOrder();
 
         $sortBy = $this->getSortBy();
@@ -67,7 +67,6 @@ class BestSeller extends \Atniqi\ProductsWidgetSlider\Block\GetData
         $bestSellerCollection = $this->productCollectionFactory->create();
 
         $collection->setFlag('has_stock_status_filter', true);
-
 
         $collection = $this->getBestSellerCollection
                            ->getBestSellerCollection($dateRange, 0, $collection, $bestSellerCollection);
@@ -81,7 +80,6 @@ class BestSeller extends \Atniqi\ProductsWidgetSlider\Block\GetData
             ->setPageSize($this->getPageSize())
             ->setCurPage($this->getRequest()->getParam($this->getData('page_var_name'), 1));
 
-
         if ($sortBy=="name") {
             $collection = $this->_addProductAttributesAndPrices($collection)->addAttributeToSort('name', $order);
         } else {
@@ -92,45 +90,8 @@ class BestSeller extends \Atniqi\ProductsWidgetSlider\Block\GetData
     }
 
 
-    protected function lastMonth()
-    {
-        $fromDate = date("Y-m-d",strtotime("-1 month"));
-        $toDate = date('Y-m-d');
-        $sqlQuery='';
-        if ($fromDate !='' && $toDate !='') {
-            if (strtotime($toDate) < strtotime($fromDate)) {
-                $sqlQuery .=" AND aggregation.period BETWEEN '{$toDate}' AND '{$fromDate}'";
-            } else {
-                $sqlQuery .=" AND aggregation.period BETWEEN '{$fromDate}' AND '{$toDate}'";
-            }
-        }
-        if ($fromDate !='' && $toDate =='') {
-            $sqlQuery .=" AND aggregation.period >= '{$fromDate}'";
-        }
-        if ($fromDate =='' && $toDate !='') {
-            $sqlQuery .=" AND aggregation.period <= '{$toDate}'";
-        }
-        return $sqlQuery;
-    }
+   
 
-    protected function lastYear()
-    {
-        $fromDate = date("Y-m-d",strtotime("-1 year"));
-        $toDate = date('Y-m-d');
-        $sqlQuery='';
-        if ($fromDate !='' && $toDate !='') {
-            if (strtotime($toDate) < strtotime($fromDate)) {
-                $sqlQuery .=" AND aggregation.period BETWEEN '{$toDate}' AND '{$fromDate}'";
-            } else {
-                $sqlQuery .=" AND aggregation.period BETWEEN '{$fromDate}' AND '{$toDate}'";
-            }
-        }
-        if ($fromDate !='' && $toDate =='') {
-            $sqlQuery .=" AND aggregation.period >= '{$fromDate}'";
-        }
-        if ($fromDate =='' && $toDate !='') {
-            $sqlQuery .=" AND aggregation.period <= '{$toDate}'";
-        }
-        return $sqlQuery;
-    }
+
+
 }
