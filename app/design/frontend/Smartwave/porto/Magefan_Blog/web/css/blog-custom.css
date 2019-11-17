@@ -16,6 +16,22 @@
 	background: #e5808a;
 }
 
+.recent-posts{
+    position: relative;
+}
+
+.recent-posts span{
+    font-size: 60px;
+    line-height: 99px;
+    color: #e3e3e3;
+    font-family: "Gilroy";
+    font-weight: 600;
+    -webkit-text-stroke: medium;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+}
+
 .owl-carousel .owl-item img.card-img-top{
 	margin: auto;
 	margin-top: -20%;
@@ -42,7 +58,10 @@
 }
 
 .card-title{
-	white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .card-title a{
@@ -64,7 +83,7 @@
 }
 
 .first_blog_post .card-title{
-	white-space: normal;
+    padding: 20px 0;
 }
 
 .first_blog_post .card-header{

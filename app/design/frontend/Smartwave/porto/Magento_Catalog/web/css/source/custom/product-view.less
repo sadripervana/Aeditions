@@ -105,8 +105,22 @@
 .product-info-main {
   .product.attribute.overview {
     
-    height: 300px;
+    height: 250px;
     overflow-y: scroll;
+    
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+     
+    &::-webkit-scrollbar-track {
+      border-radius:5px;
+    }
+     
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      border-radius:5px;
+    }
+
 
     .value {
       font-size: 16px;
@@ -119,6 +133,45 @@
       margin: 50px 0;
     }
   }
+ .fieldset {
+    .actions{
+      float: right;
+    } 
+    .field.qty{
+      width:100% !important;
+      border: 1px solid #cecece;
+      border-left:none;
+      border-right:none;
+      padding: 25px 0;
+
+      span{
+        line-height: 50px;
+        font-weight: bolder;
+      }
+      .control{
+        line-height:50px;
+        margin:unset;
+        
+        .input-text.qty{
+          font-weight: bolder;
+        }
+      }
+      .qty-changer{
+        margin:unset;
+
+        .qty-dec{
+          right:unset;
+        }
+        a{
+          position:unset !important;
+          top:unset !important;
+          left:unset !important;
+          border:none;
+        }
+      }
+    }
+
+  } 
 }
 
 .custom_attr{
@@ -130,6 +183,15 @@
          font-family:rubik, sans-serif;
     }
   }
+}
+
+.fotorama__stage{
+  border:none !important;
+  border-bottom: 1px solid #cecece !important;
+}
+.fotorama__arr--prev,
+.fotorama__arr--next{
+  display:none !important;
 }
 
 .catalog-product-view{
@@ -167,7 +229,8 @@
 }
 
 
-#product-addtocart-button {
+#product-addtocart-button,
+#review-form button {
     margin-top: 30px;
     background: #dd1f40 none repeat scroll 0 0;
     border-color: #dd1f40;
@@ -185,7 +248,8 @@
     width: auto;
 }
 
-#product-addtocart-button:hover {
+#product-addtocart-button:hover,
+#review-form button:hover {
     background: #da8f40;
     border-color: #da8f40;
     box-shadow: 2px 3px 10px 0 rgba(230,155,64,.4), 0 -2px 2px 0 rgba(230,155,64,.2);
@@ -248,4 +312,13 @@
   color: #dd1f40;
   font-family: 'Rubik';
   width: 70px;
+}
+
+/* Review */
+#review-form {
+  .fieldset {
+    .review-legend.legend {
+      color: #dd1f40;
+    }
+  }
 }

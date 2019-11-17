@@ -205,3 +205,31 @@ require([
     }, 1000);
 });
 </script>
+<script type="text/javascript">
+     require(['jquery'], function ($) {
+        'use strict';
+
+        var qty = $('#qty');
+        var dataValidate = JSON.parse(qty.attr('data-validate'));
+        var minAllowed = dataValidate["validate-item-quantity"]["minAllowed"];
+        var maxAllowed = dataValidate["validate-item-quantity"]["maxAllowed"];
+
+        $('.qty-dec').click(function(){
+            var val = qty.val();
+            var newVal = parseInt(--val);
+            if (newVal >= minAllowed) {
+                qty.val(newVal);
+            }
+        });
+
+        $('.qty-inc').click(function(){
+            var val = qty.val();
+            var newVal = parseInt(++val);
+            if (newVal <= maxAllowed) {
+                qty.val(newVal);
+            }
+        });
+
+
+     });
+</script>

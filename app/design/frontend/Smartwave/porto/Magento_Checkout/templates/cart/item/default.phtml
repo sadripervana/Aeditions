@@ -40,6 +40,30 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                         <?php echo $block->escapeHtml($block->getProductName()) ?>
                     <?php endif; ?>
                 </strong>
+                <div class="field qty">
+                    <label class="label" for="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty">
+                        <span><?php /* @escapeNotVerified */ echo __('Qty') ?></span>
+                    </label>
+                    <div class="qty-changer">
+                        <a href="javascript:void(0)" class="qty-dec"><i class="porto-icon-down-dir"></i></a>
+                    </div>
+                    <div class="control qty">
+                        <input id="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty"
+                               name="cart[<?php /* @escapeNotVerified */ echo $_item->getId() ?>][qty]"
+                               data-cart-item-id="<?php /* @escapeNotVerified */ echo $_item->getSku() ?>"
+                               value="<?php /* @escapeNotVerified */ echo $block->getQty() ?>"
+                               type="number"
+                               size="4"
+                               title="<?php echo $block->escapeHtml(__('Qty')); ?>"
+                               class="input-text qty"
+                               maxlength="12"
+                               data-validate="{required:true,'validate-greater-than-zero':true}"
+                               data-role="cart-item-qty"/>
+                    </div>
+                    <div class="qty-changer">
+                        <a href="javascript:void(0)" class="qty-inc"><i class="porto-icon-up-dir"></i></a>
+                    </div>
+                </div>
                 <?php if ($_options = $block->getOptionList()):?>
                     <dl class="item-options">
                         <?php foreach ($_options as $_option) : ?>
@@ -66,47 +90,6 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                 <?php endif;?>
             </div>
         </td>
-
-        <?php if ($canApplyMsrp): ?>
-            <td class="col msrp" data-th="<?php echo $block->escapeHtml(__('Price')); ?>">
-                <span class="pricing msrp">
-                    <span class="msrp notice"><?php /* @escapeNotVerified */ echo __('See price before order confirmation.'); ?></span>
-                    <?php $helpLinkId = 'cart-msrp-help-' . $_item->getId(); ?>
-                    <a href="#" class="action help map" id="<?php /* @escapeNotVerified */ echo($helpLinkId); ?>" data-mage-init='{"addToCart":{"helpLinkId": "#<?php /* @escapeNotVerified */ echo $helpLinkId;?>","productName": "<?php /* @escapeNotVerified */ echo $product->getName(); ?>","showAddToCart": false}}'>
-                        <span><?php /* @escapeNotVerified */ echo __("What's this?"); ?></span>
-                    </a>
-                </span>
-            </td>
-        <?php else: ?>
-            <td class="col price" data-th="<?php echo $block->escapeHtml(__('Price')); ?>">
-                <?php echo $block->getUnitPriceHtml($_item); ?>
-            </td>
-        <?php endif; ?>
-        <td class="col qty" data-th="<?php echo $block->escapeHtml(__('Qty')); ?>">
-            <div class="field qty">
-                <label class="label" for="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty">
-                    <span><?php /* @escapeNotVerified */ echo __('Qty') ?></span>
-                </label>
-                <div class="control qty">
-                    <input id="cart-<?php /* @escapeNotVerified */ echo $_item->getId() ?>-qty"
-                           name="cart[<?php /* @escapeNotVerified */ echo $_item->getId() ?>][qty]"
-                           data-cart-item-id="<?php /* @escapeNotVerified */ echo $_item->getSku() ?>"
-                           value="<?php /* @escapeNotVerified */ echo $block->getQty() ?>"
-                           type="number"
-                           size="4"
-                           title="<?php echo $block->escapeHtml(__('Qty')); ?>"
-                           class="input-text qty"
-                           maxlength="12"
-                           data-validate="{required:true,'validate-greater-than-zero':true}"
-                           data-role="cart-item-qty"/>
-                </div>
-                <div class="qty-changer">
-                    <a href="javascript:void(0)" class="qty-inc"><i class="porto-icon-up-dir"></i></a>
-                    <a href="javascript:void(0)" class="qty-dec"><i class="porto-icon-down-dir"></i></a>
-                </div>
-            </div>
-        </td>
-
         <td class="col subtotal" data-th="<?php echo $block->escapeHtml(__('Subtotal'));?>">
             <?php if ($canApplyMsrp): ?>
                 <span class="cart msrp subtotal">--</span>
@@ -115,11 +98,27 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
             <?php endif; ?>
         </td>
     </tr>
-    <tr class="item-actions">
-        <td colspan="100">
-            <div class="actions-toolbar">
-                <?php /* @escapeNotVerified */ echo $block->getActions($_item) ?>
-            </div>
-        </td>
-    </tr>
 </tbody>
+
+<script type="text/javascript">
+     require(['jquery'], function ($) {
+        'use strict';
+
+        var qty = $('#cart-<?=$_item->getId()?>-qty');
+
+
+        $('.qty-dec').click(function(){
+            var val = qty.val();
+            var newVal = parseInt(--val);
+            qty.val(newVal);
+        });
+
+        $('.qty-inc').click(function(){
+            var val = qty.val();
+            var newVal = parseInt(++val);
+                qty.val(newVal);
+        });
+
+
+     });
+</script>

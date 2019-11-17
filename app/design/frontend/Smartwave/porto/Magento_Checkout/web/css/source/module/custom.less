@@ -1,0 +1,144 @@
+.cart-container{
+	background: #fff;
+	padding: 10px;
+
+	.form-cart{
+		width: 100% !important;
+
+		.product-image-container{
+			border: none;
+			padding: 0;
+		}
+		
+		.product-item-name a{
+			font-size: 1.8rem;
+		    display: block;
+		    margin: 0; 
+		    margin-top: 10px;
+		    color: #333;
+
+		    &:hover{
+				color: #333 !important;		    	
+		    }
+		}
+		
+		.subtotal .price{
+		    font-family: rubik;
+		    font-size: 30px;
+		    color: #333 !important;
+		    letter-spacing: 1px;
+		    font-weight: 700 !important;
+		}
+
+	    .field.qty{
+	      width:100% !important;
+	      padding: 25px 0;
+
+	      label{
+	        line-height: 50px;
+	        font-weight: bolder;
+	        float: left;
+		    padding: 0;
+		    display: block;
+		    font-size: 20px !important;
+		    margin:0 !important;
+		    margin-right: 50px !important;
+		    color: #333;
+		    text-transform: uppercase;
+	      }
+	      .control{
+	        line-height:50px;
+	        margin:unset;
+	 
+	        
+	        .input-text.qty{
+	          border: none;
+			  font-size: 22px;
+			  font-weight: 500;
+			  color: #dd1f40;
+			  font-family: 'Rubik';
+			  width: 70px;
+			  text-align: center;
+			  font-weight: bolder;
+	        }
+	      }
+	      .qty-changer{
+	        margin:unset;
+
+	        .qty-dec{
+	          right:unset;
+	        }
+	        a{
+	          position:unset !important;
+	          top:unset !important;
+	          left:unset !important;
+	          border:none;
+
+	          i{
+	          	&:before{
+	          		display:none;
+	          	}
+	          }
+	        }
+	      }
+	    }
+	}
+
+	.cart-summary{
+		width: 100%;	
+		border: none;
+
+		.title{
+			color: #555;
+		    font-family: rubik,sans-serif;
+		    font-style: normal;
+		    font-weight: 400;
+		    line-height: 1.4;
+		    font-size: 1.3rem;
+		}
+		.action.primary.checkout {
+			background: #cd3949 none repeat scroll 0 0;
+		    border-color: #cd3949;
+		    border-radius: 65px;
+		    float: right;
+		    font-family: rubik;
+		    font-size: 15px;
+		    font-weight: 700;
+		    height: auto;
+		    letter-spacing: 0;
+		    line-height: normal;
+		    padding: 14px 40px;
+		    text-transform: uppercase;
+		    width: auto;
+
+		    &:hover{
+		    	background: #da8f40;
+				border-color: #da8f40;
+		    }
+		}
+	}
+}
+#cart-totals.cart-totals tbody th {
+    font-family: rubik;
+    font-size: 20px;
+    color: #333;
+    letter-spacing: 1.6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 13px 75px;
+    border-bottom: 1px solid #c8c8c8;
+    border-top: none;
+    vertical-align: middle;
+}
+
+#cart-totals.cart-totals tbody td {
+    font-family: rubik;
+    font-size: 30px;
+    color: #333;
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding: 13px 75px;
+    border-bottom: 1px solid #c8c8c8;
+    border-top: none;
+    vertical-align: middle;
+}

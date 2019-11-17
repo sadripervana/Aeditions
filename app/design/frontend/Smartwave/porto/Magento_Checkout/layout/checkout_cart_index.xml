@@ -14,5 +14,9 @@
         <move element="checkout.cart.crosssell" destination="checkout.cart.container" after="-" />
         <move element="checkout.cart.coupon" destination="cart.discount" />
         <move element="checkout.cart.shortcut.buttons" destination="checkout.cart.methods" after="checkout.cart.methods.onepage.bottom"/>
+        <referenceBlock name="checkout.cart.coupon" remove="true"/>
+        <referenceBlock name="checkout.cart.summary.title" remove="true"/>
+        <move element="cart.summary" destination="checkout.cart.container" after="checkout.cart.form"/>
     </body>
 </page>
+ 

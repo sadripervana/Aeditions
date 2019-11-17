@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category view template
+ *
+ * @var $block \Magento\Catalog\Block\Category\View
+ */
+?>
+<?php
+	$url =    $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+    $_helper    = $this->helper('Magento\Catalog\Helper\Output');
+    $_category  = $block->getCurrentCategory();
+    $_imgUrl = $_category->getImageUrl();
+
+    if ($_imgUrl):
+?>
+<div class="category-image">
+	<img src="<?= $_imgUrl ?> " 
+	     alt="<?= $block->escapeHtml($_category->getName()) ?>" 
+	 	 title="<?= $block->escapeHtml($_category->getName()) ?>" class="image" />
+	<div class="blog_share_bg">
+        <p>share</p>
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($url);?>" 
+                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' 
+                   title="Share on FaceBook">
+                    <em class="porto-icon-facebook">&nbsp;</em>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.instagram.com/aeditions_albania/?hl=en" 
+                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'>
+                    <em class="porto-icon-instagram">&nbsp;</em>
+                </a>
+            </li>
+
+            <li>
+                <a href="http://twitter.com/home/?status=<?php echo urlencode($url);?>" 
+                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'  
+                   title="Share on Twitter">
+                    <em class="porto-icon-twitter">&nbsp;</em>
+                </a>
+            </li>
+
+            <li>
+                <a href="https://www.pinterest.com/pin/create/button/?url=<?php echo urlencode($url);?>&media=<?php echo urlencode($_imgUrl) ?>         &description=<?php echo urlencode($_category->getName())?>" 
+                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'>
+                   <em class="porto-icon-pinterest">&nbsp;</em>
+               </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<?php endif; ?>

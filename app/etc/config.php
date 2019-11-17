@@ -209,7 +209,6 @@ return [
         'Atniqi_ProductsWidgetSlider' => 1,
         'Atniqii_Aeditions' => 1,
         'Dotdigitalgroup_Email' => 1,
-        'EkShipping_MatrixRate' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
@@ -233,6 +232,7 @@ return [
         'Smartwave_Socialfeeds' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
-        'Vtnetzwelt_TrashCan' => 1
+        'Vtnetzwelt_TrashCan' => 1,
+        'WebShopApps_MatrixRate' => 1
     ]
 ];

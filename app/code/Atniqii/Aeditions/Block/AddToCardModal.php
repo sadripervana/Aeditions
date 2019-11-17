@@ -53,7 +53,7 @@ class AddToCardModal extends \Magento\Framework\View\Element\Template
         return $this->product;
     }
 
- public function getQuoteData()
+    public function getQuoteData()
     {
         $this->checkoutSession->getQuote();
         if (!$this->hasData('quote')) {
