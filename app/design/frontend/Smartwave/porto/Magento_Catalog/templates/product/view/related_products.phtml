@@ -17,49 +17,64 @@ $category = $relatedProducts->getCategory($value);
 
 $relatedProductCollection = $relatedProducts->getProductCollection();
 $relatedProductCollection->addStoreFilter();
-$relatedProductCollection->addAttributeToSelect('name')
-		                 ->addAttributeToSelect('image')
-		                 ->addAttributeToSelect('small_image')
-		                 ->addAttributeToSelect('thumbnail'); 
+$relatedProductCollection->addAttributeToSelect('*')
+		                 ->addAttributeToFilter('sku', ['neq' => $product->getSku()])
+		                 ->addAttributeToFilter(
+                            'status', array('eq' => \Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED)
+                        );
 $relatedProductCollection->addCategoryFilter($category);
 $relatedProductCollection->setPageSize(10);
 
 ?>
-
-<div class="container products-related">
+<div class="container" id="relatedproducts">
 	<div class="row">
-		<?php foreach ($relatedProductCollection as $relatedProduct): ?>
-			<?php 
-				 $productImage = $_imagehelper->init($relatedProduct, $image);
-				 $name =  $_helper->productAttribute($relatedProduct, $relatedProduct->getName(), 'name');
-			?>
-			<div class="item product product-item">
-				<div class="product-item-info related-available">
-					<a href="<?= $relatedProduct->getProductUrl() ?>" class="product photo product-item-photo">
-						<img src="<?= $productImage->getUrl()?>" class="product-image-photo default_image">
-					</a>
-				</div>
-				<div class="product details product-item-details">
-					<strong class="product name product-item-name">
-						<a href="<?= $relatedProduct->getProductUrl() ?>" class="product-item-link">
-							<?= $name ?>
-						</a>
-					</strong>	
-				</div>
+		<div class="col-12">
+			<h1> 
+				<?= __('Related Products') ?>
+			</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="container products-related">
+			<div class="row owl-carousel">
+				<?php foreach ($relatedProductCollection as $relatedProduct): ?>
+					<?php 
+						 $name         =  $_helper->productAttribute($relatedProduct, $relatedProduct->getName(), 'name');
+						 $productImage = $_imagehelper->init($relatedProduct, $image);
+					?>
+					<div class="item product product-item">
+						<div class="product-item-info related-available">
+							<a href="<?= $relatedProduct->getProductUrl() ?>" class="product photo product-item-photo">
+								<img src="<?= $productImage->getUrl()?>" class="product-image-photo default_image">
+							</a>
+						</div>
+						<div class="product details product-item-details">
+							<strong class="product name product-item-name">
+								<a href="<?= $relatedProduct->getProductUrl() ?>" class="product-item-link">
+									<?= $name ?>
+								</a>
+							</strong>	
+						</div>
+					</div>
+				<?php endforeach; ?>
 			</div>
-		<?php endforeach; ?>
+		</div>
 	</div>
 </div>
-
 <script type="text/javascript">
 	
         require([
             'jquery',
             'owl.carousel/owl.carousel.min'            
         ], function ($) {
-            $(".products-related .row").owlCarousel({
-                            loop: false,
-                            nav: false,
+            $(".products-related .owl-carousel").owlCarousel({
+                            autoplay: true,
+                            autoplayTimeout: 5000,
+                            autoplayHoverPause: true,
+                            loop: true,
+                            navRewind: true,
+                            nav: true,
+                           navText: ["<em class='porto-icon-left-open-huge'></em>","<em class='porto-icon-right-open-huge'></em>"],
                             dots: false,
                             responsive: {
                                0: {

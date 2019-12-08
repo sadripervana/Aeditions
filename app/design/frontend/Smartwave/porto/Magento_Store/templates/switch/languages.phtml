@@ -38,11 +38,11 @@
               <div class="action toggle switcher-trigger" id="switcher-language-trigger<?php /* @escapeNotVerified */ echo $id?>">
                   <strong class="view-<?php echo $block->escapeHtml($_lang->getCode()); ?> switcher-option">
 
-                    <a href="<?php echo $_lang->getCurrentUrl(false); ?>">
+                    <a href="#" data-post='<?php echo $this->getTargetStorePostData($_lang); ?>'>
                         <?php if($_helper->getConfig('porto_settings/header/language_flag')): ?>
                             <img src="<?php echo $_helper->getBaseUrl().'wysiwyg/smartwave/porto/flags/'.$block->escapeHtml($_lang->getCode()).'.png'; ?>" />
                         <?php endif; ?>
-                  </a>
+                    </a>
                   </strong>
               </div>
 

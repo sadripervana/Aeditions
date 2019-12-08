@@ -1,26 +1,49 @@
 "Create an Account","Regjistrohu"
 "Register","Regjistrohu"
 "Log in","Hyni"
+"        Log In    ","Hyni"
+"Or", "Ose"
+"Create New Customer Account","Krijo llogari të re si klient"
+"Sign-in Information","Informacioni Hyrës"
+"First Name","Emri"
+"Last Name","Mbiemri"
+"Sign Up for Newsletter","Rregjistrohu për njoftimet"
+"Password","Fjalëkalimi"
+"Password Strength","Vështirësia e Fjalkalimit"
+"Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored.", "Kjo fushe duhet të ketë 8 ose më shumë simbole. Hapësirat nuk merren parasysh"
+"Minimum of different classes of characters in password is 3. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.","Kjo fushe duhet të ketë 3 karaktere të ndryshme. Karakteret duhet të jene: Shkronjë e madhe, Shkronjë e vogël, Numër, Karakter Special"
+"No Password","Nuk ka Fjalëkalim"
+"Weak","e dobët"
+"Mediuam", "Mesatar"
+"Very Strong","shume e fortë"
+"Confirm Password", "Konfirmo fjalëkalimin"
+"Order Summary","Totali i shportës"
+"Item in Cart","Artikull në shportë"
+"Shipping Methods","Mënyra e transportit"
 "Proceed to Checkout","Bli Tani"
 "Estimate Shipping and Tax","Llogarit Postën dhe Taksën"
-"We can't find posts matching the selection.","Ne nuk mund te gjejme postime qe perputhen me zgjedhjen ."
+"We can't find posts matching the selection.","Ne nuk mund të gjejmë postime që përputhen me zgjedhjen ."
 "Shiko më shumë","Shiko më shumë"
 "View more","Shiko më shumë"
 "Related Posts","Postimet e lidhura"
-"Related Products","Produkte te lidhura"
-"Add to Cart","Shtoni ne shporte"
-"In stock","Ne aksione"
-"Out of stock","Jashte aksioneve"
-"Add to Wish List","Shto ne listen e deshirave"
-"Add to Compare","Shtoni per te krahasuar"
+"Related Products","Produkte të ngjashme "
+"Add to Cart","Shtoni në shportë"
+"In stock","Në stok"
+"Out of stock","Jashtë stokut"
 Archive,Arkiv
 "Archive %s","Archive %s"
-Categories,Kategorite
+Categories,Kategoritë
 "Recent Posts","Postimi i fundit"
 "RSS Feed","Burimi RSS"
+"You're reviewing:","Po shkruani për:"
+"Your Rating","Vlerësimi yt"
+"Nickname", "Emri"
+"Summary", "Përmbledhje"
+"Review", "Vlerësimi"
+"Submit Review","Dërgo Vlerësimin" 
 Search,Kerko
-"Search posts here...","Kerko postime ketu..."
-None,Asnje
+"Search posts here...","ëerko postime ketu..."
+None,Asnjë
 Quantity,Sasi
 "Choose a selection...","Zgjidh nje perzgjedhje..."
 "Buy Now","Bli tani"
@@ -57,6 +80,8 @@ Price,Cmimi
 "See price before order confirmation.","Shiko cmimin perpara konfirmimit te porosise."
 "What's this?","Cfare eshte kjo?"
 Subtotal,Nentotali
+"Order Total", "Totali"
+"Shipping Address", "Adresa e porosisë"
 Cart,Karta
 Contact,Kontakt
 Details,Detajet
@@ -171,10 +196,6 @@ Footer,Footer
 "Your shipping confirmation is below. Thank you again for your business.","Konfirmimi juaj i transportit eshte me poshte. Faleminderit perseri per biznesin tuaj."
 "Your Shipment #%shipment_id for Order #%order_id","Your Shipment #%shipment_id for Order #%order_id"
 "Update to your %store_name shipment","Update to your %store_name shipment"
-
-
-
-
 Be the first to review this product, Komento i pari
 Quantity, Sasia
 ADD TO CART, hidh në shportë

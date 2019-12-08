@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\FilterRenderer
+ */
+?>
+<div class="layered-nav">
+    
+    <?php foreach ($filterItems as $filterItem): ?>
+        <div class="item">
+            <?php if ($filterItem->getCount() > 0): ?>
+<?php 
+$blockPagination = $block->getLayout()->createBlock('Magento\Theme\Block\Html\Pager');
+
+
+$query = [
+            $filterItem->getFilter()->getRequestVar() => $filterItem->getValue(),
+            // exclude current page from urls
+            $blockPagination->getPageVarName() => null,
+        ];
+
+ ?>
+                
+                <a href="<?php echo $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $query]); ?>">
+                    <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                            <?php if ($filterItem->getCount() == 1):?> <?php /* @escapeNotVerified */ echo __('item')?><?php else:?> <?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                </a>
+            <?php else:?>
+                <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                    <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1):?><?php /* @escapeNotVerified */ echo __('item')?><?php else:?><?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                <?php endif; ?>
+            <?php endif; ?>
+        </div>
+    <?php endforeach ?>
+
+</div>

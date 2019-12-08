@@ -33,11 +33,6 @@
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="dashboard_enabled" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable Dashboard</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <backend_model>Mageplaza\Core\Model\Config\Backend\Menu</backend_model>
-                </field>
                 <field id="chart_enabled" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Chart</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

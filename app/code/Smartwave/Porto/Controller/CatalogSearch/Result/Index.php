@@ -97,7 +97,6 @@ class Index extends \Magento\CatalogSearch\Controller\Result\Index
             $additional_class = '';
             if(isset($full_width) && $full_width == 'full_width')
                 $additional_class = 'layout-fullwidth';
-            $resultPage->getConfig()->addBodyClass($additional_class);
 			$panelLayout = $this->_scopeConfig->getValue('porto_settings/category/page_layout', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $this->_storeManager->getStore()->getId());
 			if($panelLayout!=''){
 				$resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
@@ -107,6 +106,7 @@ class Index extends \Magento\CatalogSearch\Controller\Result\Index
 				$this->_view->loadLayout();
 				$this->_view->renderLayout();
 			}
+            $resultPage->getConfig()->addBodyClass($additional_class);
 			
 		} else {
 			$this->getResponse()->setRedirect($this->_redirect->getRedirectUrl());

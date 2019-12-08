@@ -6,7 +6,7 @@
         </referenceBlock>
         <referenceBlock name="breadcrumbs" remove="true" />
         <referenceBlock name="blog.sidebar.recent" remove="true" />
-        <referenceBlock name="page.main.title" remove="true" />
+        <!-- <referenceBlock name="page.main.title" remove="true" /> -->
 
     </body>
 </page>

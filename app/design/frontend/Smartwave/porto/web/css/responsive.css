@@ -1,0 +1,82 @@
+.catalog-product-view.page-layout-2columns-right:not(.weltpixel-quickview-catalog-product-view) a.right-side-open{
+	display: none !important;
+}
+@media (min-width: 1200px) { 
+
+}
+
+
+@media (max-width: 992px) { 
+	.page-main{
+		max-width: 100% !important; 
+	}
+	
+}
+
+@media (max-width: 992px) {
+	.libra-sub .row{
+		justify-content: space-evenly;
+	}
+	.libra-sub .col-2{
+		max-width: 33.3%;
+		width: 100%;
+	}
+	.banner.collection p,
+	.banner.collection button{
+		font-size: 25px;
+	}
+	.banner.sales p{
+		font-size: 30px;
+		margin-left: -120px;
+	}	
+
+}
+
+
+
+@media (max-width: 768px) { 
+	.page-main,
+	.container{
+		max-width: 100% !important; 
+	}
+
+}
+
+@media (max-width: 768px) {
+	.banner{
+		flex-flow: column;
+	}
+	.banner.sales span img.altoporlant {
+	    left: unset; 
+	    top: 20px;
+	    height: 70px;
+	}
+	.banner.sales p {
+	    font: 25px Poppins;
+	    margin-left: unset;
+	    margin-right: -85px;
+	}
+    .banner p{
+		font-size: 25px!important;
+	}
+	.banner.sales p{
+		margin-left: -20px;
+	}	
+	.banner.sales p span {
+		font-size: 30px;
+	}
+}
+
+
+@media (max-width: 576px) { 
+	.page-main,
+	.container{
+		max-width: 100% !important; 
+	}	
+}
+
+@media (max-width: 576px) { 	
+	.second-header{
+		display: none !important;
+	}
+}

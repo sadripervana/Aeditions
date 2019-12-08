@@ -190,6 +190,9 @@ class Topmenu extends \Magento\Framework\View\Element\Template
         
         $max_level = $this->_megamenuConfig['general']['max_level'];
         $html .= $this->getCustomBlockHtml('before');
+        if (is_null($categories)) {
+            return;
+        }
         foreach($categories as $category) {
             if (!$category->getIsActive()) {
                 continue;

@@ -12,9 +12,9 @@
 <?php /* Extensions placeholder */ ?>
 
 <h1>
-    <?= __('Krijo llogari të re si klient') ?>
+    <?= __('Create New Customer Account') ?>
 </h1>
-
+ 
 <?= $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>

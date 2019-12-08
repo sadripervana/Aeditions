@@ -1,515 +1,495 @@
 <?php
 /**
- * Mageplaza
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Mageplaza.com license that is
- * available through the world-wide-web at this URL:
- * https://www.mageplaza.com/LICENSE.txt
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @category    Mageplaza
- * @package     Mageplaza_LayeredNavigation
- * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
- * @license     https://www.mageplaza.com/LICENSE.txt
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
  */
-
 namespace Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext;
 
 use Magento\CatalogSearch\Model\Search\RequestGenerator;
-use Magento\Framework\App\ObjectManager;
 use Magento\Framework\DB\Select;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\StateException;
 use Magento\Framework\Search\Adapter\Mysql\TemporaryStorage;
+use Magento\Framework\Search\Response\QueryResponse;
+use Magento\Framework\Search\Request\EmptyRequestDataException;
+use Magento\Framework\Search\Request\NonExistingRequestNameException;
+use Magento\Framework\Api\Search\SearchResultFactory;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\App\ObjectManager;
 
 /**
- * Class Collection
- * @package Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext
+ * Fulltext Collection
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
 {
-    /** @var \Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\Collection|null Clone collection */
-    public $collectionClone = null;
+	/**
+	 * @var  QueryResponse
+	 * @deprecated
+	 */
+	protected $queryResponse;
 
-    /** @var string */
-    private $queryText;
+	/**
+	 * Catalog search data
+	 *
+	 * @var \Magento\Search\Model\QueryFactory
+	 * @deprecated
+	 */
+	protected $queryFactory = null;
 
-    /** @var string|null */
-    private $order = null;
+	/**
+	 * @var \Magento\Framework\Search\Request\Builder
+	 * @deprecated
+	 */
+	private $requestBuilder;
 
-    /** @var string */
-    private $searchRequestName;
+	/**
+	 * @var \Magento\Search\Model\SearchEngine
+	 * @deprecated
+	 */
+	private $searchEngine;
 
-    /** @var \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory */
-    private $temporaryStorageFactory;
+	/**
+	 * @var string
+	 */
+	private $queryText;
 
-    /** @var \Magento\Search\Api\SearchInterface */
-    private $search;
+	/**
+	 * @var string|null
+	 */
+	private $order = null;
 
-    /** @var \Mageplaza\LayeredNavigation\Model\Search\SearchCriteriaBuilder */
-    private $searchCriteriaBuilder;
+	/**
+	 * @var string
+	 */
+	private $searchRequestName;
 
-    /** @var \Magento\Framework\Api\Search\SearchResultInterface */
-    private $searchResult;
+	/**
+	 * @var \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory
+	 */
+	private $temporaryStorageFactory;
 
-    /** @var \Magento\Framework\Api\FilterBuilder */
-    private $filterBuilder;
+	/**
+	 * @var \Magento\Search\Api\SearchInterface
+	 */
+	private $search;
 
-    /**
-     * Collection constructor.
-     * @param \Magento\Framework\Data\Collection\EntityFactory $entityFactory
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy
-     * @param \Magento\Framework\Event\ManagerInterface $eventManager
-     * @param \Magento\Eav\Model\Config $eavConfig
-     * @param \Magento\Framework\App\ResourceConnection $resource
-     * @param \Magento\Eav\Model\EntityFactory $eavEntityFactory
-     * @param \Magento\Catalog\Model\ResourceModel\Helper $resourceHelper
-     * @param \Magento\Framework\Validator\UniversalFactory $universalFactory
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Framework\Module\Manager $moduleManager
-     * @param \Magento\Catalog\Model\Indexer\Product\Flat\State $catalogProductFlatState
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Catalog\Model\Product\OptionFactory $productOptionFactory
-     * @param \Magento\Catalog\Model\ResourceModel\Url $catalogUrl
-     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Framework\Stdlib\DateTime $dateTime
-     * @param \Magento\Customer\Api\GroupManagementInterface $groupManagement
-     * @param \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory
-     * @param \Magento\Framework\DB\Adapter\AdapterInterface|null $connection
-     * @param string $searchRequestName
-     */
-    public function __construct(
-        \Magento\Framework\Data\Collection\EntityFactory $entityFactory,
-        \Psr\Log\LoggerInterface $logger,
-        \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
-        \Magento\Framework\Event\ManagerInterface $eventManager,
-        \Magento\Eav\Model\Config $eavConfig,
-        \Magento\Framework\App\ResourceConnection $resource,
-        \Magento\Eav\Model\EntityFactory $eavEntityFactory,
-        \Magento\Catalog\Model\ResourceModel\Helper $resourceHelper,
-        \Magento\Framework\Validator\UniversalFactory $universalFactory,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Framework\Module\Manager $moduleManager,
-        \Magento\Catalog\Model\Indexer\Product\Flat\State $catalogProductFlatState,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Catalog\Model\Product\OptionFactory $productOptionFactory,
-        \Magento\Catalog\Model\ResourceModel\Url $catalogUrl,
-        \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
-        \Magento\Customer\Model\Session $customerSession,
-        \Magento\Framework\Stdlib\DateTime $dateTime,
-        \Magento\Customer\Api\GroupManagementInterface $groupManagement,
-        \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory,
-        \Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
-        $searchRequestName = 'catalog_view_container'
-    )
-    {
-        parent::__construct(
-            $entityFactory,
-            $logger,
-            $fetchStrategy,
-            $eventManager,
-            $eavConfig,
-            $resource,
-            $eavEntityFactory,
-            $resourceHelper,
-            $universalFactory,
-            $storeManager,
-            $moduleManager,
-            $catalogProductFlatState,
-            $scopeConfig,
-            $productOptionFactory,
-            $catalogUrl,
-            $localeDate,
-            $customerSession,
-            $dateTime,
-            $groupManagement,
-            $connection
-        );
-        $this->temporaryStorageFactory = $temporaryStorageFactory;
-        $this->searchRequestName       = $searchRequestName;
-    }
+	/**
+	 * @var \Magento\Framework\Api\Search\SearchCriteriaBuilder
+	 */
+	private $searchCriteriaBuilder;
 
-    /**
-     * MP LayerNavigation Clone collection
-     *
-     * @return \Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\Collection|null
-     */
-    public function getCollectionClone()
-    {
-        if ($this->collectionClone === null) {
-            $this->collectionClone = clone $this;
-            $this->collectionClone->setSearchCriteriaBuilder($this->searchCriteriaBuilder->cloneObject());
-        }
+	/**
+	 * @var \Magento\Framework\Api\Search\SearchResultInterface
+	 */
+	private $searchResult;
 
-        $searchCriterialBuilder = $this->collectionClone->getSearchCriteriaBuilder()->cloneObject();
+	/**
+	 * @var SearchResultFactory
+	 */
+	private $searchResultFactory;
 
-        /** @var \Mageplaza\LayeredNavigation\Model\ResourceModel\Fulltext\Collection $collectionClone */
-        $collectionClone = clone $this->collectionClone;
-        $collectionClone->setSearchCriteriaBuilder($searchCriterialBuilder);
+	/**
+	 * @var \Magento\Framework\Api\FilterBuilder
+	 */
+	private $filterBuilder;
 
-        return $collectionClone;
-    }
+	public $collectionClone = null;
 
-    /**
-     * MP LayerNavigation Add multi-filter categories
-     *
-     * @param $categories
-     * @return $this
-     */
-    public function addLayerCategoryFilter($categories)
-    {
-        if ($this->getSearchEngine() == 'elasticsearch') {
-            $this->addFieldToFilter('category_ids', ['in' => $categories]);
-        } else {
-            $this->addFieldToFilter('category_ids', implode(',', $categories));
-        }
+	/**
+	 * @param \Magento\Framework\Data\Collection\EntityFactory $entityFactory
+	 * @param \Psr\Log\LoggerInterface $logger
+	 * @param \Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy
+	 * @param \Magento\Framework\Event\ManagerInterface $eventManager
+	 * @param \Magento\Eav\Model\Config $eavConfig
+	 * @param \Magento\Framework\App\ResourceConnection $resource
+	 * @param \Magento\Eav\Model\EntityFactory $eavEntityFactory
+	 * @param \Magento\Catalog\Model\ResourceModel\Helper $resourceHelper
+	 * @param \Magento\Framework\Validator\UniversalFactory $universalFactory
+	 * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+	 * @param \Magento\Framework\Module\Manager $moduleManager
+	 * @param \Magento\Catalog\Model\Indexer\Product\Flat\State $catalogProductFlatState
+	 * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+	 * @param \Magento\Catalog\Model\Product\OptionFactory $productOptionFactory
+	 * @param \Magento\Catalog\Model\ResourceModel\Url $catalogUrl
+	 * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate
+	 * @param \Magento\Customer\Model\Session $customerSession
+	 * @param \Magento\Framework\Stdlib\DateTime $dateTime
+	 * @param \Magento\Customer\Api\GroupManagementInterface $groupManagement
+	 * @param \Magento\Search\Model\QueryFactory $catalogSearchData
+	 * @param \Magento\Framework\Search\Request\Builder $requestBuilder
+	 * @param \Magento\Search\Model\SearchEngine $searchEngine
+	 * @param \Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory
+	 * @param \Magento\Framework\DB\Adapter\AdapterInterface $connection
+	 * @param string $searchRequestName
+	 * @param SearchResultFactory $searchResultFactory
+	 * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+	 */
+	public function __construct(
+		\Magento\Framework\Data\Collection\EntityFactory $entityFactory,
+		\Psr\Log\LoggerInterface $logger,
+		\Magento\Framework\Data\Collection\Db\FetchStrategyInterface $fetchStrategy,
+		\Magento\Framework\Event\ManagerInterface $eventManager,
+		\Magento\Eav\Model\Config $eavConfig,
+		\Magento\Framework\App\ResourceConnection $resource,
+		\Magento\Eav\Model\EntityFactory $eavEntityFactory,
+		\Magento\Catalog\Model\ResourceModel\Helper $resourceHelper,
+		\Magento\Framework\Validator\UniversalFactory $universalFactory,
+		\Magento\Store\Model\StoreManagerInterface $storeManager,
+		\Magento\Framework\Module\Manager $moduleManager,
+		\Magento\Catalog\Model\Indexer\Product\Flat\State $catalogProductFlatState,
+		\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+		\Magento\Catalog\Model\Product\OptionFactory $productOptionFactory,
+		\Magento\Catalog\Model\ResourceModel\Url $catalogUrl,
+		\Magento\Framework\Stdlib\DateTime\TimezoneInterface $localeDate,
+		\Magento\Customer\Model\Session $customerSession,
+		\Magento\Framework\Stdlib\DateTime $dateTime,
+		\Magento\Customer\Api\GroupManagementInterface $groupManagement,
+		\Magento\Search\Model\QueryFactory $catalogSearchData,
+		\Magento\Framework\Search\Request\Builder $requestBuilder,
+		\Magento\Search\Model\SearchEngine $searchEngine,
+		\Magento\Framework\Search\Adapter\Mysql\TemporaryStorageFactory $temporaryStorageFactory,
+		\Magento\Framework\DB\Adapter\AdapterInterface $connection = null,
+		$searchRequestName = 'catalog_view_container',
+		SearchResultFactory $searchResultFactory = null
+	)
+	{
+		$this->queryFactory = $catalogSearchData;
+		if ($searchResultFactory === null) {
+			$this->searchResultFactory = \Magento\Framework\App\ObjectManager::getInstance()
+				->get('Magento\Framework\Api\Search\SearchResultFactory');
+		}
+		parent::__construct(
+			$entityFactory,
+			$logger,
+			$fetchStrategy,
+			$eventManager,
+			$eavConfig,
+			$resource,
+			$eavEntityFactory,
+			$resourceHelper,
+			$universalFactory,
+			$storeManager,
+			$moduleManager,
+			$catalogProductFlatState,
+			$scopeConfig,
+			$productOptionFactory,
+			$catalogUrl,
+			$localeDate,
+			$customerSession,
+			$dateTime,
+			$groupManagement,
+			$connection
+		);
+		$this->requestBuilder          = $requestBuilder;
+		$this->searchEngine            = $searchEngine;
+		$this->temporaryStorageFactory = $temporaryStorageFactory;
+		$this->searchRequestName       = $searchRequestName;
+	}
 
-        return $this;
-    }
+	/**
+	 * @deprecated
+	 * @return \Magento\Search\Api\SearchInterface
+	 */
+	private function getSearch()
+	{
+		if ($this->search === null) {
+			$this->search = ObjectManager::getInstance()->get('\Magento\Search\Api\SearchInterface');
+		}
 
-    /**
-     * MP LayerNavigation remove filter to load option item data
-     *
-     * @param $attributeCode
-     * @return $this
-     */
-    public function removeAttributeSearch($attributeCode)
-    {
-        if (is_array($attributeCode)) {
-            foreach ($attributeCode as $attCode) {
-                $this->searchCriteriaBuilder->removeFilter($attCode);
-            }
-        } else {
-            $this->searchCriteriaBuilder->removeFilter($attributeCode);
-        }
+		return $this->search;
+	}
 
-        $this->_isFiltersRendered = false;
+	/**
+	 * @deprecated
+	 * @param \Magento\Search\Api\SearchInterface $object
+	 * @return void
+	 */
+	public function setSearch(\Magento\Search\Api\SearchInterface $object)
+	{
+		$this->search = $object;
+	}
 
-        return $this->loadWithFilter();
-    }
+	/**
+	 * @deprecated
+	 * @return \Magento\Framework\Api\Search\SearchCriteriaBuilder
+	 */
+	public function getSearchCriteriaBuilder()
+	{
+		if ($this->searchCriteriaBuilder === null) {
+			$this->searchCriteriaBuilder = ObjectManager::getInstance()
+				->get('\Mageplaza\LayeredNavigation\Model\Search\SearchCriteriaBuilder');
+		}
 
-    /**
-     * MP LayerNavigation Get attribute condition sql
-     *
-     * @param $attribute
-     * @param $condition
-     * @param string $joinType
-     * @return string
-     */
-    public function getAttributeConditionSql($attribute, $condition, $joinType = 'inner')
-    {
-        return $this->_getAttributeConditionSql($attribute, $condition, $joinType);
-    }
+		return $this->searchCriteriaBuilder;
+	}
 
-    /**
-     * MP LayerNavigation Reset Total records
-     *
-     * @return $this
-     */
-    public function resetTotalRecords()
-    {
-        $this->_totalRecords = null;
+	public function getCollectionClone()
+	{
+		$collectionClone = clone $this->collectionClone;
+		$collectionClone->setSearchCriteriaBuilder($this->collectionClone->getSearchCriteriaBuilder()->cloneObject());
 
-        return $this;
-    }
+		return $collectionClone;
+	}
 
-    /**
-     * @deprecated
-     * @return \Magento\Search\Api\SearchInterface
-     */
-    private function getSearch()
-    {
-        if ($this->search === null) {
-            $this->search = ObjectManager::getInstance()->get('\Magento\Search\Api\SearchInterface');
-        }
+	public function cloneObject()
+	{
+		if ($this->collectionClone === null) {
+			$this->collectionClone = clone $this;
+			$this->collectionClone->setSearchCriteriaBuilder($this->searchCriteriaBuilder->cloneObject());
+		}
 
-        return $this->search;
-    }
+		return $this;
+	}
 
-    /**
-     * @deprecated
-     * @param \Magento\Search\Api\SearchInterface $object
-     * @return void
-     */
-    public function setSearch(\Magento\Search\Api\SearchInterface $object)
-    {
-        $this->search = $object;
-    }
+	public function removeAttributeSearch($attributeCode)
+	{
+		if(is_array($attributeCode)){
+			foreach($attributeCode as $attCode){
+				$this->searchCriteriaBuilder->removeFilter($attCode);
+			}
+		} else {
+			$this->searchCriteriaBuilder->removeFilter($attributeCode);
+		}
 
-    /**
-     * @deprecated
-     * @return \Mageplaza\LayeredNavigation\Model\Search\SearchCriteriaBuilder
-     */
-    public function getSearchCriteriaBuilder()
-    {
-        if ($this->searchCriteriaBuilder === null) {
-            $this->searchCriteriaBuilder = ObjectManager::getInstance()
-                ->get('\Mageplaza\LayeredNavigation\Model\Search\SearchCriteriaBuilder');
-        }
+		$this->_isFiltersRendered = false;
 
-        return $this->searchCriteriaBuilder;
-    }
+		return $this->loadWithFilter();
+	}
 
-    /**
-     * @param \Mageplaza\LayeredNavigation\Model\Search\SearchCriteriaBuilder $object
-     */
-    public function setSearchCriteriaBuilder(\Mageplaza\LayeredNavigation\Model\Search\SearchCriteriaBuilder $object)
-    {
-        $this->searchCriteriaBuilder = $object;
-    }
+	/**
+	 * @deprecated
+	 * @param \Magento\Framework\Api\Search\SearchCriteriaBuilder $object
+	 * @return void
+	 */
+	public function setSearchCriteriaBuilder(\Mageplaza\LayeredNavigation\Model\Search\SearchCriteriaBuilder $object)
+	{
+		$this->searchCriteriaBuilder = $object;
+	}
 
-    /**
-     * @deprecated
-     * @return \Magento\Framework\Api\FilterBuilder
-     */
-    private function getFilterBuilder()
-    {
-        if ($this->filterBuilder === null) {
-            $this->filterBuilder = ObjectManager::getInstance()->get('\Magento\Framework\Api\FilterBuilder');
-        }
+	/**
+	 * @deprecated
+	 * @return \Magento\Framework\Api\FilterBuilder
+	 */
+	private function getFilterBuilder()
+	{
+		if ($this->filterBuilder === null) {
+			$this->filterBuilder = ObjectManager::getInstance()->get('\Magento\Framework\Api\FilterBuilder');
+		}
 
-        return $this->filterBuilder;
-    }
+		return $this->filterBuilder;
+	}
 
-    /**
-     * @deprecated
-     * @param \Magento\Framework\Api\FilterBuilder $object
-     * @return void
-     */
-    public function setFilterBuilder(\Magento\Framework\Api\FilterBuilder $object)
-    {
-        $this->filterBuilder = $object;
-    }
+	/**
+	 * @deprecated
+	 * @param \Magento\Framework\Api\FilterBuilder $object
+	 * @return void
+	 */
+	public function setFilterBuilder(\Magento\Framework\Api\FilterBuilder $object)
+	{
+		$this->filterBuilder = $object;
+	}
 
-    /**
-     * Apply attribute filter to facet collection
-     *
-     * @param string $field
-     * @param null $condition
-     * @return $this
-     */
-    public function addFieldToFilter($field, $condition = null)
-    {
-        if ($this->searchResult !== null) {
-            throw new \RuntimeException('Illegal state');
-        }
+	/**
+	 * Apply attribute filter to facet collection
+	 *
+	 * @param string $field
+	 * @param null $condition
+	 * @return $this
+	 */
+	public function addFieldToFilter($field, $condition = null)
+	{
+		if ($this->searchResult !== null) {
+			throw new \RuntimeException('Illegal state');
+		}
 
-        $this->getSearchCriteriaBuilder();
-        $this->getFilterBuilder();
+		$this->getSearchCriteriaBuilder();
+		$this->getFilterBuilder();
+		if (!empty($condition['ln_filter'])) {
+			$this->filterBuilder->setField($field);
+			$this->filterBuilder->setValue($condition['ln_filter']);
+			$this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
+		} elseif (!is_array($condition) || !in_array(key($condition), ['from', 'to'])) {
+			$this->filterBuilder->setField($field);
+			$this->filterBuilder->setValue($condition);
+			$this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
+		} else {
+			if (!empty($condition['from'])) {
+				$this->filterBuilder->setField("{$field}.from");
+				$this->filterBuilder->setValue($condition['from']);
+				$this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
+			}
+			if (!empty($condition['to'])) {
+				$this->filterBuilder->setField("{$field}.to");
+				$this->filterBuilder->setValue($condition['to']);
+				$this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
+			}
+		}
 
-        if (isset($condition['in']) && $this->getSearchEngine() == 'elasticsearch') {
-            $this->filterBuilder->setField($field);
-            $this->filterBuilder->setValue($condition['in']);
-            $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-        } else {
-            if (!is_array($condition) || !in_array(key($condition), ['from', 'to'])) {
-                $this->filterBuilder->setField($field);
-                $this->filterBuilder->setValue($condition);
-                $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-            } else {
-                if (!empty($condition['from'])) {
-                    $this->filterBuilder->setField("{$field}.from");
-                    $this->filterBuilder->setValue($condition['from']);
-                    $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-                }
-                if (!empty($condition['to'])) {
-                    $this->filterBuilder->setField("{$field}.to");
-                    $this->filterBuilder->setValue($condition['to']);
-                    $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-                }
-            }
-        }
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Add search query filter
+	 *
+	 * @param string $query
+	 * @return $this
+	 */
+	public function addSearchFilter($query)
+	{
+		$this->queryText = trim($this->queryText . ' ' . $query);
 
-    /**
-     * Add search query filter
-     *
-     * @param string $query
-     * @return $this
-     */
-    public function addSearchFilter($query)
-    {
-        $this->queryText = trim($this->queryText . ' ' . $query);
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * @inheritdoc
+	 */
+	protected function _renderFiltersBefore()
+	{
+		$this->getSearchCriteriaBuilder();
+		$this->getFilterBuilder();
+		$this->getSearch();
 
-    /**
-     * @inheritdoc
-     */
-    protected function _renderFiltersBefore()
-    {
-        $this->getCollectionClone();
+		if ($this->queryText) {
+			$this->filterBuilder->setField('search_term');
+			$this->filterBuilder->setValue($this->queryText);
+			$this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
+		}
 
-        $this->getSearchCriteriaBuilder();
-        $this->getFilterBuilder();
-        $this->getSearch();
+		$priceRangeCalculation = $this->_scopeConfig->getValue(
+			\Magento\Catalog\Model\Layer\Filter\Dynamic\AlgorithmFactory::XML_PATH_RANGE_CALCULATION,
+			\Magento\Store\Model\ScopeInterface::SCOPE_STORE
+		);
+		if ($priceRangeCalculation) {
+			$this->filterBuilder->setField('price_dynamic_algorithm');
+			$this->filterBuilder->setValue($priceRangeCalculation);
+			$this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
+		}
 
-        if ($this->queryText) {
-            $this->filterBuilder->setField('search_term');
-            $this->filterBuilder->setValue($this->queryText);
-            $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-        }
+		$this->cloneObject();
 
-        $priceRangeCalculation = $this->_scopeConfig->getValue(
-            \Magento\Catalog\Model\Layer\Filter\Dynamic\AlgorithmFactory::XML_PATH_RANGE_CALCULATION,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
-        if ($priceRangeCalculation) {
-            $this->filterBuilder->setField('price_dynamic_algorithm');
-            $this->filterBuilder->setValue('auto');
-            $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
-        }
+		$searchCriteria = $this->searchCriteriaBuilder->create();
+		$searchCriteria->setRequestName($this->searchRequestName);
 
-        $searchCriteria = $this->searchCriteriaBuilder->create();
-        $searchCriteria->setRequestName($this->searchRequestName);
+		try {
+			$this->searchResult = $this->getSearch()->search($searchCriteria);
+		} catch (EmptyRequestDataException $e) {
+			/** @var \Magento\Framework\Api\Search\SearchResultInterface $searchResult */
+			$this->searchResult = $this->searchResultFactory->create()->setItems([]);
+		} catch (NonExistingRequestNameException $e) {
+			$this->_logger->error($e->getMessage());
+			throw new LocalizedException(__('Sorry, something went wrong. You can find out more in the error log.'));
+		}
 
-        try {
-            $this->searchResult = $this->getSearch()->search($searchCriteria);
-        } catch (\Exception $e) {
-            throw new LocalizedException(__('Sorry, something went wrong. You can find out more in the error log.'));
-        }
+		$temporaryStorage = $this->temporaryStorageFactory->create();
+		$table            = $temporaryStorage->storeApiDocuments($this->searchResult->getItems());
 
-        $temporaryStorage = $this->temporaryStorageFactory->create();
-        $table            = $temporaryStorage->storeDocuments($this->searchResult->getItems());
+		$this->getSelect()->joinInner(
+			[
+				'search_result' => $table->getName(),
+			],
+			'e.entity_id = search_result.' . TemporaryStorage::FIELD_ENTITY_ID,
+			[]
+		);
 
-        $this->getSelect()->joinInner(
-            [
-                'search_result' => $table->getName(),
-            ],
-            'e.entity_id = search_result.' . TemporaryStorage::FIELD_ENTITY_ID,
-            []
-        );
+		$this->_totalRecords = $this->searchResult->getTotalCount();
 
-        if ($this->order && 'relevance' === $this->order['field']) {
-            $this->getSelect()->order('search_result.' . TemporaryStorage::FIELD_SCORE . ' ' . $this->order['dir']);
-        }
+		if ($this->order && 'relevance' === $this->order['field']) {
+			$this->getSelect()->order('search_result.' . TemporaryStorage::FIELD_SCORE . ' ' . $this->order['dir']);
+		}
 
-        parent::_renderFiltersBefore();
-    }
+		return parent::_renderFiltersBefore();
+	}
 
-    /**
-     * @return $this
-     */
-    protected function _renderFilters()
-    {
-        $this->_filters = [];
+	/**
+	 * @return $this
+	 */
+	protected function _renderFilters()
+	{
+		$this->_filters = [];
 
-        return parent::_renderFilters();
-    }
+		return parent::_renderFilters();
+	}
 
-    /**
-     * sort product before load
-     */
-    protected function _beforeLoad()
-    {
-        $this->setOrder('entity_id');
+	/**
+	 * Set Order field
+	 *
+	 * @param string $attribute
+	 * @param string $dir
+	 * @return $this
+	 */
+	public function setOrder($attribute, $dir = Select::SQL_DESC)
+	{
+		$this->order = ['field' => $attribute, 'dir' => $dir];
+		if ($attribute != 'relevance') {
+			parent::setOrder($attribute, $dir);
+		}
 
-        return parent::_beforeLoad();
-    }
+		return $this;
+	}
 
-    /**
-     * Set Order field
-     *
-     * @param string $attribute
-     * @param string $dir
-     * @return $this
-     */
-    public function setOrder($attribute, $dir = Select::SQL_DESC)
-    {
-        $this->order = ['field' => $attribute, 'dir' => $dir];
-        if ($attribute != 'relevance') {
-            parent::setOrder($attribute, $dir);
-        }
+	/**
+	 * Stub method for compatibility with other search engines
+	 *
+	 * @return $this
+	 */
+	public function setGeneralDefaultQuery()
+	{
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Return field faceted data from faceted search result
+	 *
+	 * @param string $field
+	 * @return array
+	 * @throws StateException
+	 */
+	public function getFacetedData($field)
+	{
+		$this->_renderFilters();
+		$result = [];
 
-    /**
-     * Stub method for compatibility with other search engines
-     *
-     * @return $this
-     */
-    public function setGeneralDefaultQuery()
-    {
-        return $this;
-    }
+		$aggregations = $this->searchResult->getAggregations();
+		// This behavior is for case with empty object when we got EmptyRequestDataException
+		if (null !== $aggregations) {
+			$bucket = $aggregations->getBucket($field . RequestGenerator::BUCKET_SUFFIX);
+			if ($bucket) {
+				foreach ($bucket->getValues() as $value) {
+					$metrics                   = $value->getMetrics();
+					$result[$metrics['value']] = $metrics;
+				}
+			} else {
+				throw new StateException(__('Bucket does not exist'));
+			}
+		}
 
-    /**
-     * Return field faceted data from faceted search result
-     *
-     * @param string $field
-     * @return array
-     * @throws StateException
-     */
-    public function getFacetedData($field)
-    {
-        $this->_renderFilters();
-        $result = [];
+		return $result;
+	}
 
-        $aggregations = $this->searchResult->getAggregations();
-        // This behavior is for case with empty object when we got EmptyRequestDataException
-        if (null !== $aggregations) {
-            $bucket = $aggregations->getBucket($field . RequestGenerator::BUCKET_SUFFIX);
-            if ($bucket) {
-                foreach ($bucket->getValues() as $value) {
-                    $metrics                   = $value->getMetrics();
-                    $result[$metrics['value']] = $metrics;
-                }
-            } else {
-                throw new StateException(__('Bucket does not exist'));
-            }
-        }
+	/**
+	 * Specify category filter for product collection
+	 *
+	 * @param \Magento\Catalog\Model\Category $category
+	 * @return $this
+	 */
+	public function addCategoryFilter(\Magento\Catalog\Model\Category $category)
+	{
+		$this->addFieldToFilter('category_ids', $category->getId());
 
-        return $result;
-    }
+		return parent::addCategoryFilter($category);
+	}
 
-    /**
-     * Specify category filter for product collection
-     *
-     * @param \Magento\Catalog\Model\Category $category
-     * @return $this
-     */
-    public function addCategoryFilter(\Magento\Catalog\Model\Category $category)
-    {
-        $this->addFieldToFilter('category_ids', $category->getId());
+	/**
+	 * Set product visibility filter for enabled products
+	 *
+	 * @param array $visibility
+	 * @return $this
+	 */
+	public function setVisibility($visibility)
+	{
+		$this->addFieldToFilter('visibility', $visibility);
 
-        return parent::addCategoryFilter($category);
-    }
-
-    /**
-     * Set product visibility filter for enabled products
-     *
-     * @param array $visibility
-     * @return $this
-     */
-    public function setVisibility($visibility)
-    {
-        $this->addFieldToFilter('visibility', $visibility);
-
-        return parent::setVisibility($visibility);
-    }
-
-    /**
-     * Get Search Engine Config
-     *
-     * @return string
-     */
-    public function getSearchEngine()
-    {
-        return $this->_scopeConfig->getValue(
-            \Magento\Config\Model\Config\Backend\Admin\Custom::XML_PATH_CATALOG_SEARCH_ENGINE,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
-    }
+		return parent::setVisibility($visibility);
+	}
 }

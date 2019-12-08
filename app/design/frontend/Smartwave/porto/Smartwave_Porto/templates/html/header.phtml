@@ -390,8 +390,10 @@
         </div>
     </div>
     <div class="second-header">
-      <?php echo $this->getChildHtml("navigation.sections"); ?>
-      <?php echo $this->getChildHtml("top.search"); ?>
+        <div class="second-header-wrapper">
+          <?php echo $this->getChildHtml("navigation.sections"); ?>
+          <?php echo $this->getChildHtml("top.search"); ?>
+        </div>
     </div>
 <?php else: ?>
     <div class="panel wrapper">

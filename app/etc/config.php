@@ -209,6 +209,7 @@ return [
         'Atniqi_ProductsWidgetSlider' => 1,
         'Atniqii_Aeditions' => 1,
         'Dotdigitalgroup_Email' => 1,
+        'EkShipping_MatrixRate' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
@@ -219,10 +220,8 @@ return [
         'Magefan_WysiwygAdvanced' => 1,
         'Magenest_Messenger' => 1,
         'Mageplaza_Core' => 1,
-        'Mageplaza_AjaxLayer' => 1,
         'Mageplaza_LayeredNavigation' => 1,
         'Mageplaza_Reports' => 1,
-        'Mageplaza_Search' => 1,
         'Meetanshi_FacebookChat' => 1,
         'Smartwave_Core' => 1,
         'Smartwave_Dailydeals' => 1,
@@ -233,6 +232,7 @@ return [
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
         'Vtnetzwelt_TrashCan' => 1,
-        'WebShopApps_MatrixRate' => 1
+        'WeltPixel_Backend' => 1,
+        'WeltPixel_Quickview' => 1
     ]
 ];
