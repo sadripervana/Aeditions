@@ -1,46 +1,3 @@
-/*
-*
-* Custom Fonts
-*
-*/
-
-
-@font-face {
-    font-family: 'Gilroy';
-    src: url('../custom/fonts/Gilroy/Gilroy-Light.otf');
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    unicode-range: U+0020-F003;
-}
-
-@font-face {
-    font-family: 'Rubik';
-    src: url('../custom/fonts/Rubik/Rubik-Light.ttf');
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    unicode-range: U+0020-F003;
-}
-
-
-@font-face {
-    font-family: 'Roboto_Slab';
-    src: url('../custom/fonts/Roboto_Slab/RobotoSlab-Regular.ttf');
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    unicode-range: U+0020-F003;
-}
-
-@font-face {
-    font-family: 'Poppins';
-    src: url('../custom/fonts/Poppins/Poppins-Black.ttf');
-    font-weight: 400;
-    font-style: normal;
-    font-stretch: normal;
-    unicode-range: U+0020-F003;
-}
 
 
 #bestsellers{
@@ -249,6 +206,10 @@
 .page-header .content,
 .page-header.type19{
   background: #2F2F2F !important;
+}
+
+.page-header.type19 .navigation .level-top:after{
+  display: none !important;
 }
 
 .page-header .nav-sections{
@@ -591,6 +552,27 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
     font-family: "Gilroy" !important;
     font-weight: bold !important;
 }
+/*Libra subcategories menu*/
+#subcategories{
+  height: 150px;
+  display: none;
+  background: #fff;
+  position: relative;
+  margin: 20px 0;
+}
+
+/*#subcategories img{
+  height: 100%;
+  max-width: auto;
+}*/
+
+#subcategories .col-3 a:hover img:first-child{
+  display: none;
+}
+
+#subcategories .col-3 a:hover .hovered_img{
+  display: block;
+}
 
 /*Libra subcategories homepage block*/
 
@@ -628,7 +610,6 @@ body > div.page-wrapper > header > div.second-header > div.sections.nav-sections
   text-decoration: none;
   clear: both;
   display: inline-block;
-  overflow: hidden;
   white-space: nowrap;
 }
 

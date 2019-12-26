@@ -1,0 +1,43 @@
+/*
+*
+* Custom Fonts
+*
+*/
+
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('../custom/fonts/Gilroy/Gilroy-Light.otf');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-F003;
+}
+
+@font-face {
+    font-family: 'Rubik';
+    src: url('../custom/fonts/Rubik/Rubik-Light.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-F003;
+}
+
+
+@font-face {
+    font-family: 'Roboto_Slab';
+    src: url('../custom/fonts/Roboto_Slab/RobotoSlab-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-F003;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../custom/fonts/Poppins/Poppins-Black.ttf');
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    unicode-range: U+0020-F003;
+}

@@ -414,3 +414,29 @@
     <?php echo $this->getChildHtml("navigation.sections"); ?>
 <?php endif; ?>
 </header>
+
+<script type="text/javascript">
+    require(['jquery'], function($){
+        
+        $(window).ready(function(){
+            searchBox();
+        });
+        
+        $(window).resize(function(){
+            searchBox();
+        });
+        
+        function searchBox() {
+
+            var width = $(window).width();
+            var search = $('.page-header .block.block-search');
+
+            if (width >= 767) {
+                search.insertAfter('.second-header .sections.nav-sections'); 
+            }
+            else{
+                search.insertAfter('.header.content .action.nav-toggle');
+            }
+        }
+    });
+</script>

@@ -15,7 +15,7 @@ class RelatedProducts extends \Magento\Framework\View\Element\Template
         \Magento\Backend\Block\Template\Context $context,
         CategoryRepositoryInterface $categoryRepository,        
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,        
-        array $data = []
+        array $data = [] 
     )
     {    
         $this->categoryRepository = $categoryRepository;

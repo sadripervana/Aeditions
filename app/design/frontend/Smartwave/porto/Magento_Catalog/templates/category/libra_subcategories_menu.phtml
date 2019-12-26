@@ -1,0 +1,76 @@
+<?php $media  = $this->getMediaUrl() . 'sub/'; ?>
+<?php
+
+ $cat = $this->getCategories()
+ 			 ->getItemById(14);
+
+ $childrens = $cat->getChildrenCategories()
+ 				  ->toArray();
+?>
+<?php if (!$this->isHomepage()): ?>
+<div class="container" id="subcategories">
+	<div class="row">
+		<div class="col-3 col-lg-3 col-sm-3 col-xm-3">
+			<a href="<?= $childrens[15]['request_path']?> ">
+				<img src="<?= $media . 'icon-1.jpg'?>" class="img-fluid"/>
+				<img src="<?= $media . 'icon-1_1.jpg'?>" class="img-fluid hovered_img"/>
+			</a>
+			<h4><?= $childrens[15]['name'] ?></h4>
+		</div>
+
+		<div class="col-3 col-lg-3 col-sm-3 col-xm-3">
+			<a href="<?= $childrens[17]['request_path']?> ">
+				<img src="<?= $media . 'icon-2.jpg'?>" class="img-fluid"/>
+				<img src="<?= $media . 'icon-2_2.jpg'?>" class="img-fluid hovered_img"/>
+			</a>
+			<h4><?= $childrens[17]['name'] ?></h4>
+		</div>
+
+		<div class="col-3 col-lg-3 col-sm-3 col-xm-3">
+			<a href="<?= $childrens[18]['request_path']?> ">
+				<img src="<?= $media . 'icon-3.jpg'?>" class="img-fluid"/>
+				<img src="<?= $media . 'icon3_3.jpg'?>" class="img-fluid hovered_img"/>
+			</a>
+			<h4><?= $childrens[18]['name'] ?></h4>
+		</div>
+
+		<div class="col-3 col-lg-3 col-sm-3 col-xm-3">
+			<a href="<?= $childrens[19]['request_path']?> ">
+				<img src="<?= $media . 'icon-4.jpg'?>" class="img-fluid"/>
+				<img src="<?= $media . 'icon-4_4.jpg'?>" class="img-fluid hovered_img"/>
+			</a>
+			<h4><?= $childrens[19]['name'] ?></h4>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	.hovered_img{
+		display: none;
+	}
+</style>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+
+    	var subcategories = $('#subcategories');
+    	$('#libra-menu').click(function(e){
+    		e.preventDefault();
+    		subcategories.toggle();
+    	});
+
+    });
+</script>
+<?php else: ?>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+    	
+    	$('#libra-menu').click(function(e){
+    		e.preventDefault();    	
+    		 $("html, body").animate({
+        		scrollTop: $('#libra_sub').offset().top - 200 
+    		}, 200);
+    	})
+
+    });
+</script>
+<?php endif; ?>
