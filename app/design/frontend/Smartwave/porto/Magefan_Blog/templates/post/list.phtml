@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2016 Ihor Vansach (ihor@magefan.com). All rights reserved.
  * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
@@ -16,63 +17,94 @@ use Magento\Framework\App\Action\Action;
  * @var $block \Magefan\Blog\Block\Post\PostList
  */
 ?>
-<?php 
-$url= $block->getUrl('blog');
-$name="Blog";
-$img= $this->getViewFileUrl('images/blog_banner.jpg');
+
+<?php
+/**
+ * Get Featured post
+ */
+
+$featuredBlock = $this->getLayout()->createBlock("Magefan\Blog\Block\Sidebar\Featured");
+$abstractPost = $this->getLayout()->createBlock("Magefan\Blog\Block\Post\PostList\Item");
+
+$featuredPostCollection = $featuredBlock->getPostCollection();
+$firstItem = $featuredPostCollection->getFirstItem();
 ?>
-<div class="blog-banner-image">
-<img src='<?php echo $img; ?>' alt="">
-    <div class="blog_share_bg">
-        <p>share</p>
-        <ul>
-            <li>
-                <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode($url);?>" 
-                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false' 
-                   title="Share on FaceBook">
-                    <em class="porto-icon-facebook">&nbsp;</em>
-                </a>
-            </li>
 
-            <li>
-                <a href="https://www.instagram.com/aeditions_albania/?hl=en" 
-                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'>
-                    <em class="porto-icon-instagram">&nbsp;</em>
-                </a>
-            </li>
 
-            <li>
-                <a href="http://twitter.com/home/?status=<?php echo urlencode($url);?>" 
-                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'  
-                   title="Share on Twitter">
-                    <em class="porto-icon-twitter">&nbsp;</em>
-                </a>
-            </li>
+<?php if (count($featuredPostCollection) > 0) : ?>
+    <div class="featured-blog-posts container">
+        <?php foreach ($featuredPostCollection as $featuredPost) : ?>
+            <div class="featured-post-blog row">
+                <div class="col-lg-5 content">
+                    <div class="col-12 featured-title">
+                        <h1>Tema e ditës</h1>
+                    </div>
+                    <div class="col-xl-12 post_category">
+                        <span class="category">Marrë nga: <?= $abstractPost->getCategoryName($featuredPost->getId()) ?></span>
+                    </div>
+                    <div class="col-12 info">
+                        <span><?= $featuredPost->getPublishDate("j F Y") ?></span>
+                        <span><?= ceil(str_word_count($featuredPost->getShortFilteredContent()) / 100) ?> min lexim</span>
+                        <span class="comments-count"><?= $featuredPost->getCommentsCount() ?></span>
+                    </div>
+                    <div class="col-xl-12 post_title">
+                        <h1>
+                            <a class="post-item-link" href="<?= $featuredPost->getPostUrl() ?>">
+                                <?= $featuredPost->getTitle(); ?>
+                            </a>
+                        </h1>
+                    </div>
+                    <div class="col-12 post-description">
+                        <p>
+                            <?php
 
-            <li>
-                <a href="https://www.pinterest.com/pin/create/button/?url=<?php echo urlencode($url);?>&media=<?php echo urlencode($img) ?>         &description=<?php echo urlencode($name)?>" 
-                   onclick='javascript:window.open(this.href,"","width=640,height=480,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes");return false'>
-                   <em class="porto-icon-pinterest">&nbsp;</em>
-               </a>
-            </li>
-        </ul>
+                            $string111 = $featuredPost->getFilteredContent();
+                            $this_string = strip_tags($string111);
 
+                            ?>
+                            <?php $nr_of_charc = strlen($this_string); ?>
+                            <?php if ($nr_of_charc > 540) : ?>
+                                <?php echo substr($this_string, 0, 540) . '...' ?>
+                            <?php else : ?>
+                                <?php echo $this_string; ?>
+                            <?php endif ?>
+                        </p>
+                    </div>
+                    <div class="blog-post-actions">
+                        <a class="post-read-more btn" href="<?= $featuredPost->getPostUrl() ?>" title="<?= $featuredPost->getTitle() ?>">
+                            <?php echo __('View more'); ?>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 images">
+                    <div class="image-placeholder">
+			<a class="post-item-link" href="<?= $featuredPost->getPostUrl() ?>">
+	                        <img src="<?= $featuredPost->getFeaturedImage() ?>" alt="<?= $featuredPost->getTitle() ?>">
+			</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-</div>
+<?php endif; ?>
+
+
 
 
 <?php
 $_postCollection = $block->getPostCollection();
 ?>
-<?php if (!$_postCollection->count()): ?>
-    <div class="message info empty"><div><?php echo __('We can\'t find posts matching the selection.') ?></div></div>
-<?php else: ?>
+<?php if (!$_postCollection->count()) : ?>
+    <div class="message info empty">
+        <div><?php echo __('We can\'t find posts matching the selection.') ?></div>
+    </div>
+<?php else : ?>
 
     <?php echo $block->getAdditionalHtml() ?>
     <div class="post-list-wrapper">
         <?php $iterator = 1; ?>
         <div class="container">
-            <?php foreach ($_postCollection as $_post): ?>
+            <?php foreach ($_postCollection as $_post) : ?>
                 <?php echo $block->getPostHtml($_post) ?>
             <?php endforeach; ?>
         </div>
@@ -80,7 +112,11 @@ $_postCollection = $block->getPostCollection();
 
     <?php echo $block->getToolbarHtml() ?>
 
-    <script type="text/javascript">var addthis_config = {"data_track_clickback":false};</script>
+    <script type="text/javascript">
+        var addthis_config = {
+            "data_track_clickback": false
+        };
+    </script>
     <script type="text/javascript" async src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4def63cd3cf37569"></script>
     <script type="text/javascript">
         var addthis_config = {

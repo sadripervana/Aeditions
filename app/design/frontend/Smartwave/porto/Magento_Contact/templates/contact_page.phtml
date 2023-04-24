@@ -2,7 +2,7 @@
     $contacts_config = $this->helper('Smartwave\Porto\Helper\Data')->getConfig('porto_settings/contacts');
     $_infoblock = $contacts_config['infoblock'];
     $_customblock = $contacts_config['customblock'];
-    
+
     if($_customblock) {
         $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
         if($block) {

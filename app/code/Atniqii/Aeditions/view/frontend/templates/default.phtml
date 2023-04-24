@@ -1,0 +1,180 @@
+<!-- <script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($) {
+        $("#tabs select").change(function() {
+
+            var tab = $('#tabs select option:selected').attr('data-tab');
+            var tabs = $('.tab');
+            var loader = $('.loaderr');
+            tabs.fadeOut(500);
+            tabs.removeClass('activebtn');
+            loader.fadeIn();
+            var content = $('.tab[data-tab="' + tab + '"]');
+            setTimeout(function() {
+                loader.fadeOut();
+                content.fadeIn();
+
+            }, 2000);
+        });
+        $('#tabs button').click(function() {
+            $('.activebtn').removeClass('activebtn');
+            $(this).addClass('activebtn');
+            var tab = $(this).attr('data-tab');
+            var tabs = $('.tab');
+            var loader = $('.loaderr');
+            tabs.fadeOut(500);
+            tabs.removeClass('activebtn');
+            loader.fadeIn();
+            var content = $('.tab[data-tab="' + tab + '"]');
+            setTimeout(function() {
+                loader.fadeOut();
+                content.fadeIn();
+
+            }, 2000);
+        });
+
+    });
+</script> -->
+
+<?php
+$_productCollection = $block->getProducts();
+?>
+<?php
+$viewMode = 'grid';
+$image = 'best_seller_image';
+$hover_image = 'category_page_grid-hover';
+$showDescription = false;
+$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+$arrows = true;
+$image_width = 400;
+$image_height = 400;
+?>
+<?php if (!$arrows) : ?>
+    <div class="products wrapper <?php echo $viewMode; ?> products-<?php echo $viewMode; ?>">
+        <?php $iterator = 1; ?>
+        <div class="filterproducts products list items product-items owl-carousel <?php if (isset($_category_config['qty_field']) && $_category_config['qty_field']) : ?>has-qty<?php endif; ?>">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product) : ?>
+                <?php echo ($iterator++ == 1) ? '<div class="item product product-item">' : '</div><div class="item product product-item">' ?>
+                <div class="product-item-info" data-container="product-grid">
+                    <div class="product photo product-item-photo">
+                        <?php $productImage = $block->getImage($_product, $image); ?>
+                        <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>" class="product photo product-item-photo" tabindex="-1">
+                            <?= $productImage->toHtml() ?>
+                        </a>
+                    </div>
+                </div>
+                <?php echo ($iterator == count($_productCollection) + 1) ? '</div>' : '' ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'owl.carousel/owl.carousel.min'
+        ], function($) {
+            $("#bestsellers .owl-carousel").owlCarousel({
+                // items: 3,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                loop: true,
+                dots: true,
+                navRewind: true,
+                //margin: 10,
+                nav: true,
+                navText: ["<em class='porto-icon-left-open-huge'></em>", "<em class='porto-icon-right-open-huge'></em>"],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    640: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    },
+                    1200: {
+                        items: 3
+                    }
+                    // loop: true
+                }
+                // loop: true
+            });
+        });
+    </script>
+<?php else : ?>
+
+    <div class="main_addtion_product_bg d">
+        <div class="col-sm-12">
+            <div id="r_products" class="owl-top-narrow">
+                <div class="products wrapper <?php echo $viewMode; ?> products-<?php echo $viewMode; ?>">
+                    <?php $iterator = 1; ?>
+
+                </div>
+                <div class="products wrapper <?php echo $viewMode; ?> products-<?php echo $viewMode; ?>">
+                    <?php $iterator = 1; ?>
+                    <div class="filterproducts products list items product-items owl-carousel">
+                        <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+                        <?php foreach ($_productCollection as $_product) : ?>
+                            <?php echo ($iterator++ == 1) ? '<div class="item product product-item">' : '</div><div class="item product product-item">' ?>
+                            <div class="product-item-info" data-container="product-grid">
+                                <?php // Product Image
+                                ?>
+                                <div class="product photo product-item-photo">
+                                    <?php $productImage = $block->getImage($_product, $image); ?>
+                                    <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>" class="product photo product-item-photo" tabindex="-1">
+                                        <?= $productImage->toHtml() ?>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php echo ($iterator == count($_productCollection) + 1) ? '</div>' : '' ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+
+                <script type="text/javascript">
+                    require([
+                        'jquery',
+                        'owl.carousel/owl.carousel.min'
+                    ], function($) {
+
+                        $("#r_products .owl-carousel").owlCarousel({
+                            autoplay: true,
+                            autoplayTimeout: 5000,
+                            autoplayHoverPause: true,
+                            loop: true,
+                            dots: false,
+                            navRewind: true,
+                            //margin: 10,
+                            nav: true,
+                            navText: ["<em class='porto-icon-left-open-huge'></em>", "<em class='porto-icon-right-open-huge'></em>"],
+                            responsive: {
+                                0: {
+                                    items: 1.4,
+				    nav: false	
+                                },
+                                600: {
+				    nav: true,
+                                    items: 2
+                                },
+                                768: {
+                                    items: 2
+                                },
+                                992: {
+                                    items: 3
+                                },
+                                1200: {
+                                    items: 3
+                                }
+                            }
+                        });
+
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,63 +1,63 @@
 .banner{
   width: 100%;
-  margin-top: 50px;
   display: flex;
   justify-content: space-around;
-  height: 120px;
+  height: 100px;
 
   button{
-    border: 1px solid #ffffff47;
+    border: 1px solid #ffffff;
     background: none;
     box-shadow: none;
-    color: #DDC08B;
-    font: 40px Gilroy;
+    color: #ffffff;
+    font: 40px Geometria;
     height: fit-content;
     margin-top: auto;
     margin-bottom: auto;
     padding: 5px 20px;
+    padding-bottom: 0;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    z-index: 99999999;
   }
 
   p{
     text-align: left;
-    font:  45px Gilroy;
+    font:  45px Geometria;
     letter-spacing: 0;
     color: #FFFFFF;
     align-self: center;
+    margin-bottom: -3px;
+
     span{
-      color: #DDC08B;
-      letter-spacing: 0;
-      font: 50px Roboto_Slab;
-      align-self: center;
+      color: #F79428;
+//      letter-spacing: -7px;
+      font: 120px Paduka;
     }
+
   }
 
   &.collection{
-    background: #DF606D;
-
-
+    background: #e60613;
+    margin-top: 100px;
   }
 
   &.sales{
-     background:linear-gradient(135deg, #ffaf00 60%, #e9465b 40%);
+     background:linear-gradient(160deg, #f79428 60%, #268c83 40%);
+     margin-top: 25px;
 
       span{
         position: relative;
 
           img{
-            width: auto;
+            width: 70px;
             height: auto;
             position: absolute;
             max-width: fit-content;
 
-              &.lines{
-                left: -75px;
-                bottom: 0;
-              }
-
               &.altoporlant{
-                left: -30px;
-                top: 10px;
+                left: -50px;
+                top: 18px;
               }
           }
 
@@ -133,12 +133,11 @@
 
      p{
        float: left;
-       font-size: 25px;
+       font-size: 18px;
        line-height: 80px;
-       color: #969696;
-       font-family: "Gilroy";
+       color: #808080;
+       font-family: "Geometria";
        font-weight: 500;
-       font-style: italic;
      }
      .col-lg-6{
        display: flex;

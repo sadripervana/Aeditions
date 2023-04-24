@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -11,23 +12,19 @@
 <div class="block block-customer-login">
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <div class="logo-login">
-            <img src="https://aeditions.al/static/version1555235488/frontend/Smartwave/porto/sq_AL/images/logo_login.png">
+            <img src="<?= $block->getViewFileUrl('/') ?>/images/logo_login.png">
         </div>
-        <form class="form form-login"
-              action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
-              method="post"
-              id="login-form"
-              data-mage-init='{"validation":{}}'>
+        <form class="form form-login" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="login-form" data-mage-init='{"validation":{}}'>
             <?= $block->getBlockHtml('formkey') ?>
             <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
                 <div class="field email required">
                     <div class="control">
-                        <input name="login[username]" placeholder="Emaili" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
+                        <input name="login[username]" placeholder="<?= __('Email') ?>" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off" <?php endif; ?> id="email" type="email" class="input-text" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
                 <div class="field password required">
                     <div class="control">
-                        <input name="login[password]" placeholder="Fjalekalimi" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
+                        <input name="login[password]" placeholder="<?= __('Password') ?>" type="password" <?php if ($block->isAutocompleteDisabled()) : ?> autocomplete="off" <?php endif; ?> class="input-text" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
                     </div>
                 </div>
                 <div class="actions-toolbar">
@@ -39,5 +36,5 @@
 </div>
 
 <div class="login-image">
-    <img src="https://aeditions.al/static/version1555235488/frontend/Smartwave/porto/sq_AL/images/login_image.jpg">
+    <img src="<?= $block->getViewFileUrl('/') ?>/images/login_image.jpg">
 </div>

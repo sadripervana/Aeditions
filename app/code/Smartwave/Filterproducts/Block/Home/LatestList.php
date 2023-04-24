@@ -39,23 +39,24 @@ class LatestList extends \Magento\Catalog\Block\Product\ListProduct {
         $collection = clone $this->_collection;
         $collection->clear()->getSelect()->reset(\Magento\Framework\DB\Select::WHERE)->reset(\Magento\Framework\DB\Select::ORDER)->reset(\Magento\Framework\DB\Select::LIMIT_COUNT)->reset(\Magento\Framework\DB\Select::LIMIT_OFFSET)->reset(\Magento\Framework\DB\Select::GROUP);
 
-        if(!$category_id) {
-            $category_id = $this->_storeManager->getStore()->getRootCategoryId();
+        if($category_id) {
+            // $category_id = $this->_storeManager->getStore()->getRootCategoryId();
+            $category = $this->categoryRepository->get($category_id);
         }
-        $category = $this->categoryRepository->get($category_id);
+        // var_dump($category_id
         if(isset($category) && $category) {
             $collection->addMinimalPrice()
-                ->addFinalPrice()
-                ->addTaxPercents()
-                ->addAttributeToSelect('name')
-                ->addAttributeToSelect('image')
-                ->addAttributeToSelect('small_image')
-                ->addAttributeToSelect('thumbnail')
-                ->addAttributeToSelect($this->_catalogConfig->getProductAttributes())
-                ->addUrlRewrite()
-                ->addAttributeToFilter('is_saleable', 1, 'left')
-                ->addCategoryFilter($category)
-                ->addAttributeToSort('created_at','desc');
+            ->addFinalPrice()
+            ->addTaxPercents()
+            ->addAttributeToSelect('name')
+            ->addAttributeToSelect('image')
+            ->addAttributeToSelect('small_image')
+            ->addAttributeToSelect('thumbnail')
+            ->addAttributeToSelect($this->_catalogConfig->getProductAttributes())
+            ->addUrlRewrite()
+            ->addAttributeToFilter('is_saleable', 1, 'left')
+            ->addCategoryFilter($category)
+            ->addAttributeToSort('created_at','desc');
         } else {
             $collection->addMinimalPrice()
                 ->addFinalPrice()
@@ -67,11 +68,15 @@ class LatestList extends \Magento\Catalog\Block\Product\ListProduct {
                 ->addAttributeToSelect($this->_catalogConfig->getProductAttributes())
                 ->addUrlRewrite()
                 ->addAttributeToFilter('is_saleable', 1, 'left')
-                ->addAttributeToSort('created_at','desc');
+                ->addFieldToFilter('entity_id',array(
+                        'nin' => array(954,955)
+                    )
+                )
+                ->addAttributeToSort('entity_id','desc');
         }
 
         $collection->getSelect()
-                ->order('created_at','desc')
+                ->order('entity_id','desc')
                 ->limit($count);
 
         return $collection;

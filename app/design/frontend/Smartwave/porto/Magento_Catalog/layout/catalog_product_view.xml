@@ -10,7 +10,6 @@
         <script src="Magento_Catalog::js/jquery.zoom.min.js"/>
     </head>
     <body>
-        
         <referenceContainer name="sidebar.additional">
             <block class="Smartwave\Porto\Block\Template" name="product_view_custom_block" before="-" template="Magento_Catalog::product/view/custom_block.phtml"/>
         </referenceContainer>
@@ -18,19 +17,20 @@
         <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
         <referenceBlock name="catalog.product.related" remove="true"/>
         <move element="product.info.overview" destination="product.info.main" before="product.info.review"/>
-        <move element="custom_attr" destination="product.info.main" after="product.info.review"/>
+        <move element="custom_attr" destination="product.info.main" before="product.info"/>
         <referenceContainer name="after.body.start">
             <block class="Magento\Catalog\Block\Product\View" name="product_custom" template="Magento_Catalog::product/view/product_custom.phtml" before="-"/>
             <block class="Magento\Catalog\Block\Product\View" name="product.info.wdm" template="product/view/wdm-social.phtml"/>
-            <block class="Magento\Catalog\Block\Product\View" name="product.info.viewpage" template="product/view/viewpage.phtml"/>
+            <!-- <block class="Magento\Catalog\Block\Product\View" name="product.info.viewpage" template="product/view/viewpage.phtml"/> -->
             <block class="Magento\Catalog\Block\Product\View" name="custom_attr" template="Magento_Catalog::product/view/custom_attributes.phtml"/>
         </referenceContainer>
         <move element="product.info.wdm" destination="page.main.title" after="-"/>
 
         <referenceContainer name="columns.top">
             <block class="Magento\Catalog\Block\Product\View" name="prev_next_products" template="Magento_Catalog::product/view/prev_next.phtml" before="-"/>
-
+            <block class="Atniqii\Aeditions\Block\Subcategories" name="subcategories" template="Magento_Catalog::category/libra_subcategories_menu.phtml" before="-"/>
         </referenceContainer>
+
         <!-- <move element="prev_next_products" destination="product.info.main" before="-"/> -->
         <move element="page.main.title" destination="content" before="-"/>
     <!--     <referenceContainer name="product.info.social">
@@ -57,8 +57,10 @@
 
         <move element="product.price.final" destination="product.info.main" before="-"/>
         <move element="product.info.viewpage" destination="product.info.main" after="product.price.final"/>
+        <move element="product.info.wdm" destination="product.info.main" after="product.price.final"/>
         <move element="product_view_main_custom_block2" destination="product.info.main" after="product.info.overview"/>
         <move element="product.info.main" destination="content" after="product.info.media"/>
+        <!-- <move element="product.info" destination="product.info.main" after="custom_attr"/> -->
         <!-- <move element="catalog.product.related" destination="content" after="product.info.main"/> -->
         <!-- <referenceBlock name="product_view_addthis_links" remove="true" /> -->
 

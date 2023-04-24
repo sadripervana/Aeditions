@@ -1,23 +1,30 @@
 /**
  * WARNING: Do not change this file. Your changes will be lost.
- * 2019-11-10 17:26:54 */
+ * 2021-03-03 12:09:40 */
 body.boxed {
     background-color: #D6D6D6;
     background-image: none;
 }
 @media (min-width: 768px) {
     .page-layout-1column .product-info-main, .page-layout-2columns-left .product-info-main, .page-layout-2columns-right .product-info-main, .page-layout-3columns .product-info-main {
-        width: 57.17%;
+        width: 51.17%;
     }
     .page-layout-1column .product.media, .page-layout-2columns-left .product.media, .page-layout-2columns-right .product.media, .page-layout-3columns .product.media {
         width: 40.83%;
     }
 
     .page-layout-1column .column.main > .custom-block ~ .product-info-main, .page-layout-2columns-left .column.main > .custom-block ~ .product-info-main, .page-layout-2columns-right .column.main > .custom-block ~ .product-info-main, .page-layout-3columns .column.main > .custom-block ~ .product-info-main {
-        width: 42.8775%;
+        width: 38.3775%;
     }
     .page-layout-1column .column.main > .custom-block ~ .product.media, .page-layout-2columns-left .column.main > .custom-block ~ .product.media, .page-layout-2columns-right .column.main > .custom-block ~ .product.media, .page-layout-3columns .column.main > .custom-block ~ .product.media {
         width: 30.6225%;
+    }
+}
+@media (max-width: 480px){
+    .products-grid .product-item {
+        float: none;
+        width: 100%;
+        padding: 10px 0;
     }
 }
 .page-header .switcher .options ul.dropdown, .page-footer .switcher .options ul.dropdown, .minicart-wrapper .block-minicart, .product-item .tocart, .bundle-options-container .block-bundle-summary .product-addto-links > .action, .product-item-actions .actions-secondary.action, .action.tocompare, .product-addto-links .action.tocompare, .product-social-links .action.tocompare, .wishlist.split.button > .action.split, .product-social-links .action.mailto.friend, .product-social-links .action.towishlist, .block-bundle-summary .action.towishlist, .product-item .action.towishlist, .table-comparison .action.towishlist, input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type="datetime"], input[type="email"], .footer-middle .block.newsletter input, .footer-middle .block.newsletter .action.subscribe, .filter-options-title, .filter-options-item.active .filter-options-title, .filter-options-content, .filter-options-title:after, .toolbar select, .swatch-option, .pages .page, .pages .action, .fotorama__stage, .fotorama__nav--thumbs .fotorama__thumb, .fotorama__nav .fotorama__thumb-border, .input-text.qty, .qty.field .qty-changer > a, button, a.action.primary, textarea, .minicart-items .item-qty, .block-minicart .block-content > .actions > .secondary .action.viewcart, .cart.table-wrapper .product-image-container, .cart-summary, select, #discount-coupon-form #coupon_code, .abs-discount-block .actions-toolbar .action.primary, .abs-discount-block .actions-toolbar .action.cancel, .block-compare .action.primary, .cart-summary .block .actions-toolbar > .primary .action.primary, .cart-summary .form.giftregistry .fieldset .action.primary, .paypal-review-discount .actions-toolbar .action.primary, .paypal-review-discount .actions-toolbar .action.cancel, .cart-discount .actions-toolbar .action.primary, .cart-discount .actions-toolbar .action.cancel, .login-container, .form.password.reset, .form.send.confirmation, .form.password.forget, .form.create.account, .form.form-edit-account, .form-address-edit, .form-newsletter-manage, .message, .box .box-title, .box .box-actions, .customer-welcome .header.links, .btn, .cms-index-index blockquote.testimonial, .recent-posts .item .post-image, .prev-next-products .product-nav .product-pop, #newsletter_popup, .product-label, .page-header.type11 .navigation li.level0.active, .page-header.type11 .navigation li.level0:hover, .filter .filter-current-subtitle, .filter-actions, .products-grid .product-item .product-item-info:hover .weltpixel-quickview.weltpixel_quickview_button_v2, .block-header-customer-login, .bundle-options-container .block-bundle-summary .product-addto-links > .action, .product-item-actions .actions-secondary.action, .action.tocompare, .product-addto-links .action.tocompare, .moved-add-to-links .action.tocompare, .product-social-links .action.tocompare, .wishlist.split.button > .action.split, .product-social-links .action.mailto.friend, .moved-add-to-links .action.mailto.friend, .product-social-links .action.towishlist, .product-addto-links .action.towishlist, .block-bundle-summary .action.towishlist, .product-item .action.towishlist, .table-comparison .action.towishlist
@@ -49,6 +56,8 @@ body.boxed {
     border-radius: 0;
 }
 
+
+.page-footer .footer > i {font-style: normal}
 .page-main {
     padding-top: 15px;
     padding-bottom: 0;
@@ -914,7 +923,7 @@ body.boxed {
         padding: 0 15px;
     }
     .footer-top, .footer-middle, .footer-bottom {
-        width: 1110px;
+        width: 1250px;
     }
 }
 @media (max-width: 991px) {
@@ -1121,4 +1130,28 @@ body.boxed {
 }
 .page.messages {
     margin: 15px 0;
+}.catalog-product-view .main_addtion_product_bg {margin-bottom: 100px;}
+
+.category-20 .toptoolbar + .toolbar-products {display: none !important;}
+@media (max-width: 768px) {
+
+	.customer-account-login .login-container {
+		padding: 30px;
+	}
+	#login-form .field.required .control {
+		width: 85%;
+	}
+	#login-form  input::placeholder {
+		color: #3f4041;
+	}
+	.customer-account-login .block-customer-login {
+		width: 100% !important;
+		max-height: unset;
+	}
+	#login-form .actions-toolbar .primary {
+		margin: unset;
+	}
+	.login-image {
+		width: 100%;
+	}
 }

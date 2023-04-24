@@ -13,8 +13,10 @@ class Topmenu extends \Magento\Framework\View\Element\Template
     protected $_blockFactory;
     protected $_megamenuConfig;
     protected $_storeManager;
-    
+    protected $_registry;
+
     public function __construct(
+        \Magento\Framework\Registry $registry,
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Catalog\Helper\Category $categoryHelper,
         \Smartwave\Megamenu\Helper\Data $helper,
@@ -24,7 +26,7 @@ class Topmenu extends \Magento\Framework\View\Element\Template
         \Magento\Cms\Model\Template\FilterProvider $filterProvider,
         \Magento\Cms\Model\BlockFactory $blockFactory
     ) {
-
+        $this->_registry = $registry;
         $this->_categoryHelper = $categoryHelper;
         $this->_categoryFlatConfig = $categoryFlatState;
         $this->_categoryFactory = $categoryFactory;
@@ -33,7 +35,7 @@ class Topmenu extends \Magento\Framework\View\Element\Template
         $this->_filterProvider = $filterProvider;
         $this->_blockFactory = $blockFactory;
         $this->_storeManager = $context->getStoreManager();
-        
+
         parent::__construct($context);
     }
 
@@ -46,20 +48,20 @@ class Topmenu extends \Magento\Framework\View\Element\Template
     {
         $_category = $this->_categoryFactory->create();
         $_category->load($id);
-        
+
         return $_category;
     }
-    
+
     public function getHtml($outermostClass = '', $childrenWrapClass = '', $limit = 0)
     {
         return $this->_topMenu->getHtml($outermostClass, $childrenWrapClass, $limit);
     }
-    
+
     public function getStoreCategories($sorted = false, $asCollection = false, $toLoad = true)
     {
         return $this->_categoryHelper->getStoreCategories($sorted , $asCollection, $toLoad);
     }
-    
+
     public function getChildCategories($category)
     {
         if ($this->_categoryFlatConfig->isFlatEnabled() && $category->getUseFlatResource()) {
@@ -67,10 +69,10 @@ class Topmenu extends \Magento\Framework\View\Element\Template
         } else {
             $subcategories = $category->getChildren();
         }
-        
+
         return $subcategories;
     }
-    
+
     public function getActiveChildCategories($category)
     {
         $children = [];
@@ -87,34 +89,34 @@ class Topmenu extends \Magento\Framework\View\Element\Template
         }
         return $children;
     }
-    
+
     public function getBlockContent($content = '') {
         if(!$this->_filterProvider)
             return $content;
         return $this->_filterProvider->getBlockFilter()->filter(trim($content));
     }
-    
+
     public function getCustomBlockHtml($type='after') {
         $html = '';
-        
+
         $block_ids = $this->_megamenuConfig['custom_links']['staticblock_'.$type];
-        
+
         if (!$block_ids) return '';
-        
+
         $block_ids = preg_replace('/\s/', '', $block_ids);
         $ids = explode(',', $block_ids);
         $store_id = $this->_storeManager->getStore()->getId();
-        
+
         foreach($ids as $block_id) {
             $block = $this->_blockFactory->create();
             $block->setStoreId($store_id)->load($block_id);
-            
+
             if(!$block) continue;
-            
+
             $block_content = $block->getContent();
-            
+
             if(!$block_content) continue;
-            
+
             $content = $this->_filterProvider->getBlockFilter()->setStoreId($store_id)->filter($block_content);
             if(substr($content, 0, 4) == '<ul>')
                 $content = substr($content, 4);
@@ -123,13 +125,13 @@ class Topmenu extends \Magento\Framework\View\Element\Template
 
             $html .= $content;
         }
-       
+
         return $html;
     }
     public function getSubmenuItemsHtml($children, $level = 1, $max_level = 0, $column_width=12, $menu_type = 'fullwidth', $columns = null)
     {
         $html = '';
-        
+
         if(!$max_level || ($max_level && $max_level == 0) || ($max_level && $max_level > 0 && $max_level-1 >= $level)) {
             $column_class = "";
             if($level == 1 && $columns && ($menu_type == 'fullwidth' || $menu_type == 'staticwidth')) {
@@ -139,12 +141,12 @@ class Topmenu extends \Magento\Framework\View\Element\Template
             $html = '<ul class="subchildmenu '.$column_class.'">';
             foreach($children as $child) {
                 $cat_model = $this->getCategoryModel($child->getId());
-                
+
                 $sw_menu_hide_item = $cat_model->getData('sw_menu_hide_item');
-                
+
                 if (!$sw_menu_hide_item) {
                     $sub_children = $this->getActiveChildCategories($child);
-                    
+
                     $sw_menu_cat_label = $cat_model->getData('sw_menu_cat_label');
                     $sw_menu_icon_img = $cat_model->getData('sw_menu_icon_img');
                     $sw_menu_font_icon = $cat_model->getData('sw_menu_font_icon');
@@ -176,18 +178,27 @@ class Topmenu extends \Magento\Framework\View\Element\Template
             }
             $html .= '</ul>';
         }
-        
+
         return $html;
     }
-    
+
+    public function getTopBlock()
+    {
+        $category = $this->_registry->registry('current_category');
+        $cat_model = $this->getCategoryModel($category->getId());
+        $menu_top_content = $cat_model->getData('sw_menu_block_top_content');
+        $html = '<div class="menu-top-block">' . $this->getBlockContent($menu_top_content) . '</div>';
+        return $html;
+    }
+
     public function getMegamenuHtml()
     {
         $html = '';
-        
+
         $categories = $this->getStoreCategories(true,false,true);
-        
+
         $this->_megamenuConfig = $this->_helper->getConfig('sw_megamenu');
-        
+
         $max_level = $this->_megamenuConfig['general']['max_level'];
         $html .= $this->getCustomBlockHtml('before');
         if (is_null($categories)) {
@@ -197,11 +208,11 @@ class Topmenu extends \Magento\Framework\View\Element\Template
             if (!$category->getIsActive()) {
                 continue;
             }
-            
+
             $cat_model = $this->getCategoryModel($category->getId());
-            
+
             $sw_menu_hide_item = $cat_model->getData('sw_menu_hide_item');
-            
+
             if(!$sw_menu_hide_item) {
                 $children = $this->getActiveChildCategories($category);
                 $sw_menu_cat_label = $cat_model->getData('sw_menu_cat_label');
@@ -209,15 +220,15 @@ class Topmenu extends \Magento\Framework\View\Element\Template
                 $sw_menu_font_icon = $cat_model->getData('sw_menu_font_icon');
                 $sw_menu_cat_columns = $cat_model->getData('sw_menu_cat_columns');
                 $sw_menu_float_type = $cat_model->getData('sw_menu_float_type');
-                
+
                 if(!$sw_menu_cat_columns){
                     $sw_menu_cat_columns = 4;
                 }
-                
+
                 $menu_type = $cat_model->getData('sw_menu_type');
                 if(!$menu_type)
                     $menu_type = $this->_megamenuConfig['general']['menu_type'];
-                    
+
                 $custom_style = '';
                 if($menu_type=="staticwidth")
                     $custom_style = ' style="width: 500px;"';
@@ -225,10 +236,10 @@ class Topmenu extends \Magento\Framework\View\Element\Template
                 $sw_menu_static_width = $cat_model->getData('sw_menu_static_width');
                 if($menu_type=="staticwidth" && $sw_menu_static_width)
                     $custom_style = ' style="width: '.$sw_menu_static_width.';"';
-                    
+
                 $item_class = 'level0 ';
                 $item_class .= $menu_type.' ';
-                
+
                 $menu_top_content = $cat_model->getData('sw_menu_block_top_content');
                 $menu_left_content = $cat_model->getData('sw_menu_block_left_content');
                 $menu_left_width = $cat_model->getData('sw_menu_block_left_width');
@@ -287,7 +298,7 @@ class Topmenu extends \Magento\Framework\View\Element\Template
             }
         }
         $html .= $this->getCustomBlockHtml('after');
-        
+
         return $html;
     }
 }

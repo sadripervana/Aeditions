@@ -8,6 +8,6 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 
    <referenceContainer name="columns.top">
-            <block class="Atniqii\Aeditions\Block\AddToCardModal" name="add_to_card" template="addtocard.phtml"/>
+            <!-- <block class="Atniqii\Aeditions\Block\AddToCardModal" name="add_to_card" template="addtocard.phtml"/> -->
     </referenceContainer>
 </page>

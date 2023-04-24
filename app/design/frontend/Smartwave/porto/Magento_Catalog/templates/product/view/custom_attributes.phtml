@@ -1,6 +1,6 @@
 <?php
 
-$_product = $block->getProduct(); 
+$_product = $block->getProduct();
 
 $age 		= null;
 $attr 		= null;
@@ -12,7 +12,7 @@ $age 		= $_product->getAge();
 $attr 		= $_product->getCustomAttribute('page');
 $isbn 		= $_product->getIsbn();
 $dimensions = $_product->getDimensions();
-
+$cover  	= $_product->getViewpage();
 if (!is_null($attr)) {
 	$pages =  $attr->getValue();
 }
@@ -22,18 +22,26 @@ if (!is_null($attr)) {
 
 <div class="custom_attr container">
 	<div class="row">
-		<?php if($isbn){ ?>
-			<span class="col-6" ><strong>Isbn: </strong><?= $isbn ?> </span>
-		<?php } if($age){ ?>
-			<span class="col-6" ><strong>Mosha: </strong><?= $age ?> </span>
+		<?php if ($isbn) { ?>
+			<span class="col-6"><strong>ISBN: </strong><?= $isbn ?> </span>
+		<?php }
+		if ($age) { ?>
+			<span class="col-6"><strong>Mosha: </strong><?= $age ?> </span>
 		<?php } ?>
 	</div>
 	<br>
 	<div class="row">
-		<?php if($dimensions){?>
-			<span class="col-6" ><strong>Permasat: </strong><?= $dimensions ?> </span>
-		<?php } if($pages){ ?>
-			<span class="col-6" ><strong>Faqe: </strong><?= $pages ?> </span>
+		<?php if ($dimensions) { ?>
+			<span class="col-6"><strong>Përmasat: </strong><?= $dimensions ?> </span>
+		<?php }
+		if ($pages) { ?>
+			<span class="col-6"><strong><?php if(in_array(20, $_product->getCategoryIds())): ?>Foto: <?php else: ?> Faqe: <?php endif; ?> </strong><?= $pages ?> </span>
+		<?php } ?>
+	</div>
+	<br>
+	<div class="row">
+		<?php if ($cover && preg_match('/\Seria\b/', $cover) == false) { ?>
+			<span class="col-12"><strong>Kopertina: </strong><?= str_ireplace( ['kopertina:', 'Kopertina:' ], '', $cover) ?> </span>
 		<?php } ?>
 	</div>
 
@@ -41,11 +49,11 @@ if (!is_null($attr)) {
 <br>
 
 <script type="text/javascript">
-      require([
-            'jquery',
-        ], function ($) {
-            $('.reviews-actions a').click(function(){
-            	$('.product.info.detailed').show();
-            })
-        });
+	require([
+		'jquery',
+	], function($) {
+		$('.reviews-actions a').click(function() {
+			$('.product.info.detailed').show();
+		})
+	});
 </script>

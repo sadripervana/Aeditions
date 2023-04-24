@@ -31,11 +31,11 @@ do
 done
 # Backup
 if [[ $backup == true ]]; then
-	sudo chmod -R 777 var generated pub/static
-	sudo rm -rf pub/static/_cache/ pub/static/frontend/ pub/static/adminhtml/
+	#chmod -R 777 var generated pub/static
+	rm -rf pub/static/_cache/ pub/static/frontend/ pub/static/adminhtml/
 	echo "Removed pub static files"
-	sudo chmod -R 777 var generated pub/static
-	sudo rm -rf var/view_preprocessed/pub/static/
+	#chmod -R 777 var generated pub/static
+	 rm -rf var/view_preprocessed/pub/static/
 	echo "Removed view preprocessed files"
 	php bin/magento maintenance:enable
 	mkdir -p "backup"
@@ -63,20 +63,20 @@ EOF
 fi
 # Deploy
 if [[ $compile == true ]]; then
-	sudo chmod -R 777 var generated pub/static
+	#chmod -R 777 var generated pub/static
 	php bin/magento setup:upgrade
 	php bin/magento setup:di:compile
 fi
 # Compile
 if [[ $deploy == true ]]; then
-	sudo chmod -R 777 var generated pub/static
-	sudo rm -rf pub/static/_cache/ pub/static/frontend/ pub/static/adminhtml/
+	#chmod -R 777 var generated pub/static
+	rm -rf pub/static/_cache/ pub/static/frontend/ pub/static/adminhtml/
 	echo "Removed pub static files"
-	sudo chmod -R 777 var generated pub/static
-	sudo rm -rf var/view_preprocessed/pub/static/
+	#chmod -R 777 var generated pub/static
+	rm -rf var/view_preprocessed/pub/static/
 	echo "Removed view preprocessed files"
-	php bin/magento setup:static-content:deploy it_IT -f -a frontend
-#	php bin/magento setup:static-content:deploy en_US -f
+#	php bin/magento setup:static-content:deploy it_IT -f -a frontend
+	php bin/magento setup:static-content:deploy  -f -a frontend
 	echo "Deployed static content"
 fi
 
@@ -92,9 +92,9 @@ fi
 
 # Clean cache
 if [[ $clean_cache == true ]]; then
-	sudo chmod -R 777 var generated pub/static
+	#chmod -R 777 var generated pub/static
 	php bin/magento cache:clean
-	sudo chmod -R 777 var generated pub/static
+	#chmod -R 777 var generated pub/static
 	php bin/magento cache:flush
-	sudo chmod -R 777 var generated pub/static
+	#chmod -R 777 var generated pub/static
 fi

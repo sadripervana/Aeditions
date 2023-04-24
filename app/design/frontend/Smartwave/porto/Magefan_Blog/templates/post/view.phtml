@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © 2015 Ihor Vansach (ihor@magefan.com). All rights reserved.
  * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
@@ -14,39 +15,49 @@
  */
 ?>
 <?php
-    $_post = $this->getPost();
-    $_postUrl = $_post->getPostUrl();
-    $_postName = $block->escapeHtml($_post->getTitle(), null, true);
-    $_postDate = $_post->getData("publish_time");
+$_post = $this->getPost();
+$_postUrl = $_post->getPostUrl();
+$_postName = $block->escapeHtml($_post->getTitle(), null, true);
+$_postDate = $_post->getData("publish_time");
 ?>
 
 <div class="container">
-        
-        <div id="post" class="row">
-            
-            <div class="col-xl-4 col-lg-4 col-md-12 post_image">
-               
-                <div class="image_part">
-                     <?php if($post_image = $_post->getFeaturedImage()): ?>
-                        <img src="<?php echo $post_image; ?>" alt=""/>
-                     <?php endif; ?>
-                </div>
-            
-            </div>
+    <div class="page-title-wrapper">
+        <h1 class="page-title">
+            <span class="base" data-ui-id="page-title-wrapper">
+                Blog
+            </span>
+        </h1>
+    </div>
 
-            <div class="col-xl-8 col-lg-8 col-md-12 post_content">
-                
-                <div class="col-xl-12">
-                    <h1 class="title">
-                          <?= $_postName; ?>
-                    </h1>
-                </div>
-                <div  class="col-xl-12 content">
-                    
-                    <?php echo $block->getContent() ?>
-                </div>
-            </div>
+    <div id="post" class="row">
 
+        <div class="col-12 top-post">
+            <h1 class="title">
+                <?= $_postName; ?>
+            </h1>
         </div>
-    
- </div>
+        <div class="col-12 post_category top-post">
+            <span class="category">Marre nga: <?= $this->getCategoryName($_post->getId()) ?></span>
+        </div>
+        <div class="col-12 info top-post">
+            <span><?= $_postDate ?></span>
+            <span><?= ceil(str_word_count($_post->getShortFilteredContent()) / 100) ?> min lexim</span>
+            <span class="comments-count"><?= $_post->getCommentsCount() ?></span>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="image_part">
+                <?php if ($post_image = $_post->getFeaturedImage()) : ?>
+                    <img src="<?php echo $post_image; ?>" alt="" />
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="col-12 content col-md-9">
+            <?php echo $block->getContent() ?>
+        </div>
+
+    </div>
+    <div class="post-bottom">
+        <?= $block->getChildHtml('blog.post.bottom') ?>
+    </div>
+</div>

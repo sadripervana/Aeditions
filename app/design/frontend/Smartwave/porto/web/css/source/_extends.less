@@ -3,6 +3,20 @@
 //  * See COPYING.txt for license details.
 //  */
 
+// Hover effect
+
+.item.product.product-item{
+    &:hover{
+        .price{
+            color:red !important;
+        }
+    }
+}
+
+.products-grid:not(.side-list):not(.products-related) .product-item:hover .product-item-info{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
 //
 //  List default styles reset
 //  ---------------------------------------------
